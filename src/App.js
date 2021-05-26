@@ -1,12 +1,20 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Inicio from './components/Inicio';
 import Nosotros from './components/Nosotros';
 import Actividades from './components/Actividades';
 import Contribuye from './components/Contribuye';
+import { useDispatch } from 'react-redux';
+import { fetchPublicInfoData } from './app/publicInfoSlice';
 
 function App() {
+  const dispatch = useDispatch();
+ 
+  // Fetch organization's public info data as soon as we load the app
+  React.useEffect(() => {
+    dispatch(fetchPublicInfoData())
+  }, [dispatch]);
+
   return (
     <div className="App">
       <Router>
