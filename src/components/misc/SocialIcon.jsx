@@ -1,3 +1,14 @@
+/*
+  Circular social icons with hover, tooltip and click effect
+
+  <SocialIcon />
+
+  Props:
+    icon: string - icon to display ("facebook", "email", "phone", "instagram", "twitter")
+    link: string - full link to open on new tab
+    tooltipText: optional string - text to display as tooltip
+*/
+
 import * as React from 'react';
 import { Icon, Tooltip } from '@chakra-ui/react';
 import { FaFacebookF, FaTwitter, FaPhone, FaInstagram } from 'react-icons/fa';

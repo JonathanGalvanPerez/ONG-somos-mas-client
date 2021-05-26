@@ -1,3 +1,10 @@
+/*
+  Footer component with dynamic info
+
+  Usage:
+    <Footer />
+*/
+
 import * as React from 'react';
 import { Box, VStack, HStack, Container, Link, Text, Image } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
@@ -17,17 +24,20 @@ const linkStyle = {
 };
 
 // Nav links container style
+const navW = {
+  maxW: { base: '95%', md: '95%', xl: '75%' },
+};
 const footerNavStyle = {
-  fontSize: { base: 'lg', md: 'md', lg: 'lg' },
+  fontSize: { base: 'lg', lg: 'lg' },
   justifyContent: 'space-between',
-  d: { base: 'grid', md: 'flex' },
+  d: { base: 'grid', lg: 'flex' },
   gridRowGap: 4,
   gridAutoFlow: 'row dense',
   gridTemplateColumns: { base: 'repeat(2, minmax(0, 1fr))', sm: 'repeat(3, minmax(0,1fr))' },
   fontWeight: 'semibold',
   flexDirection: { base: 'column', md: 'row' },
   alignItems: 'center',
-  maxW: '6xl',
+  ...navW,
 };
 
 // Logo style
@@ -36,11 +46,11 @@ const footerLogoStyle = {
   _hover: { transform: 'scale(1.1)' },
   transitionProperty: 'all',
   transitionDuration: '500ms',
-  width: '200px',
+  width: { base: '220px', md: '240px' },
 };
 
 export default function Footer() {
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   const footerNavLinks = {
     leftColumn: [
@@ -56,48 +66,46 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { link: 'https://facebook.com', icon: 'facebook', tooltipText: "/usuario" },
-    { link: 'https://instagram.com', icon: 'instagram', tooltipText: "/usuario" },
-    { link: 'https://instagram.com', icon: 'twitter', tooltipText: "/usuario" },
-    { link: "email:correo@test.com", icon: 'email', tooltipText: "correo@test.com" },
+    { link: 'https://facebook.com', icon: 'facebook', tooltipText: '/usuario' },
+    { link: 'https://instagram.com', icon: 'instagram', tooltipText: '/usuario' },
+    { link: 'https://instagram.com', icon: 'twitter', tooltipText: '/usuario' },
+    { link: 'email:correo@test.com', icon: 'email', tooltipText: 'correo@test.com' },
     { icon: 'phone', tooltipText: '1234567' },
   ];
 
   return (
-    <Box w='full'>
-      <Box bg='white' w='100%' color='gray.800' pb={12} pt={16} px={1} textAlign='center'>
-        <VStack spacing={10}>
-          {isMobile && <Image gridColumn='span 3 / span 3' {...footerLogoStyle} src={logo} alt='Somos Más' />}
+    <Box bg='white' w='full' color='gray.800' pb={12} pt={16} px={1} textAlign='center'>
+      <VStack spacing={10}>
+        {isMobile && <Image gridColumn='span 3 / span 3' {...footerLogoStyle} src={logo} alt='Somos Más' />}
 
-          {/* Footer Nav Links */}
-          <Container {...footerNavStyle}>
-            {footerNavLinks.leftColumn.map((navLink) => (
-              <Link {...linkStyle} href={navLink.path}>
-                {navLink.label}
-              </Link>
+        {/* Footer Nav Links */}
+        <Container {...footerNavStyle}>
+          {footerNavLinks.leftColumn.map((navLink) => (
+            <Link {...linkStyle} href={navLink.path}>
+              {navLink.label}
+            </Link>
+          ))}
+          {!isMobile && <Image {...footerLogoStyle} src={logo} alt='Somos Más' />}
+          {footerNavLinks.rightColumn.map((navLink) => (
+            <Link {...linkStyle} href={navLink.path}>
+              {navLink.label}
+            </Link>
+          ))}
+        </Container>
+
+        <Box bg='blackAlpha.300' h='1px' w={{base:'77%', md:"77%", xl:"73%"}} />
+
+        <VStack spacing={5}>
+          <HStack spacing={3}>
+            {socialLinks.map((social) => (
+              <SocialIcon icon={social.icon} tooltipText={social.tooltipText} link={social.link} />
             ))}
-            {!isMobile && <Image {...footerLogoStyle} src={logo} alt='Somos Más' />}
-            {footerNavLinks.rightColumn.map((navLink) => (
-              <Link {...linkStyle} href={navLink.path}>
-                {navLink.label}
-              </Link>
-            ))}
-          </Container>
-
-          <Box bg='blackAlpha.300' h='1px' w='60%' />
-
-          <VStack spacing={5}>
-            <HStack spacing={3}>
-              {socialLinks.map((social) => (
-                <SocialIcon icon={social.icon} tooltipText={social.tooltipText} link={social.link} />
-              ))}
-            </HStack>
-            <Text fontSize='xs' fontWeight='normal' color='gray.600' cursor='default'>
-              © {new Date().getFullYear()} by Alkemy. Todos los derechos reservados.
-            </Text>
-          </VStack>
+          </HStack>
+          <Text fontSize='xs' fontWeight='normal' color='gray.600' cursor='default'>
+            © {new Date().getFullYear()} by Alkemy. Todos los derechos reservados.
+          </Text>
         </VStack>
-      </Box>
+      </VStack>
     </Box>
   );
 }
