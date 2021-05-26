@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Box, VStack, Container, Link, Text, Image } from '@chakra-ui/react';
+import { Box, VStack, HStack, Container, Link, Text, Image } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
 import logo from '../../assets/images/logo.png';
+import SocialIcon from './../misc/SocialIcon';
 
 // Footer nav link style
 const linkStyle = {
@@ -54,6 +55,14 @@ export default function Footer() {
     ],
   };
 
+  const socialLinks = [
+    { link: 'https://facebook.com', icon: 'facebook', tooltipText: "/usuario" },
+    { link: 'https://instagram.com', icon: 'instagram', tooltipText: "/usuario" },
+    { link: 'https://instagram.com', icon: 'twitter', tooltipText: "/usuario" },
+    { link: "email:correo@test.com", icon: 'email', tooltipText: "correo@test.com" },
+    { icon: 'phone', tooltipText: '1234567' },
+  ];
+
   return (
     <Box w='full'>
       <Box bg='white' w='100%' color='gray.800' pb={12} pt={16} px={1} textAlign='center'>
@@ -78,6 +87,11 @@ export default function Footer() {
           <Box bg='blackAlpha.300' h='1px' w='60%' />
 
           <VStack spacing={5}>
+            <HStack spacing={3}>
+              {socialLinks.map((social) => (
+                <SocialIcon icon={social.icon} tooltipText={social.tooltipText} link={social.link} />
+              ))}
+            </HStack>
             <Text fontSize='xs' fontWeight='normal' color='gray.600' cursor='default'>
               © {new Date().getFullYear()} by Alkemy. Todos los derechos reservados.
             </Text>
