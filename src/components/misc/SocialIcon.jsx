@@ -5,7 +5,7 @@
 
   Props:
     icon: string - icon to display ("facebook", "email", "phone", "instagram", "twitter")
-    link: string - full link to open on new tab
+    link: string - full link to open on click as new tab
     tooltipText: optional string - text to display as tooltip
 */
 
@@ -13,6 +13,7 @@ import * as React from 'react';
 import { Icon, Tooltip } from '@chakra-ui/react';
 import { FaFacebookF, FaTwitter, FaPhone, FaInstagram } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import PropTypes from 'prop-types';
 
 const socialIconStyle = {
   cursor: 'pointer',
@@ -29,7 +30,7 @@ const socialIconStyle = {
   borderRadius: 'full',
 };
 
-export default function SocialIcon({ icon, link, tooltipText }) {
+function SocialIcon({ icon, link, tooltipText }) {
   let iconComponent;
 
   switch (icon) {
@@ -64,3 +65,16 @@ export default function SocialIcon({ icon, link, tooltipText }) {
     </Tooltip>
   );
 }
+
+SocialIcon.defaultProps = {
+  link: "",
+  tooltipText: "",
+}
+
+SocialIcon.propTypes = {
+  icon: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  tooltipText: PropTypes.string,
+}
+
+export default SocialIcon;
