@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Box, VStack, Container, Link, Text } from '@chakra-ui/react';
+import { Box, VStack, Container, Link, Text, Image } from '@chakra-ui/react';
+import { useBreakpointValue } from '@chakra-ui/react';
+import logo from '../../assets/images/logo.png';
 
 // Footer nav link style
 const linkStyle = {
@@ -24,7 +26,18 @@ const footerNavStyle = {
   maxW: '6xl',
 };
 
+// Logo style
+const footerLogoStyle = {
+  cursor: 'pointer',
+  _hover: { transform: 'scale(1.1)' },
+  transitionProperty: 'all',
+  transitionDuration: '500ms',
+  width: '200px',
+};
+
 export default function Footer() {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   const footerNavLinks = {
     leftColumn: [
       { label: 'Novedades', path: '/novedades' },
@@ -42,6 +55,8 @@ export default function Footer() {
     <Box w='full'>
       <Box bg='white' w='100%' color='gray.800' pb={12} pt={16} px={1} textAlign='center'>
         <VStack spacing={10}>
+          {isMobile && <Image gridColumn='span 3 / span 3' {...footerLogoStyle} src={logo} alt='Somos Más' />}
+
           {/* Footer Nav Links */}
           <Container {...footerNavStyle}>
             {footerNavLinks.leftColumn.map((navLink) => (
@@ -49,6 +64,7 @@ export default function Footer() {
                 {navLink.label}
               </Link>
             ))}
+            {!isMobile && <Image {...footerLogoStyle} src={logo} alt='Somos Más' />}
             {footerNavLinks.rightColumn.map((navLink) => (
               <Link {...linkStyle} href={navLink.path}>
                 {navLink.label}
