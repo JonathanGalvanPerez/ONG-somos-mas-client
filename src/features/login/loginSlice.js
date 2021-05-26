@@ -16,8 +16,7 @@ export const loginSlice = createSlice({
         },     
     
     logOut: (state) => (
-        state.userActive = false,
-        state.nombreUsuario = null
+        state.userActive = false
     )
     
   },
