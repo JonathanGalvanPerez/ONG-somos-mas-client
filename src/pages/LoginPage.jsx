@@ -1,3 +1,12 @@
+/*
+  Login Page
+
+  Contains components/authentication/LoginForm
+
+  Important function:
+    handleLoginSubmit - will be called on login form submit after input validation
+*/
+
 import { Center, Link } from '@chakra-ui/layout';
 import * as React from 'react';
 import { VStack, HStack, Text } from '@chakra-ui/react';
@@ -9,21 +18,21 @@ import { Link as RouterLink, useHistory } from 'react-router-dom';
 export default function LoginPage() {
   const history = useHistory();
 
-  // On logo click
-  const handleLogoClick = () => {
-    history.push('/');
-  };
-
   // On login form submit
-  // This callback will only be called after successful validation
+  // This callback will only be called after successful validation with the login information
   const handleLoginSubmit = (values, actions) => {
     // Shape of values: { email: string, password: string }
 
     // TODO: Sacar este timeout y hacer una llamada al backend real con values o values.email y values.password
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
-      actions.setSubmitting(false);
+      actions.setSubmitting(false); // Set form loading state to false
     }, 1000);
+  };
+
+  // On logo click
+  const handleLogoClick = () => {
+    history.push('/');
   };
 
   return (

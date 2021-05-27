@@ -1,3 +1,9 @@
+/*
+  Simple box used to contain auth forms 
+
+  <AuthBox>children elements</AuthBox>
+*/
+
 import * as React from 'react';
 import { Box } from '@chakra-ui/layout';
 

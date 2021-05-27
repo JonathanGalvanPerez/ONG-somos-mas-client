@@ -1,3 +1,11 @@
+/*
+  Button used on auth forms
+  
+  Props:
+    isLoading: boolean to indicate loading status (true for loading)
+    all the other props will be spread on a chakra's <Button> component
+*/
+
 import * as React from 'react';
 import { Button } from '@chakra-ui/react';
 

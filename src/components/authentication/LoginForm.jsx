@@ -1,3 +1,13 @@
+/*
+  Simple login form with email & password validation
+
+  Usage:
+    <LoginForm onLoginSubmit={(values, actions) => {}}/>
+
+  Props:
+    onLoginSubmit: function(values, actions) - will be called on login form submit AFTER validation. values will be the object containing all the inputs VALIDATED
+*/
+
 import * as React from 'react';
 import { FormControl, FormErrorMessage, Box, VStack } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
