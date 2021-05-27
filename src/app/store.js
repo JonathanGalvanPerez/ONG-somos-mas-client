@@ -1,18 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
-<<<<<<< HEAD
-import loginReducer from '../features/login/loginSlice'
-=======
 import publicInfoReducer from './publicInfoSlice';
->>>>>>> master
+import loginReducer from '../features/login/loginSlice'
 
 export default configureStore({
   reducer: {
     counter: counterReducer,
-<<<<<<< HEAD
+    publicInfo: publicInfoReducer,
     login: loginReducer
-=======
-    publicInfo: publicInfoReducer
->>>>>>> master
+
   },
 });
