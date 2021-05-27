@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { Box, Link } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
 
 export default function AuthBox({ children, ...props }) {
   return (
-    <Box w='lg' maxW='lg' bg='white' maxH='md' p={5} shadow='xl' flex='1' borderRadius='lg' {...props}>
-      <Link position='absolute' top='18%' justifySelf='flex-start' alignSelf='self-start'>
-        Volver a inicio
-      </Link>
+    <Box w='full' h='fit-content' bg='white' px={5} py={7} boxShadow='lg' borderWidth="1px" borderColor="gray.200" borderRadius='xl' {...props}>
       {children}
     </Box>
   );
