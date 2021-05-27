@@ -15,7 +15,7 @@ export default function AuthSubmitButton({ isLoading, children, ...props }) {
       bg='gray.700'
       py={6}
       isLoading={isLoading}
-       {...props}>
+      {...props}>
       {children}
     </Button>
   );

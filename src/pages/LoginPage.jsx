@@ -1,6 +1,6 @@
 import { Center, Link } from '@chakra-ui/layout';
 import * as React from 'react';
-import { VStack, HStack, Text, Icon } from '@chakra-ui/react';
+import { VStack, HStack, Text } from '@chakra-ui/react';
 import Logo from './../components/layout/Logo';
 import LoginForm from './../components/authentication/LoginForm';
 import AuthBox from '../components/authentication/AuthBox';

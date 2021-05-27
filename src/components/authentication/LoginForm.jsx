@@ -1,14 +1,5 @@
 import * as React from 'react';
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  Input,
-  Box,
-  VStack,
-  InputGroup,
-  InputLeftElement,
-} from '@chakra-ui/react';
+import { FormControl, FormErrorMessage, Box, VStack } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { AUTH_FORM_VALIDATIONS } from '../../app/config';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
