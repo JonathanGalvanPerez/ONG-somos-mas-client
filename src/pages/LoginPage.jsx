@@ -6,6 +6,7 @@ import LoginForm from './../components/authentication/LoginForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import Footer from '../components/layout/footer';
 
 /*
           <Link
@@ -37,21 +38,26 @@ export default function LoginPage() {
       flexDirection='column'
       justifyContent='center'
       alignItems='center'>
-
-      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' mt={{base:'35px', md:'0px'}} />
+      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' mt={{ base: '35px', md: '0px' }} />
 
       <AuthBox maxW='md' position='relative'>
-        <VStack d='flex' alignItems='center' spacing={8} justifyContent='center' textAlign='center' maxW='md'>
-          <Text fontSize="4xl" fontWeight='medium'>
+        <VStack
+          w={{ base: '90%', sm: '80%' }}
+          d='flex'
+          alignItems='center'
+          spacing={5}
+          justifyContent='center'
+          textAlign='center'>
+          <Text fontSize='4xl' fontWeight='medium'>
             Iniciar sesión
           </Text>
 
-          <LoginForm maxW='90%' />
+          <LoginForm />
           <Link fontWeight='medium'>Olvidé mi contraseña</Link>
         </VStack>
       </AuthBox>
-      
-      <HStack mt='40px' pb={10} mb={18}>
+
+      <HStack mt='40px' mb={{ base: '0px', md: '100px' }}>
         <Text>¿Necesitas crear una cuenta?</Text>
         <Link fontWeight='medium'>Registrarme</Link>
       </HStack>

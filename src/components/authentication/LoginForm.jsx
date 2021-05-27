@@ -15,7 +15,7 @@ export default function LoginForm({ ...props }) {
     let error;
     if (!value) {
       error = 'La contraseña es requerida';
-    }
+    } else if (value.length)
     return error;
   }
 
@@ -35,7 +35,7 @@ export default function LoginForm({ ...props }) {
               <Field  name='email' validate={validateEmail}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.email && form.touched.email}>
-                    <Input size="lg" borderColor="gray.300" {...field} id='email' placeholder='Email' />
+                    <Input size="lg" borderColor="gray.300" type="email" {...field} id='email' placeholder='Email' />
                     <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                   </FormControl>
                 )}
@@ -48,7 +48,7 @@ export default function LoginForm({ ...props }) {
                   </FormControl>
                 )}
               </Field>
-              <Button w='full' borderRadius="full" size="md" mt={4} fontWeight="medium" fontSize="lg" colorScheme='blue' py={6} isLoading={props.isSubmitting} type='submit'>
+              <Button w='full' borderRadius="full" size="md" mt={4} fontWeight="medium" fontSize="lg" color="white" _hover={{bg:"gray.900"}} bg="gray.700" py={6} isLoading={props.isSubmitting} type='submit'>
                 Iniciar sesión
               </Button>
             </VStack>
