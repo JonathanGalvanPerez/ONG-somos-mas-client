@@ -3,7 +3,7 @@ import { Button, FormControl, FormLabel, FormErrorMessage, Input, Box, Text, VSt
 import { Field, Form, Formik } from 'formik';
 import { AUTH_FORM_VALIDATIONS } from '../../app/config';
 
-export default function LoginForm({ ...props }) {
+export default function LoginForm({ onLoginSubmit, ...props }) {
   function validateEmail(value) {
     let error;
     if (!value) error = 'El email es requerido';
@@ -24,11 +24,7 @@ export default function LoginForm({ ...props }) {
     <Box w='full' {...props}>
       <Formik
         initialValues={{}}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            actions.setSubmitting(false);
-          }, 1000);
-        }}>
+        onSubmit={onLoginSubmit}>
         {(props) => (
           <Form>
             <VStack spacing={5}>

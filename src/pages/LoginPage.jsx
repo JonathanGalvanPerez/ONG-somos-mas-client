@@ -5,27 +5,24 @@ import Logo from './../components/layout/Logo';
 import LoginForm from './../components/authentication/LoginForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import Footer from '../components/layout/footer';
 
-/*
-          <Link
-            as={RouterLink}
-            to='/'
-            d='flex'
-            justifyContent='center'
-            alignItems='center'
-            textAlign='center'
-            position='absolute'>
-            <Icon as={AiOutlineArrowLeft} fontSize='15px' />
-            <Text ml='5px'>Volver</Text>
-          </Link>
-*/
 export default function LoginPage() {
   const history = useHistory();
 
+  // On logo click
   const handleLogoClick = () => {
     history.push('/');
+  };
+
+  // On login form submit
+  // This callback will only be called after successful validation
+  const handleLoginSubmit = (values, actions) => {
+    // Shape of values: { email: string, password: string }
+    // TODO: Sacar este timeout y hacer una llamada al backend real con values o values.email y values.password
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      actions.setSubmitting(false);
+    }, 1000);
   };
 
   return (
@@ -52,14 +49,14 @@ export default function LoginPage() {
             Iniciar sesión
           </Text>
 
-          <LoginForm />
-          <Link fontWeight='medium'>Olvidé mi contraseña</Link>
+          <LoginForm onLoginSubmit={handleLoginSubmit} />
+          <Link as={RouterLink} to="/recuperar-contraseña" fontWeight='medium'>Olvidé mi contraseña</Link>
         </VStack>
       </AuthBox>
 
       <HStack mt='40px' mb={{ base: '0px', md: '100px' }}>
         <Text>¿Necesitas crear una cuenta?</Text>
-        <Link fontWeight='medium'>Registrarme</Link>
+        <Link as={RouterLink} to="/registro" fontWeight='medium'>Registrarme</Link>
       </HStack>
     </Center>
   );
