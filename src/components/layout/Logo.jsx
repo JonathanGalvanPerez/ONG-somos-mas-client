@@ -1,26 +1,27 @@
 /*
-  Footer logo component
+  Logo component
 
   Usage:
-    <FooterLogo />
+    <Logo />
+
+    Accepts any style prop from chakra
 */
 
 import * as React from 'react';
 import { Image } from '@chakra-ui/react';
-import logoStatic from '../../../assets/images/logo.png';
+import logoStatic from '../../assets/images/logo.png';
 import { useSelector } from 'react-redux';
 
-// Footer logo style
-const footerLogoStyle = {
-  cursor: 'pointer',
+// Logo style
+const logoStyle = {
   _hover: { transform: 'scale(1.1)' },
   transitionProperty: 'all',
   transitionDuration: '500ms',
   width: { base: '220px', md: '240px' },
 };
 
-export default function FooterLogo({...props}) {
+export default function Logo({...props}) {
   const { image } = useSelector((state) => state.publicInfo.data);
 
-  return <Image {...footerLogoStyle} src={image || logoStatic} {...props} />;
+  return <Image {...logoStyle} src={image || logoStatic} {...props} />;
 }
