@@ -13,6 +13,7 @@ import { Field, Form, Formik } from 'formik';
 import { AUTH_FORM_VALIDATIONS } from '../../app/config';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import AuthSubmitButton from './AuthSubmitButton';
+import AuthInput from './AuthInput';
 
 export default function LoginForm({ onLoginSubmit, ...props }) {
   function validateEmail(value) {
@@ -41,10 +42,7 @@ export default function LoginForm({ onLoginSubmit, ...props }) {
               <Field name='email' validate={validateEmail}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.email && form.touched.email}>
-                    <InputGroup>
-                      <InputLeftElement pointerEvents='none' children={<EmailIcon mt='6px' color='gray.300' />} />
-                      <Input size='lg' borderColor='gray.300' type='email' {...field} id='email' placeholder='Email' />
-                    </InputGroup>
+                    <AuthInput Icon={EmailIcon} type='email' {...field} id='email' placeholder='Email' />
                     <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                   </FormControl>
                 )}
@@ -54,17 +52,7 @@ export default function LoginForm({ onLoginSubmit, ...props }) {
               <Field name='password' validate={validatePassword}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.password && form.touched.password}>
-                    <InputGroup>
-                      <InputLeftElement pointerEvents='none' children={<LockIcon mt='6px' color='gray.300' />} />
-                      <Input
-                        size='lg'
-                        borderColor='gray.300'
-                        type='password'
-                        {...field}
-                        id='password'
-                        placeholder='Contraseña'
-                      />
-                    </InputGroup>
+                    <AuthInput Icon={LockIcon} type='password' {...field} id='password' placeholder='Contraseña' />
                     <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                   </FormControl>
                 )}
