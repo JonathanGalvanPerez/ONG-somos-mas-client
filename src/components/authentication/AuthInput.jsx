@@ -11,8 +11,9 @@
 
 import * as React from 'react';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { PropTypes } from 'prop-types';
 
-export default function AuthInput({Icon, ...props }) {
+function AuthInput({Icon, ...props }) {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents='none' children={Icon ? <Icon mt='6px' color='gray.300' /> : null} />
@@ -20,3 +21,13 @@ export default function AuthInput({Icon, ...props }) {
     </InputGroup>
   );
 }
+
+AuthInput.defaultProps = {
+  Icon: null,
+}
+
+AuthInput.propTypes = {
+  Icon: PropTypes.node,
+}
+
+export default AuthInput;

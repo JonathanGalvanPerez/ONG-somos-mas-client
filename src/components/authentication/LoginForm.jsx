@@ -15,8 +15,9 @@ import { AUTH_FORM_VALIDATIONS } from '../../app/config';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import AuthSubmitButton from './AuthSubmitButton';
 import AuthInput from './AuthInput';
+import { PropTypes } from 'prop-types';
 
-export default function LoginForm({ onLoginSubmit, ...props }) {
+function LoginForm({ onLoginSubmit, ...props }) {
   function validateEmail(value) {
     let error;
     if (!value) error = 'El email es requerido';
@@ -70,3 +71,13 @@ export default function LoginForm({ onLoginSubmit, ...props }) {
     </Box>
   );
 }
+
+LoginForm.defaultProps = {
+  onLoginSubmit: null,
+}
+
+LoginForm.propTypes = {
+  onLoginSubmit: PropTypes.func
+}
+
+export default LoginForm;

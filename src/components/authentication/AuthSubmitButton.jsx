@@ -1,6 +1,6 @@
 /*
   Button used on auth forms
-  
+
   Props:
     isLoading: boolean to indicate loading status (true for loading)
     all the other props will be spread on a chakra's <Button> component
@@ -8,8 +8,9 @@
 
 import * as React from 'react';
 import { Button } from '@chakra-ui/react';
+import { PropTypes } from 'prop-types';
 
-export default function AuthSubmitButton({ isLoading, children, ...props }) {
+function AuthSubmitButton({ isLoading, children, ...props }) {
   return (
     <Button
       w='full'
@@ -28,3 +29,15 @@ export default function AuthSubmitButton({ isLoading, children, ...props }) {
     </Button>
   );
 }
+
+AuthSubmitButton.defaultProps = {
+  isLoading: false,
+  children: null,
+}
+
+AuthSubmitButton.propTypes = {
+  isLoading: PropTypes.bool,
+  children: PropTypes.node
+}
+
+export default AuthSubmitButton;

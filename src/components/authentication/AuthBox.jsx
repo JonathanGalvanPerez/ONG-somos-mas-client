@@ -6,8 +6,9 @@
 
 import * as React from 'react';
 import { Box } from '@chakra-ui/layout';
+import { PropTypes } from 'prop-types';
 
-export default function AuthBox({ children, ...props }) {
+function AuthBox({ children, ...props }) {
   return (
     <Box
       w='full'
@@ -26,3 +27,13 @@ export default function AuthBox({ children, ...props }) {
     </Box>
   );
 }
+
+AuthBox.defaultProps = {
+  children: null,
+}
+
+AuthBox.propTypes = {
+  children: PropTypes.node,
+}
+
+export default AuthBox;
