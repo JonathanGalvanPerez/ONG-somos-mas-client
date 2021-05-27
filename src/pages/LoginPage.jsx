@@ -18,6 +18,7 @@ export default function LoginPage() {
   // This callback will only be called after successful validation
   const handleLoginSubmit = (values, actions) => {
     // Shape of values: { email: string, password: string }
+
     // TODO: Sacar este timeout y hacer una llamada al backend real con values o values.email y values.password
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
@@ -35,8 +36,10 @@ export default function LoginPage() {
       flexDirection='column'
       justifyContent='center'
       alignItems='center'>
+      {/* Logo */}
       <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' mt={{ base: '35px', md: '0px' }} />
 
+      {/* Box */}
       <AuthBox maxW='md' position='relative'>
         <VStack
           w={{ base: '90%', sm: '80%' }}
@@ -45,18 +48,27 @@ export default function LoginPage() {
           spacing={5}
           justifyContent='center'
           textAlign='center'>
+          {/* Box header */}
           <Text fontSize='4xl' fontWeight='medium'>
             Iniciar sesión
           </Text>
 
+          {/* Form */}
           <LoginForm onLoginSubmit={handleLoginSubmit} />
-          <Link as={RouterLink} to="/recuperar-contraseña" fontWeight='medium'>Olvidé mi contraseña</Link>
+
+          {/* Box footer */}
+          <Link as={RouterLink} to='/recuperar-contraseña' fontWeight='medium'>
+            Olvidé mi contraseña
+          </Link>
         </VStack>
       </AuthBox>
 
+      {/* Bottom text */}
       <HStack mt='40px' mb={{ base: '0px', md: '100px' }}>
         <Text>¿Necesitas crear una cuenta?</Text>
-        <Link as={RouterLink} to="/registro" fontWeight='medium'>Registrarme</Link>
+        <Link as={RouterLink} to='/registro' fontWeight='medium'>
+          Registrarme
+        </Link>
       </HStack>
     </Center>
   );

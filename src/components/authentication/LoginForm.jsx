@@ -1,7 +1,18 @@
 import * as React from 'react';
-import { Button, FormControl, FormLabel, FormErrorMessage, Input, Box, Text, VStack } from '@chakra-ui/react';
+import {
+  Button,
+  FormControl,
+  FormErrorMessage,
+  Input,
+  Box,
+  VStack,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { AUTH_FORM_VALIDATIONS } from '../../app/config';
+import { EmailIcon, LockIcon } from '@chakra-ui/icons';
+import AuthSubmitButton from './AuthSubmitButton';
 
 export default function LoginForm({ onLoginSubmit, ...props }) {
   function validateEmail(value) {
@@ -22,50 +33,47 @@ export default function LoginForm({ onLoginSubmit, ...props }) {
 
   return (
     <Box w='full' {...props}>
-      <Formik
-        initialValues={{}}
-        onSubmit={onLoginSubmit}>
+      <Formik initialValues={{}} onSubmit={onLoginSubmit}>
         {(props) => (
           <Form>
             <VStack spacing={5}>
+              {/* Email input */}
               <Field name='email' validate={validateEmail}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.email && form.touched.email}>
-                    <Input size='lg' borderColor='gray.300' type='email' {...field} id='email' placeholder='Email' />
+                    <InputGroup>
+                      <InputLeftElement pointerEvents='none' children={<EmailIcon mt='6px' color='gray.300' />} />
+                      <Input size='lg' borderColor='gray.300' type='email' {...field} id='email' placeholder='Email' />
+                    </InputGroup>
                     <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
+
+              {/* Password input */}
               <Field name='password' validate={validatePassword}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.password && form.touched.password}>
-                    <Input
-                      size='lg'
-                      borderColor='gray.300'
-                      type='password'
-                      {...field}
-                      id='password'
-                      placeholder='Contraseña'
-                    />
+                    <InputGroup>
+                      <InputLeftElement pointerEvents='none' children={<LockIcon mt='6px' color='gray.300' />} />
+                      <Input
+                        size='lg'
+                        borderColor='gray.300'
+                        type='password'
+                        {...field}
+                        id='password'
+                        placeholder='Contraseña'
+                      />
+                    </InputGroup>
                     <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
-              <Button
-                w='full'
-                borderRadius='full'
-                size='md'
-                mt={4}
-                fontWeight='medium'
-                fontSize='lg'
-                color='white'
-                _hover={{ bg: 'gray.900' }}
-                bg='gray.700'
-                py={6}
-                isLoading={props.isSubmitting}
-                type='submit'>
+
+              {/* Login Button */}
+              <AuthSubmitButton type='submit' isLoading={props.isSubmitting}>
                 Iniciar sesión
-              </Button>
+              </AuthSubmitButton>
             </VStack>
           </Form>
         )}
