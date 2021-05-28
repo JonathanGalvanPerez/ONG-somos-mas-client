@@ -7,6 +7,8 @@ import Contribuye from './components/Contribuye';
 import { useDispatch } from 'react-redux';
 import { fetchPublicInfoData } from './app/publicInfoSlice';
 
+import Backoffice from './components/Backoffice'
+
 function App() {
   const dispatch = useDispatch();
  
@@ -26,6 +28,7 @@ function App() {
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path="/actividades" component={Actividades} />
           <Route exact path="/contribuye" component={Contribuye} />
+          <Route exact path="/backoffice" component={Backoffice} />
         </Switch>
       </Router>
     </div>
