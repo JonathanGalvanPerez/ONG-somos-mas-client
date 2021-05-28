@@ -48,12 +48,10 @@ export default function ContactoForm() {
                                 children={<EditIcon color="gray.300" />}
                             />
                             <Input
-                                className="input-control"
                                 type="text"
                                 placeholder="Nombre"
                                 id="name"
                                 name="name"
-
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.name}
@@ -71,7 +69,6 @@ export default function ContactoForm() {
                             <Input type="email"
                                 id="email"
                                 name="email"
-                                color="red.400"
                                 placeholder="Email de contacto"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
