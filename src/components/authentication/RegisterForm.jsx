@@ -1,11 +1,11 @@
 /*
-  Simple login form with email & password validation
+  Simple register form with validation
 
   Usage:
-    <LoginForm onLoginSubmit={(values, actions) => {}}/>
+    <RegisterForm onRegisterSubmit={(values, actions) => {}}/>
 
   Props:
-    onLoginSubmit: function(values, actions) - will be called on login form submit AFTER validation. values will be the object containing all the inputs VALIDATED
+    onRegisterSubmit: function(values, actions) - will be called on register form submit AFTER validation. values will be the object containing all the inputs VALIDATED
 */
 
 import * as React from 'react';

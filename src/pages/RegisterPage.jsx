@@ -1,10 +1,10 @@
 /*
-  Login Page
+  Register Page
 
-  Contains components/authentication/LoginForm
+  Contains components/authentication/RegisterForm
 
   Important function:
-    handleLoginSubmit - will be called on login form submit after input validation
+    handleRegisterSubmit - will be called on register form submit after input validation
 */
 
 import { Center, Link } from '@chakra-ui/layout';
