@@ -8,6 +8,7 @@ import Loader from './components/Loading/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPublicInfoData, publicLoading } from './app/publicInfoSlice';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
           <Route exact path='/actividades' component={Actividades} />
           <Route exact path='/contribuye' component={Contribuye} />
           <Route exact path='/acceso' component={LoginPage} />
+          <Route exact path='/registro' component={RegisterPage} />
         </Switch>
       </Router>
     </div>
