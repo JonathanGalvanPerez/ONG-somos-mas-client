@@ -10,13 +10,13 @@
 */
 
 import * as React from 'react';
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement, Icon as IconChakra } from '@chakra-ui/react';
 import { PropTypes } from 'prop-types';
 
 function AuthInput({Icon, ...props }) {
   return (
     <InputGroup>
-      <InputLeftElement pointerEvents='none' children={Icon ? <Icon mt='6px' color='gray.300' /> : null} />
+      <InputLeftElement pointerEvents='none' children={Icon ? <IconChakra as={Icon} mt='6px' color='gray.300' /> : null} />
       <Input size='lg' borderColor='gray.300' {...props} />
     </InputGroup>
   );
