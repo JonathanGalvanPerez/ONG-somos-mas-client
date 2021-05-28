@@ -73,7 +73,7 @@ export default function RegisterPage() {
       </AuthBox>
 
       {/* Bottom text */}
-      <HStack mt='40px' mb={{ base: '0px', md: '20px' }}>
+      <HStack mt='40px' mb="20px">
         <Text>¿Ya tienes una cuenta?</Text>
         <Link as={RouterLink} to='/acceso' fontWeight='medium'>
           Iniciar sesión

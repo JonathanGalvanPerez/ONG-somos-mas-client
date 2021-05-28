@@ -37,7 +37,7 @@ export default function LoginPage() {
 
   return (
     <Center
-      h={{ base: '100%', md: '100vh' }}
+      h={{ base: '100vh', md: '100vh' }}
       bg='#F5F6F9'
       w='100%'
       d='flex'
