@@ -16,6 +16,8 @@ import AuthSubmitButton from './AuthSubmitButton';
 import AuthInput from './AuthInput';
 import { PropTypes } from 'prop-types';
 import { validateEmail, validatePassword, validateConfirmPassword, validateName, validateTermsAgreement } from './formValidators';
+import { HStack } from '@chakra-ui/react';
+import { HiPencil } from 'react-icons/hi';
 
 function RegisterForm({ onRegisterSubmit, ...props }) {
   return (
@@ -24,11 +26,13 @@ function RegisterForm({ onRegisterSubmit, ...props }) {
         {(props) => (
           <Form>
             <VStack spacing={5}>
+
+              <HStack>
               {/* Firstname input */}
               <Field name='firstName' validate={validateName}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
-                    <AuthInput Icon={EmailIcon} type='text' {...field} id='firstName' placeholder='Nombre' />
+                    <AuthInput Icon={HiPencil} type='text' {...field} id='firstName' placeholder='Nombre' />
                     <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
                   </FormControl>
                 )}
@@ -38,11 +42,11 @@ function RegisterForm({ onRegisterSubmit, ...props }) {
               <Field name='lastName' validate={validateName}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
-                    <AuthInput Icon={EmailIcon} type='email' {...field} id='lastName' placeholder='Apellido' />
+                    <AuthInput Icon={HiPencil} type='text' {...field} id='lastName' placeholder='Apellido' />
                     <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
                   </FormControl>
                 )}
-              </Field>
+              </Field></HStack>
 
               {/* Email input */}
               <Field name='email' validate={validateEmail}>

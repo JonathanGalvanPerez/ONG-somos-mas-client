@@ -23,7 +23,7 @@ export default function LoginPage() {
   const handleLoginSubmit = (values, actions) => {
     // Shape of values: { email: string, password: string }
 
-    // TODO: Sacar este timeout y hacer una llamada al backend real con values o values.email y values.password
+    // TODO: Sacar este timeout y hacer una llamada al backend
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       actions.setSubmitting(false); // Set form loading state to false

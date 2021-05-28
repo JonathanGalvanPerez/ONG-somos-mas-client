@@ -18,12 +18,12 @@ import { Link as RouterLink, useHistory } from 'react-router-dom';
 export default function RegisterPage() {
   const history = useHistory();
 
-  // On login form submit
+  // On register form submit
   // This callback will only be called after successful validation with the login information
-  const handleLoginSubmit = (values, actions) => {
-    // Shape of values: { email: string, password: string }
+  const handleRegisterSubmit = (values, actions) => {
+    // Shape of values: { firstName: string, lastName: string, email: string, password: string }
 
-    // TODO: Sacar este timeout y hacer una llamada al backend real con values o values.email y values.password
+    // TODO: Sacar este timeout y hacer una llamada al backend
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       actions.setSubmitting(false); // Set form loading state to false
@@ -46,7 +46,7 @@ export default function RegisterPage() {
       justifyContent='center'
       alignItems='center'>
       {/* Logo */}
-      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' />
+      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' mt={{ base: '50px', md: '0px' }} />
 
       {/* Box */}
       <AuthBox maxW='md' position='relative'>
@@ -54,7 +54,7 @@ export default function RegisterPage() {
           w={{ base: '90%', sm: '80%' }}
           d='flex'
           alignItems='center'
-          spacing={2}
+          spacing={3}
           justifyContent='center'
           textAlign='center'>
           {/* Box header */}
@@ -64,16 +64,16 @@ export default function RegisterPage() {
 
           <Text fontSize="smaller">Rellena con tus datos para crear una nueva cuenta</Text>
 
-          <div />
+          <div/>
 
           {/* Form */}
-          <RegisterForm onLoginSubmit={handleLoginSubmit} />
+          <RegisterForm onRegisterSubmit={handleRegisterSubmit} />
 
         </VStack>
       </AuthBox>
 
       {/* Bottom text */}
-      <HStack mt='40px'>
+      <HStack mt='40px' mb={{ base: '0px', md: '20px' }}>
         <Text>¿Ya tienes una cuenta?</Text>
         <Link as={RouterLink} to='/acceso' fontWeight='medium'>
           Iniciar sesión
