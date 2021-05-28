@@ -6,6 +6,7 @@ import Actividades from './components/Actividades';
 import Contribuye from './components/Contribuye';
 import { useDispatch } from 'react-redux';
 import { fetchPublicInfoData } from './app/publicInfoSlice';
+import News from './components/News';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path="/actividades" component={Actividades} />
           <Route exact path="/contribuye" component={Contribuye} />
+          <Route exact path="/backoffice/news" component={News} />
         </Switch>
       </Router>
     </div>
