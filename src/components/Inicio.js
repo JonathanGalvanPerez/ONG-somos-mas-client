@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import Footer from './layout/footer'
+import React from "react";
+import Footer from "./layout/footer";
+import UltimasNovedades from "./layout/UltimasNovedades";
 
-export default class Inicio extends Component {
-    render() {
-        return (
-            <div>
-                Estas en el Inicio
-                <Footer />
-            </div>
-        )
-    }
+export default function Inicio() {
+  return (
+    <div>
+      {/* Inserte aquí el header */}
+      {/* Inserte aquí el slider */}
+      <UltimasNovedades />
+      <Footer />
+    </div>
+  );
 }
