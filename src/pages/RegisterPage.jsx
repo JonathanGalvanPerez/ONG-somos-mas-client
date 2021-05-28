@@ -11,7 +11,7 @@ import { Center, Link } from '@chakra-ui/layout';
 import * as React from 'react';
 import { VStack, HStack, Text } from '@chakra-ui/react';
 import Logo from '../components/layout/Logo';
-import LoginForm from '../components/authentication/LoginForm';
+import RegisterForm from '../components/authentication/RegisterForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ export default function RegisterPage() {
   return (
     <Center
       h={{ base: '100%', md: '100vh' }}
-      bg='white'
+      bg='#F5F6F9'
       w='100%'
       d='flex'
       position='relative'
@@ -62,10 +62,10 @@ export default function RegisterPage() {
             Registrarme
           </Text>
 
-          <Text fontSize="smaller">Rellena tus datos para obtener una cuenta:</Text>
+          <Text fontSize="smaller">Rellena con tus datos para crear una nueva cuenta</Text>
 
           {/* Form */}
-          <LoginForm onLoginSubmit={handleLoginSubmit} />
+          <RegisterForm onLoginSubmit={handleLoginSubmit} />
 
         </VStack>
       </AuthBox>

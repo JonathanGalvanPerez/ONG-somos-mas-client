@@ -17,7 +17,7 @@ import AuthSubmitButton from './AuthSubmitButton';
 import AuthInput from './AuthInput';
 import { PropTypes } from 'prop-types';
 
-function RegisterForm({ onLoginSubmit, ...props }) {
+function RegisterForm({ onRegisterSubmit, ...props }) {
   function validateEmail(value) {
     let error;
     if (!value) error = 'El email es requerido';
@@ -36,10 +36,30 @@ function RegisterForm({ onLoginSubmit, ...props }) {
 
   return (
     <Box w='full' {...props}>
-      <Formik initialValues={{}} onSubmit={onLoginSubmit}>
+      <Formik initialValues={{}} onSubmit={onRegisterSubmit}>
         {(props) => (
           <Form>
             <VStack spacing={5}>
+              {/* Firstname input */}
+              <Field name='firstName' validate={validateEmail}>
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
+                    <AuthInput Icon={EmailIcon} type='text' {...field} id='firstName' placeholder='Nombre' />
+                    <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+
+              {/* Lastname input */}
+              <Field name='lastName' validate={validateEmail}>
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
+                    <AuthInput Icon={EmailIcon} type='email' {...field} id='lastName' placeholder='Apellido' />
+                    <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+
               {/* Email input */}
               <Field name='email' validate={validateEmail}>
                 {({ field, form }) => (
@@ -60,9 +80,25 @@ function RegisterForm({ onLoginSubmit, ...props }) {
                 )}
               </Field>
 
+              {/* Confirm password input */}
+              <Field name='confirmPassword' validate={validatePassword}>
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}>
+                    <AuthInput
+                      Icon={LockIcon}
+                      type='password'
+                      {...field}
+                      id='confirmPassword'
+                      placeholder='Confirmar contraseña'
+                    />
+                    <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+
               {/* Login Button */}
               <AuthSubmitButton type='submit' isLoading={props.isSubmitting}>
-                Iniciar sesión
+                Crear cuenta
               </AuthSubmitButton>
             </VStack>
           </Form>
@@ -72,12 +108,12 @@ function RegisterForm({ onLoginSubmit, ...props }) {
   );
 }
 
-LoginForm.defaultProps = {
-  onLoginSubmit: null,
-}
+RegisterForm.defaultProps = {
+  onRegisterSubmit: null,
+};
 
-LoginForm.propTypes = {
-  onLoginSubmit: PropTypes.func
-}
+RegisterForm.propTypes = {
+  onRegisterSubmit: PropTypes.func,
+};
 
-export default LoginForm;
+export default RegisterForm;

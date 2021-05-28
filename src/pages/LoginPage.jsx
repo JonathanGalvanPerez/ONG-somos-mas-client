@@ -38,7 +38,7 @@ export default function LoginPage() {
   return (
     <Center
       h={{ base: '100%', md: '100vh' }}
-      bg='white'
+      bg='#F5F6F9'
       w='100%'
       d='flex'
       position='relative'
