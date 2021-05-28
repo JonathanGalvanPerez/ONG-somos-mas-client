@@ -11,29 +11,13 @@
 import * as React from 'react';
 import { FormControl, FormErrorMessage, Box, VStack } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
-import { AUTH_FORM_VALIDATIONS } from '../../app/config';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import AuthSubmitButton from './AuthSubmitButton';
 import AuthInput from './AuthInput';
 import { PropTypes } from 'prop-types';
+import { validateEmail, validatePassword } from './formValidators';
 
 function LoginForm({ onLoginSubmit, ...props }) {
-  function validateEmail(value) {
-    let error;
-    if (!value) error = 'El email es requerido';
-    else if (!value.match(AUTH_FORM_VALIDATIONS.EMAIL_REGEX)) error = 'Introduce un email válido';
-    return error;
-  }
-
-  function validatePassword(value) {
-    let error;
-    if (!value) error = 'La contraseña es requerida';
-    else if (value.length < AUTH_FORM_VALIDATIONS.MIN_PASSWORD_LENGTH)
-      error = 'La contraseña debe tener un mínimo de 6 caracteres';
-
-    return error;
-  }
-
   return (
     <Box w='full' {...props}>
       <Formik initialValues={{}} onSubmit={onLoginSubmit}>

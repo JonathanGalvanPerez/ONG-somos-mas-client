@@ -46,7 +46,7 @@ export default function RegisterPage() {
       justifyContent='center'
       alignItems='center'>
       {/* Logo */}
-      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' mt={{ base: '35px', md: '0px' }} />
+      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' />
 
       {/* Box */}
       <AuthBox maxW='md' position='relative'>
@@ -54,7 +54,7 @@ export default function RegisterPage() {
           w={{ base: '90%', sm: '80%' }}
           d='flex'
           alignItems='center'
-          spacing={5}
+          spacing={2}
           justifyContent='center'
           textAlign='center'>
           {/* Box header */}
@@ -64,6 +64,8 @@ export default function RegisterPage() {
 
           <Text fontSize="smaller">Rellena con tus datos para crear una nueva cuenta</Text>
 
+          <div />
+
           {/* Form */}
           <RegisterForm onLoginSubmit={handleLoginSubmit} />
 
@@ -71,7 +73,7 @@ export default function RegisterPage() {
       </AuthBox>
 
       {/* Bottom text */}
-      <HStack mt='40px' mb={{ base: '0px', md: '100px' }}>
+      <HStack mt='40px'>
         <Text>¿Ya tienes una cuenta?</Text>
         <Link as={RouterLink} to='/acceso' fontWeight='medium'>
           Iniciar sesión

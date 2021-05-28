@@ -9,39 +9,23 @@
 */
 
 import * as React from 'react';
-import { FormControl, FormErrorMessage, Box, VStack } from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
-import { AUTH_FORM_VALIDATIONS } from '../../app/config';
+import { FormControl, FormErrorMessage, Box, VStack, Checkbox, Link } from '@chakra-ui/react';
+import { Field, Form, Formik, useFormikContext } from 'formik';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import AuthSubmitButton from './AuthSubmitButton';
 import AuthInput from './AuthInput';
 import { PropTypes } from 'prop-types';
+import { validateEmail, validatePassword, validateConfirmPassword, validateName, validateTermsAgreement } from './formValidators';
 
 function RegisterForm({ onRegisterSubmit, ...props }) {
-  function validateEmail(value) {
-    let error;
-    if (!value) error = 'El email es requerido';
-    else if (!value.match(AUTH_FORM_VALIDATIONS.EMAIL_REGEX)) error = 'Introduce un email válido';
-    return error;
-  }
-
-  function validatePassword(value) {
-    let error;
-    if (!value) error = 'La contraseña es requerida';
-    else if (value.length < AUTH_FORM_VALIDATIONS.MIN_PASSWORD_LENGTH)
-      error = 'La contraseña debe tener un mínimo de 6 caracteres';
-
-    return error;
-  }
-
   return (
     <Box w='full' {...props}>
-      <Formik initialValues={{}} onSubmit={onRegisterSubmit}>
+      <Formik initialValues={{ firstName: "", lastName: "", email: "", password: "", confirmPassword: "", termsAgreement: false}} onSubmit={onRegisterSubmit}>
         {(props) => (
           <Form>
             <VStack spacing={5}>
               {/* Firstname input */}
-              <Field name='firstName' validate={validateEmail}>
+              <Field name='firstName' validate={validateName}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
                     <AuthInput Icon={EmailIcon} type='text' {...field} id='firstName' placeholder='Nombre' />
@@ -51,7 +35,7 @@ function RegisterForm({ onRegisterSubmit, ...props }) {
               </Field>
 
               {/* Lastname input */}
-              <Field name='lastName' validate={validateEmail}>
+              <Field name='lastName' validate={validateName}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
                     <AuthInput Icon={EmailIcon} type='email' {...field} id='lastName' placeholder='Apellido' />
@@ -81,7 +65,7 @@ function RegisterForm({ onRegisterSubmit, ...props }) {
               </Field>
 
               {/* Confirm password input */}
-              <Field name='confirmPassword' validate={validatePassword}>
+              <Field name='confirmPassword' validate={(value) => validateConfirmPassword(value, props.values.password)}>
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}>
                     <AuthInput
@@ -92,6 +76,19 @@ function RegisterForm({ onRegisterSubmit, ...props }) {
                       placeholder='Confirmar contraseña'
                     />
                     <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+
+              {/* Terms & condition agreement input */}
+              <Field name='termsAgreement' validate={validateTermsAgreement}>
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.termsAgreement && form.touched.termsAgreement}>
+                    <Checkbox
+                      {...field}
+                      id='termsAgreement'
+                    >Acepto los <Link fontWeight="medium">Términos y Condiciones</Link></Checkbox>
+                    <FormErrorMessage>{form.errors.termsAgreement}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
