@@ -55,3 +55,4 @@ const publicInfoSlice = createSlice({
 });
 
 export default publicInfoSlice.reducer;
+export const publicLoading = (state) => state.publicInfo.loading;
