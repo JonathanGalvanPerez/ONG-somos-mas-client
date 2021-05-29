@@ -29,6 +29,7 @@ function App() {
           <Route exact path="/actividades" component={Actividades} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path='/acceso' component={LoginPage} />
+          <Route exact path='/registro' component={RegisterPage} />
           <Route exact path="/backoffice" component={Backoffice} />
         </Switch>
       </Router>
