@@ -11,11 +11,16 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 function App() {
+
   const dispatch = useDispatch();
   // Fetch organization's public info data as soon as we load the app
   React.useEffect(() => {
     dispatch(fetchPublicInfoData());
   }, [dispatch]);
+  
+  // get loading state. repeat for every slices
+  const publicloading = useSelector(publicLoading);
+  const loading = (publicloading === "pending");
 
   // get loading state. repeat for every slices
   const publicloading = useSelector(publicLoading);
@@ -37,6 +42,7 @@ function App() {
           <Route exact path='/registro' component={RegisterPage} />
         </Switch>
       </Router>
+
     </div>
   );
 }
