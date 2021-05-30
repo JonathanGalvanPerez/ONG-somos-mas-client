@@ -5,7 +5,7 @@ import logoStatic from '../../../assets/images/logo.png';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderNavToggle from './HeaderNavToggle';
 import { useSelector } from 'react-redux';
-import { Link as ReactLink, BrowserRouter as Router } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
 
 export default function Header() {
     const { image } = useSelector((state) => state.publicInfo.data)
