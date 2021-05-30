@@ -22,9 +22,6 @@ function App() {
   const publicloading = useSelector(publicLoading);
   const loading = (publicloading === "pending");
 
-  // get loading state. repeat for every slices
-  const publicloading = useSelector(publicLoading);
-  const loading = publicloading === 'pending';
 
   return (
     <div className='App'>
