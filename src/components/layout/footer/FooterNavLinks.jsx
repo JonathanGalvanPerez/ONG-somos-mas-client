@@ -8,7 +8,7 @@
 import * as React from 'react';
 import { Container, Link } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
-import FooterLogo from './FooterLogo';
+import FooterLogo from '../Logo';
 
 // Container style
 const footerNavStyle = {

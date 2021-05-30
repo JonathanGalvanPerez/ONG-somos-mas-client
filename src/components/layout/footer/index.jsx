@@ -27,7 +27,7 @@ export default function Footer() {
   ));
 
   return (
-    <Box bg='white' w='full' color='gray.800' pb={12} pt={16} px={1} textAlign='center'>
+    <Box bg='transparent' w='full' color='gray.800' pb={6} pt={16} px={1} textAlign='center'>
       <VStack spacing={10}>
         {/* Nav links */}
         <FooterNavLinks />
