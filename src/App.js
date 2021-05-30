@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPublicInfoData, publicLoading } from './app/publicInfoSlice';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import Footer from './components/layout/footer';
+import Header from './components/layout/header';
 
 function App() {
 
@@ -22,14 +24,11 @@ function App() {
   const publicloading = useSelector(publicLoading);
   const loading = (publicloading === "pending");
 
-  // get loading state. repeat for every slices
-  const publicloading = useSelector(publicLoading);
-  const loading = publicloading === 'pending';
-
   return (
     <div className='App'>
       <Loader isLoading={loading} />
       <Router>
+        <Header />
         <Switch>
           <Route exact path='/'>
             <Redirect to='/inicio' />
@@ -42,7 +41,7 @@ function App() {
           <Route exact path='/registro' component={RegisterPage} />
         </Switch>
       </Router>
-
+      <Footer />
     </div>
   );
 }
