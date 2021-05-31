@@ -9,15 +9,16 @@ export default function Card(props) {
 
         <Text
           fontWeight="semibold"
-          fontSize={{base:"5xl", lg:"3xl"}}
+          fontSize={{base:"3xl", lg:"4xl"}}
           lineHeight="tight"
           
         >
           {props.title}
 
-          <Badge borderRadius="full" opacity="80%" px="2" mx="1" colorScheme="teal">
+         {((props.index==0) ||(props.index==1)) && <Badge borderRadius="full" opacity="80%" px="2" mx="1" colorScheme="teal">
             New
-          </Badge>
+          </Badge>}
+          
         </Text>
 
         <Box d="flex" alignItems="baseline">
