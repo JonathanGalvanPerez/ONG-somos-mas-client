@@ -14,8 +14,11 @@ import Logo from '../components/layout/Logo';
 import RegisterForm from '../components/authentication/RegisterForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-export default function RegisterPage() {
+export default function RegisterPage() 
+{
   const history = useHistory();
 
   // On register form submit
@@ -23,12 +26,34 @@ export default function RegisterPage() {
   const handleRegisterSubmit = (values, actions) => {
     // Shape of values: { firstName: string, lastName: string, email: string, password: string }
 
-    // TODO: Sacar este timeout y hacer una llamada al backend
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      actions.setSubmitting(false); // Set form loading state to false
-    }, 1000);
-  };
+    axios.post("http://localhost:3005/users/auth/register", values).then((result) => {
+      if (result.data.errors) {
+        // El backend nos respondio con un error
+        Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+
+        actions.setSubmitting(false); // Desactiva el icono de cargando del boton
+        return;
+      }
+      else {
+        // Registro exitoso
+        history.push("/"); // Redirecciona a home
+      }
+    }).catch((error) => {
+      Swal.fire({
+        title: 'Error',
+        text: 'Ha ocurrido un error',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+
+      actions.setSubmitting(false); 
+    });
+};
 
   // On logo click
   const handleLogoClick = () => {
