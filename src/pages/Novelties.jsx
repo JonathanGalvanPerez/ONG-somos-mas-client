@@ -1,5 +1,5 @@
-import { Box, Text } from '@chakra-ui/layout'
-import React, {useState} from 'react'
+import { Box, Grid, GridItem, Text } from '@chakra-ui/layout'
+import React, { useState } from 'react'
 import Card from '../components/novelties/Card'
 // test data
 import Image1 from "../assets/images/novedad1.jpg";
@@ -11,22 +11,22 @@ const testData = [
   {
     title: 'new one',
     image: Image1,
-    createAd: Date.now
+    createAd: Date.now()
   },
   {
     title: 'new two',
     image: Image2,
-    createAd: Date.now
+    createAd: Date.now()
   },
   {
     title: 'new three',
     image: Image3,
-    createAd: Date.now
+    createAd: Date.now()
   },
   {
     title: 'new four',
     image: Image4,
-    createAd: Date.now
+    createAd: Date.now()
   }
 ]
 export default function Novelties() {
@@ -46,17 +46,25 @@ export default function Novelties() {
           </Text>
 
         </Box>
-
-        <Box display="flex">
-
+        <Grid
+          templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }}
+          gap={6}
+          p="10"
+        >
           {
-              testData.map((item)=>(
-                      <Card  imageUrl={item.image} createAt={item.createAd} title={item.title}/>
-              ))
+            testData.map((item) => (
+              <GridItem colSpan={1} cursor="pointer" borderRadius="lg" _hover={{
+                transform: 'scale(1.05)', transitionProperty: 'all',
+                transitionDuration: '0.5s',
+                borderWidth: "4px", borderColor: "blue.300"
+              }}>
+                <Card imageUrl={item.image} createAt={item.createAd} title={item.title} />
+              </GridItem>
+            ))
           }
 
 
-        </Box>
+        </Grid>
       </Box>
     </Box>
   )
