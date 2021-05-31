@@ -17,19 +17,19 @@ export default function UltimasNovedades() {
     },
     {
       title: "novedad 2",
-      id: 1,
+      id: 2,
       image: Image2,
       url: "ej/novedades/2",
     },
     {
       title: "novedad 3",
-      id: 1,
+      id: 3,
       image: Image3,
       url: "ej/novedades/3",
     },
     {
       title: "novedad 4",
-      id: 1,
+      id: 4,
       image: Image4,
       url: "ej/novedades/4",
     },
