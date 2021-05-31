@@ -19,9 +19,7 @@ function App() {
     dispatch(fetchPublicInfoData());
   }, [dispatch]);
   
-  // get loading state. repeat for every slices
-  const publicloading = useSelector(publicLoading);
-  const loading = (publicloading === "pending");
+ 
 
   // get loading state. repeat for every slices
   const publicloading = useSelector(publicLoading);
