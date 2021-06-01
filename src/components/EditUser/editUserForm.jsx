@@ -74,7 +74,12 @@ function EditUserForm({ onEditUserSubmit, ...props }) {
               <Field name="roleId" as="select">
                 {({ field, form }) => (
                   <FormControl id="roleId">
-                    <Select size="lg" borderColor="gray.300" {...field}>
+                    <Select
+                      size="lg"
+                      borderColor="gray.300"
+                      {...field}
+                      placeholder="Seleccionar nuevo rol"
+                    >
                       <option value="Admin">Administrador</option>
                       <option value="Standard">Standard</option>
                     </Select>
