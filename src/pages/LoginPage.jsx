@@ -14,8 +14,9 @@ import Logo from './../components/layout/Logo';
 import LoginForm from './../components/authentication/LoginForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
-import axios from 'axios'; 
-import Swal from 'sweetalert2';
+import axios from 'axios';
+import { API_BASE_URL } from './../app/config';
+import Alert from './../components/alertService/AlertService';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -31,15 +32,9 @@ export default function LoginPage() {
     //   actions.setSubmitting(false); // Set form loading state to false
     // }, 1000);
 
-    axios.post("http://localhost:3005/users/auth/login", values).then((result) => {
+    axios.post(`${API_BASE_URL}/users/auth/login`, values).then((result) => {
       if (result.data.ok) {
-        Swal.fire({
-          title: 'Error',
-          text: 'Ha ocurrido un error',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        })
-
+        Alert.success('Exito', 'Ha logrado ingresar correctamente', 'Ingresar');
         actions.setSubmitting(false); 
         return;
       }
@@ -47,13 +42,7 @@ export default function LoginPage() {
         history.push("/"); 
       }
     }).catch((error) => {
-      Swal.fire({
-        title: 'Error',
-        text: 'Ha ocurrido un error',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
-
+      Alert.error('Incorrecto', 'El mail o la contraseña son incorrectos');
       actions.setSubmitting(false); 
     });
 

@@ -15,7 +15,8 @@ import RegisterForm from '../components/authentication/RegisterForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import Alert from './../components/alertService/AlertService';
+import { API_BASE_URL } from './../app/config';
 
 export default function RegisterPage() 
 {
@@ -26,30 +27,21 @@ export default function RegisterPage()
   const handleRegisterSubmit = (values, actions) => {
     // Shape of values: { firstName: string, lastName: string, email: string, password: string }
 
-    axios.post("http://localhost:3005/users/auth/register", values).then((result) => {
+    axios.post(`${API_BASE_URL}/users/auth/register`, values).then((result) => {
       if (result.data.errors) {
         // El backend nos respondio con un error
-        Swal.fire({
-          title: 'Error',
-          text: 'Ha ocurrido un error',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        })
+        Alert.error('Error', 'Ha ocurrido un error');
 
         actions.setSubmitting(false); // Desactiva el icono de cargando del boton
         return;
       }
       else {
+        Alert.success('Exito', 'Se ha registrado correctamente');
         // Registro exitoso
         history.push("/"); // Redirecciona a home
       }
     }).catch((error) => {
-      Swal.fire({
-        title: 'Error',
-        text: 'Ha ocurrido un error',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
+      Alert.error('Error', 'Ha ocurrido un error');
 
       actions.setSubmitting(false); 
     });
