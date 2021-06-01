@@ -16,8 +16,9 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
-
-import editUserForm from "./pages/EditUserPage";
+import Backoffice from "./components/Backoffice";
+import EditHomeForm from "./components/EditHomeForm";
+import EditUserForm from "./pages/EditUserPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +46,9 @@ function App() {
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />
-          <Route exact path="/edit" component={editUserForm} />
+          <Route exact path="/editar-inicio" component={EditHomeForm} />
+          <Route exact path="/backoffice" component={Backoffice} />
+          <Route exact path="/editar-usuario" component={EditUserForm} />
         </Switch>
       </Router>
       <Footer />
