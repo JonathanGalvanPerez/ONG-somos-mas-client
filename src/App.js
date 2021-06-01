@@ -13,7 +13,7 @@ import Footer from './components/layout/footer';
 import Header from './components/layout/header';
 import News from './components/News';
 import Backoffice from './components/Backoffice'
-import News from './components/News';
+
 
 function App() {
 
@@ -34,15 +34,14 @@ function App() {
           <Route exact path='/'>
             <Redirect to='/inicio' />
           </Route>
-          <Route exact path='/inicio' component={Inicio} />
-          <Route exact path='/nosotros' component={Nosotros} />
-          <Route exact path='/actividades' component={Actividades} />
-          <Route exact path='/contribuye' component={Contribuye} />
+          <Route exact path="/inicio" component={Inicio} />
+          <Route exact path="/nosotros" component={Nosotros} />
+          <Route exact path="/actividades" component={Actividades} />
+          <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path='/acceso' component={LoginPage} />
           <Route exact path='/registro' component={RegisterPage} />
-          <Route exact path="/backoffice/news" component={News} />
           <Route exact path="/backoffice" component={Backoffice} />
-          
+          <Route exact path="/backoffice/news" component={News} />
         </Switch>
       </Router>
       <Footer />

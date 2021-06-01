@@ -14,6 +14,8 @@ import Logo from './../components/layout/Logo';
 import LoginForm from './../components/authentication/LoginForm';
 import AuthBox from '../components/authentication/AuthBox';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import axios from 'axios'; 
+import Swal from 'sweetalert2';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -24,10 +26,37 @@ export default function LoginPage() {
     // Shape of values: { email: string, password: string }
 
     // TODO: Sacar este timeout y hacer una llamada al backend
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      actions.setSubmitting(false); // Set form loading state to false
-    }, 1000);
+    // setTimeout(() => {
+    //   alert(JSON.stringify(values, null, 2));
+    //   actions.setSubmitting(false); // Set form loading state to false
+    // }, 1000);
+
+    axios.post("http://localhost:3005/users/auth/login", values).then((result) => {
+      if (result.data.ok) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+
+        actions.setSubmitting(false); 
+        return;
+      }
+      else {
+        history.push("/"); 
+      }
+    }).catch((error) => {
+      Swal.fire({
+        title: 'Error',
+        text: 'Ha ocurrido un error',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+
+      actions.setSubmitting(false); 
+    });
+
   };
 
   // On logo click
