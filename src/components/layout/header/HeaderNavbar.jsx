@@ -3,6 +3,7 @@ import HeaderNavLink from './HeaderNavLink';
 import { Button } from '@chakra-ui/button';
 import { Box, Flex } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/transition';
+import '../header-style/header.css';
 
 export default function HeaderNavbar({ show, toggleNav, isMobile }) {
     const navbarStyle = {
@@ -39,8 +40,8 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         { label: 'Inicio', path: '/inicio' },
         { label: 'Nosotros', path: '/nosotros' },
         { label: 'Actividades', path: '/actividades' },
-        { label: 'Novedades', path: '/inicio' },
-        { label: 'Testimonios', path: '/inicio' },
+        { label: 'Novedades', path: '/#' },
+        { label: 'Testimonios', path: '/#' },
         { label: 'Contacto', path: '/#'},
         { label: 'Contribuye', path: '/contribuye'}
     ];
@@ -54,7 +55,7 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
                             {navItem.label}
                         </HeaderNavLink>
                     ))}
-                    <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
+                    <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
                     {...buttonStyle} >Log in</Button>
                     <Button bgColor='#18A0FB' color='white' border='1px solid white'
                     {...buttonStyle} >Registrate</Button>

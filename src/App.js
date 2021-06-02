@@ -18,8 +18,12 @@ import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
 import Backoffice from "./components/Backoffice";
 import EditHomeForm from "./components/EditHomeForm";
+<<<<<<< HEAD
 import News from './components/News';
 
+=======
+import EditUserForm from "./pages/EditUserPage";
+>>>>>>> master
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +53,7 @@ function App() {
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
+          <Route exact path="/editar-usuario" component={EditUserForm} />
           <Route exact path="/backoffice/news" component={News} />
         </Switch>
       </Router>
