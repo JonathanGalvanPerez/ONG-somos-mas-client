@@ -20,6 +20,8 @@ import Backoffice from "./components/Backoffice";
 import EditHomeForm from "./components/EditHomeForm";
 import Contacto from './components/Contact/index'
 import Profile from './components/Profile/index'
+import EditUserForm from "./pages/EditUserPage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +53,7 @@ function App() {
           <Route exact path="/backoffice" component={Backoffice} />
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
+          <Route exact path="/editar-usuario" component={EditUserForm} />
         </Switch>
       </Router>
       <Footer />
