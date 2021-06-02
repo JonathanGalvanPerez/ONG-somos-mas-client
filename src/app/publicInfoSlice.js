@@ -34,7 +34,8 @@ const publicInfoSlice = createSlice({
   extraReducers: {
     [fetchPublicInfoData.fulfilled]: (state, action) => {
       if (action.meta.requestId === state.currentRequestId.requestId) {
-        state.todoList = action.payload;
+        state.data = action.payload;
+        state.data.image = API_BASE_URL + action.payload.image;
         state.loading = 'idle';
         state.error = '';
         state.currentRequestId = '';

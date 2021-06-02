@@ -1,53 +1,23 @@
-import moment from 'moment'
+import React, {useState, useEffect} from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { Box, Grid, GridItem, Text } from '@chakra-ui/layout'
-import React from 'react'
-import Card from '../components/novelties/Card'
-
-// test data
-import Image1 from "../assets/images/novedad1.jpg";
-import Image2 from "../assets/images/novedad2.jpg";
-import Image3 from "../assets/images/novedad3.jpg";
-import Image4 from "../assets/images/novedad4.jpg";
-
-const testData = [
-  {
-    id: '1',
-    title: 'new one',
-    image: Image1,
-    createAd: Date.now()
-  },
-  {
-    id: '2',
-    title: 'new two',
-    image: Image2,
-    createAd: Date.now()
-  },
-  {
-    id: '3',
-    title: 'new three',
-    image: Image3,
-    createAd: Date.now()
-  },
-  {
-    id: '4',
-    title: 'new four',
-    image: Image4,
-    createAd: Date.now()
-  }
-]
+import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
+import Card from '../components/novelties/Card';
+import axios from 'axios';
+import { API_BASE_URL } from '../app/config';
 
 
 export default function Novelties() {
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //     (async () => {
-  //         await dispatch(getEntries());
-  //     })();
-  // }, [dispatch])
 
-  // const allEntries = useSelector(state => state.state);
+  const [novelties, setNovelties] = useState([])
+
+  useEffect(() => {
+    (async function getEntries(){
+      const entries = await axios.get(`${API_BASE_URL}/news`);
+      setNovelties(entries.data);
+    })();
+  }, [])
 
   return (
     <Box display="flex" justifyContent="center">
@@ -61,7 +31,7 @@ export default function Novelties() {
           <Text fontSize="5xl" as="em">
             Novedades
           </Text>
-          
+
         </Box>
 
 
@@ -72,17 +42,17 @@ export default function Novelties() {
           p={{ base: "5", lg: "10" }}
         >
           {
-            testData.map((item, index) => (
+            novelties.map(({id, image, title, content, createAd}, index) => (
 
 
-              <Link to={`/novedades/${item.id}`}>
+              <Link to={`/novedades/${id}`}>
 
                 <GridItem colSpan={1} cursor="pointer" borderRadius="lg" _hover={{
                   transform: 'scale(1.05)', transitionProperty: 'all',
                   transitionDuration: '0.5s',
                   borderWidth: "4px", borderColor: "teal.300"
                 }}>
-                  <Card imageUrl={item.image} index={index} createAt={moment(item.createAd).format('LL')} title={item.title} />
+                  <Card imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={title} />
                 </GridItem>
 
               </Link>
