@@ -1,6 +1,7 @@
-import { Link as ReactLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import React from 'react';
 import { Link } from '@chakra-ui/layout';
+import '../header-style/header.css';
 
 export default function HeaderNavLink({ children, path, isMobile }) {
     const linkStyle = {
@@ -24,10 +25,12 @@ export default function HeaderNavLink({ children, path, isMobile }) {
             outline: 'none'
         }
     };
-    
+
     return (
-        <Link as={ReactLink} to={path} {...linkStyle} >
+        
+        <Link as={NavLink} exact to={path} {...linkStyle} activeClassName="active">
             {children}
         </Link>
+        
     );
 }
