@@ -50,8 +50,8 @@ function App() {
           <Route exact path="/backoffice" component={Backoffice} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
         </Switch>
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 }

@@ -5,17 +5,20 @@ import logoStatic from '../../../assets/images/logo.png';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderNavToggle from './HeaderNavToggle';
 import { useSelector } from 'react-redux';
-import { Link as ReactLink } from 'react-router-dom';
+import { Link as ReactLink, useLocation } from 'react-router-dom';
 
 export default function Header() {
+    const location = useLocation();
     const { image } = useSelector((state) => state.publicInfo.data)
+    const [isMobile] = useMediaQuery("(max-width: 1040px)");
     const [show, setShow] = React.useState(false);
     const toggleNav = () => setShow(!show);
+
+    if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
     
     const LOGIN_PATH = '/acceso';
     const REGISTER_PATH = '/registro';
     
-    const [isMobile] = useMediaQuery("(max-width: 1040px)");
 
     const buttonStyle = {
         d: { base: 'none', sm: 'flex'},
