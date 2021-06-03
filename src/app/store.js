@@ -6,7 +6,7 @@ import activityReducer from '../features/activities/activitySlice'
 
 const preloadedState = {
   login: {
-    token: JSON.parse(localStorage.getItem('token')),
+    token: JSON.parse(localStorage.getItem('org_token')),
   }
 };
 
@@ -21,7 +21,7 @@ const store = configureStore({
 });
 
 store.subscribe(()=>{
-  localStorage.setItem('token', JSON.stringify(store.getState().login.token));
+  localStorage.setItem('org_token', JSON.stringify(store.getState().login.token));
 })
 
 export default store;
