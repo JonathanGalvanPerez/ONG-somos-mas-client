@@ -9,7 +9,6 @@ export const loginSlice = createSlice({
   reducers: {
     logIn: (state, action) => {
         state.token = action.payload;
-        localStorage.setItem("token", action.payload);
         }, 
         
     guardarNombre: (state, action) => {
@@ -18,7 +17,6 @@ export const loginSlice = createSlice({
     
     logOut: (state) => {
         state.token = null;
-        localStorage.removeItem("token");
     }
     
   },

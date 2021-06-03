@@ -5,11 +5,11 @@ import loginReducer from '../features/login/loginSlice';
 
 const preloadedState = {
   login: {
-    token: localStorage.getItem('token'),
+    token: JSON.parse(localStorage.getItem('token')),
   }
 };
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     counter: counterReducer,
     publicInfo: publicInfoReducer,
@@ -17,3 +17,9 @@ export default configureStore({
   },
   preloadedState,
 });
+
+store.subscribe(()=>{
+  localStorage.setItem('token', JSON.stringify(store.getState().login.token));
+})
+
+export default store;
