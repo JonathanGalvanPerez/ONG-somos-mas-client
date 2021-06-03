@@ -9852,11 +9852,7 @@
     "invariant" "^2.2.4"
     "tslib" "^1.0.0"
 
-<<<<<<< HEAD
-"react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.13.1", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@16.14.0":
-=======
 "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.13.1", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@>=15", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6":
->>>>>>> master
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   "version" "16.14.0"
