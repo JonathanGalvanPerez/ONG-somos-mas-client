@@ -4,8 +4,13 @@ import { Button } from '@chakra-ui/button';
 import { Box, Flex } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/transition';
 import '../header-style/header.css';
+import { useSelector } from 'react-redux';
+import { isLoggedIn } from './../../../features/login/loginSlice';
+import HeaderLogoutBtn from './HeaderLogoutBtn';
 
 export default function HeaderNavbar({ show, toggleNav, isMobile }) {
+    const _isLoggedIn = useSelector(isLoggedIn);
+
     const navbarStyle = {
         d: 'block',
         pos: ['absolute', 'absolute', 'absolute', isMobile ? 'absolute' : 'static'],
@@ -46,6 +51,18 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         { label: 'Contribuye', path: '/contribuye'}
     ];
 
+    // Botones al no estar logueado
+    const guestButtons = (<>                    
+        <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
+        {...buttonStyle} >Log in</Button>
+        <Button bgColor='#18A0FB' color='white' border='1px solid white'
+        {...buttonStyle} >Registrate</Button>
+    </>); 
+    
+    // Botones al estar logueado
+    const memberButtons = (<HeaderLogoutBtn color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
+    {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>); 
+
     return (
         <Box {...navbarStyle} >
             <Collapse in={ !isMobile || show } >
@@ -55,10 +72,7 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
                             {navItem.label}
                         </HeaderNavLink>
                     ))}
-                    <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
-                    {...buttonStyle} >Log in</Button>
-                    <Button bgColor='#18A0FB' color='white' border='1px solid white'
-                    {...buttonStyle} >Registrate</Button>
+                    {_isLoggedIn ? memberButtons : guestButtons}
                 </Flex>
             </Collapse>
         </Box>
