@@ -4,20 +4,25 @@ export const loginSlice = createSlice({
   name: "login",
   initialState: {
     userActive: false,
-    nombreUsuario:null
+    nombreUsuario:null,
+    token: null
   },
   reducers: {
-    logIn: (state ) => {
-        state.userActive = true
+    logIn: (state, action) => {
+        state.userActive = true;
+        state.token = action.payload;
+        localStorage.setItem("token", action.payload);
         }, 
         
     guardarNombre: (state, action) => {
         state.nombreUsuario = action.payload
         },     
     
-    logOut: (state) => (
-        state.userActive = false
-    )
+    logOut: (state) => {
+        state.userActive = false;
+        state.token = null;
+        localStorage.removeItem("token");
+    }
     
   },
 })
