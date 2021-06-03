@@ -39,7 +39,7 @@ export default function RegisterPage()
         return;
       }
       else {
-        Alert.success('Exito', 'Se ha registrado correctamente');
+        Alert.success('Hecho', 'Se ha registrado correctamente');
         // Registro exitoso
         dispatch(logIn(result.data?.token));
         history.push("/"); // Redirecciona a home
