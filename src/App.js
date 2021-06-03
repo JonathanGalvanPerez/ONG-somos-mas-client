@@ -21,6 +21,9 @@ import EditHomeForm from "./components/EditHomeForm";
 import Contacto from './components/Contact/index'
 import Profile from './components/Profile/index'
 import EditUserForm from "./pages/EditUserPage";
+import ActividadId from './components/Actividades/ActividadId';
+
+import { setId } from './features/activities/activitySlice';
 
 
 function App() {
@@ -33,8 +36,11 @@ function App() {
   // get loading state. repeat for every slices
   const publicloading = useSelector(publicLoading);
   const loading = publicloading === "pending";
+  
+  const {id} = useSelector((state) =>state.activity)
 
   return (
+    
     <div className="App">
       <Loader isLoading={loading} />
       <Router>
@@ -54,6 +60,7 @@ function App() {
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
+          <Route exact path={`/actividad/${id}`} component={ActividadId} />
         </Switch>
       </Router>
       <Footer />
