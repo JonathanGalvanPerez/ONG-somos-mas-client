@@ -22,10 +22,10 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         h: isMobile ? 'auto' : '100%',
         wrap: 'wrap',
         align: 'center',
-        spacing: 0 
+        spacing: 0
     };
     const buttonStyle = {
-        d: { base: 'inline-block', sm: 'none'},
+        d: { base: 'inline-block', sm: 'none' },
         fontSize: '15px',
         w: '40%',
         my: '5px',
@@ -40,25 +40,27 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         { label: 'Inicio', path: '/inicio' },
         { label: 'Nosotros', path: '/nosotros' },
         { label: 'Actividades', path: '/actividades' },
-        { label: 'Novedades', path: '/#' },
-        { label: 'Testimonios', path: '/#' },
-        { label: 'Contacto', path: '/#'},
-        { label: 'Contribuye', path: '/contribuye'}
+        { label: 'Novedades', path: '/inicio' },
+        { label: 'Testimonios', path: '/inicio' },
+        { label: 'Contacto', path: '/contacto' },
+        { label: 'Contribuye', path: '/contribuye' },
     ];
 
     return (
         <Box {...navbarStyle} >
-            <Collapse in={ !isMobile || show } >
+            <Collapse in={!isMobile || show} >
                 <Flex onClick={toggleNav} {...navItemsListStyle} >
                     {navItems.map((navItem) => (
                         <HeaderNavLink key={navItem.label} path={navItem.path} isMobile={isMobile} >
                             {navItem.label}
                         </HeaderNavLink>
                     ))}
+                    <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
+                        {...buttonStyle} >Log in</Button>
                     <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
-                    {...buttonStyle} >Log in</Button>
+                        {...buttonStyle} >Log in</Button>
                     <Button bgColor='#18A0FB' color='white' border='1px solid white'
-                    {...buttonStyle} >Registrate</Button>
+                        {...buttonStyle} >Registrate</Button>
                 </Flex>
             </Collapse>
         </Box>
