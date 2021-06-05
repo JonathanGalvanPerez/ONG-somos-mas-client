@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Logo from './Logo'
 import { authenticate } from './authenticate'
 import { getContactList } from './getContacts'
 import { Box, Center, Heading } from '@chakra-ui/layout';
@@ -30,7 +29,6 @@ export default function ListaContactos() {
 
     return (
         <div>
-            <Logo />
             <Center><Heading mb={3} mt={-10}>Contactos</Heading></Center>
             <Center>
                 <Box overflow="auto" mb={5} display={{ md: "flex" }} width="65%" rounded="md" shadow="dark-lg">
