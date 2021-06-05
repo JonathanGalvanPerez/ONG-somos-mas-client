@@ -19,10 +19,14 @@ export default function ListaContactos() {
     useEffect(() => {
         async function fetchData() {
             const token = await authenticate()
-            localStorage.setItem('token', JSON.stringify(token.token))
+            if (token) {
+                localStorage.setItem('token', JSON.stringify(token.token))
+            }
 
             const data = await getContactList()
-            setContacts(data)
+            if (data) {
+                setContacts(data)
+            }
         }
         fetchData()
     }, [])
