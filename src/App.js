@@ -62,8 +62,8 @@ function App() {
           <Route exact path="/editar-usuario" component={EditUserForm} />
           <Route exact path={`/actividad/${id}`} component={ActividadId} />
         </Switch>
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 }

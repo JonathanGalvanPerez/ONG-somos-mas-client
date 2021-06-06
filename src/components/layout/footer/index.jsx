@@ -10,9 +10,13 @@ import { Box, VStack, HStack, Text } from '@chakra-ui/react';
 import SocialIcon from '../../misc/SocialIcon';
 import FooterNavLinks from './FooterNavLinks';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 
 export default function Footer() {
+  const location = useLocation();
   const { facebookUser, instagramUser, twitterUser, email, phone } = useSelector((state) => state.publicInfo.data);
+
+  if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
 
   const socialLinks = [
     { link: `https://facebook.com/${facebookUser}`, icon: 'facebook', tooltipText: '/'+facebookUser },

@@ -17,9 +17,12 @@ import { Link as RouterLink, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { API_BASE_URL } from './../app/config';
 import Alert from './../components/alertService/AlertService';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../features/login/loginSlice';
 
 export default function LoginPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   // On login form submit
   // This callback will only be called after successful validation with the login information
@@ -33,13 +36,15 @@ export default function LoginPage() {
     // }, 1000);
 
     axios.post(`${API_BASE_URL}/users/auth/login`, values).then((result) => {
-      if (result.data.ok) {
-        Alert.success('Exito', 'Ha logrado ingresar correctamente', 'Ingresar');
+      if (!result.data?.token) {
+        Alert.error('Error', 'No ha logrado ingresar, verifique los datos', 'OK');
         actions.setSubmitting(false); 
         return;
       }
       else {
         history.push("/"); 
+        Alert.success('Hecho', 'Ha  iniciado sesión correctamente');
+        dispatch(logIn(result.data?.token))
       }
     }).catch((error) => {
       Alert.error('Incorrecto', 'El mail o la contraseña son incorrectos');
