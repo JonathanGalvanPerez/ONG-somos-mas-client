@@ -11,6 +11,7 @@ import parse from "html-react-parser"
 
 export default function NewsForm(props) {
 
+    console.log(props.type)
 
     const [data, setData] = useState(props.data ? props.data : {
         title: '',
@@ -18,7 +19,7 @@ export default function NewsForm(props) {
         category: '',
         image: ''
     })
-
+    
     const validationSchema = Yup.object({
         title: Yup.string()
             .required('* El titulo es requerido'),
@@ -31,15 +32,11 @@ export default function NewsForm(props) {
     })
 
     useEffect(() => {
-        (props.type == 'edit'
-            ? (async () => {
-                console.log('data in put', data)
-                //await axios.post(`${API_BASE_URL}/news/`, data);
-            })()
-            : (async () => {
-                console.log('data in post', data)
-                // await axios.patch(`${API_BASE_URL}/news/${props.data.id}`, data);
-            }))()
+        if(props.type=="edit"){
+            console.log('data in path', data);
+        }else{
+            console.log('data in post', data);
+        }
     }, [data])
 
 

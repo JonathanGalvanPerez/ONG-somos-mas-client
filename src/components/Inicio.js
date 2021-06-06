@@ -6,12 +6,12 @@ import Form from "./novelties/ModalNewsForm";
 export default function Inicio() {
 
 //test noveltie
-  const noveltie = {
-    title: 'title',
-    content: 'content',
-    category: 'category',
-    image: '?'
-  }
+  //  const noveltie = {
+  //    title: 'title',
+  //    content: 'content',
+  //  category: 'category',
+  //    image: '?'
+  //  }
 
   return (
     <div>
@@ -19,8 +19,9 @@ export default function Inicio() {
       <Slider/>
       <UltimasNovedades />
 
-      <Form label="Crear"/>
-      <Form label="Editar" data={noveltie} />
+      {/* Test NOVELTIES FORM FOR BACKOFFICE */}
+      {/* <Form label="Crear"/>
+      <Form label="Editar" data={noveltie} type="edit" /> */}
     </div>
   );
 }

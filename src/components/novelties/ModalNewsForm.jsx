@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react';
 import NewsForm from './NewsForm'
 export default function ModalNewsForm(props) {
-
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -25,7 +24,7 @@ export default function ModalNewsForm(props) {
                         <ModalHeader textAlign="center" as="ins" fontSize={{ base: "xl", md: "1xl", lg: "3xl" }}>Formulario de Novedades</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                            <NewsForm data={props.data} />
+                            <NewsForm data={props.data} type={props.type}/>
                         </ModalBody>
                     </ModalContent>
                 </Modal>
