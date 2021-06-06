@@ -19,6 +19,7 @@ import Header from "./components/layout/header";
 import Backoffice from "./components/Backoffice";
 import EditHomeForm from "./components/EditHomeForm";
 import EditUserForm from "./pages/EditUserPage";
+import BackofficeUsers from "./components/BackofficeUsers";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
+          <Route exact path="/backoffice/users" component={BackofficeUsers} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
         </Switch>
       </Router>
