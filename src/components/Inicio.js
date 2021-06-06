@@ -17,7 +17,7 @@ export default function Inicio() {
       <Slider/>
       <UltimasNovedades />
 
-      <Form label="Editar" type="edit" data={noveltie}/>
+      <Form />
     </div>
   );
 }
