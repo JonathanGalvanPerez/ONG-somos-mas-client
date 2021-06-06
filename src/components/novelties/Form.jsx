@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Button, Modal,
     ModalOverlay,
@@ -8,8 +8,8 @@ import {
     ModalCloseButton
 } from '@chakra-ui/react';
 import { FormControl, FormLabel, FormErrorMessage, Input } from '@chakra-ui/react'
-import { Formik, Field } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Field, Form } from 'formik';
+import parse from "html-react-parser"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -26,25 +26,17 @@ export default function FormNovelties() {
     const handleShow = () => setShow(true);
 
 
-    const validate = Yup.object({
-        title: Yup.string()
-            .max(101, 'Maximo de 101 caracteres')
-            .required('El titulo es requerido'),
-        content: Yup.string()
-            .required('El contenido es requerido'),
-        name: Yup.string()
-            .max(15, 'Maximo de 15 caracteres')
-            .required('La categoria es requerida'),
-    })
+    function validate(value) {
+        let error
+        if (!value) {
+          error = "Este campo es requerido"
+        } 
+        return error
+      }
+
 
     const onSubmit = (values) => {
-      setData({
-      ...data,
-        title: values.title,
-        category:values.category
-          })
-        console.log('data:', data)
-
+      console.log(values)
     }
     return (
         <div>
@@ -59,12 +51,15 @@ export default function FormNovelties() {
                         <ModalBody>
 
                             <Formik
-                                initialValues={data}
-                                onSubmit={onSubmit} >
+                                initialValues={data} 
+                                onSubmit={onSubmit}
+                                
+                                >
 
                 
-                                {({ handleSubmit, handleChange }) => (
-                                    <form onSubmit={handleSubmit}>
+                                {({ handleSubmit, handleChange, isSubmitting, values, setValues }) => (
+                                    <Form onSubmit={handleSubmit} encType="multipart/form-data">
+
                                         <Field name="title" validate={validate}>
                                             {({ field, form }) => (
                                                 <FormControl isInvalid={form.errors.title && form.touched.title}>
@@ -90,10 +85,9 @@ export default function FormNovelties() {
                                                 name="content"
                                                 editor={ClassicEditor}
                                                 data={data.content}
-                                                onChange={(event, editor) => {
-                                                    const text = editor.getData();
-                                                     setData({ ...data, content: text });
-                                                onSubmit()
+                                                onChange={ (event, editor) => {
+                                                    const textEditor = editor.getData();
+                                                     setValues({ ...values, content: parse(textEditor).props.children });
                                                     }}
 
                                             />
@@ -102,10 +96,11 @@ export default function FormNovelties() {
                                             mt={4}
                                             colorScheme="teal"
                                             type="submit"
+                                            isDisabled={isSubmitting}
                                         >
                                             Listo
                                          </Button>
-                                    </form>
+                                    </Form>
                                 )}
 
 
