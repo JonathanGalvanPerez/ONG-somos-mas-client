@@ -5,19 +5,22 @@ import Form from "./novelties/ModalNewsForm";
 
 export default function Inicio() {
 
+//test noveltie
   const noveltie = {
-    title: 'asdas',
-    content: 'asdasd',
-    category: 'asdas',
-    image: ''
+    title: 'title',
+    content: 'content',
+    category: 'category',
+    image: '?'
   }
+
   return (
     <div>
       {/* Inserte aquí el header */}
       <Slider/>
       <UltimasNovedades />
 
-      <Form />
+      <Form label="Crear"/>
+      <Form label="Editar" data={noveltie} />
     </div>
   );
 }

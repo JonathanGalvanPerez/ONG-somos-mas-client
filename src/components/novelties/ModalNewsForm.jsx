@@ -19,13 +19,13 @@ export default function ModalNewsForm(props) {
             <>
                 <Button onClick={handleShow}>{props.label}</Button>
 
-                <Modal isOpen={show} onClose={handleClose}>
+                <Modal isOpen={show} onClose={handleClose} size='full'  >
                     <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>Formulario de Novedades</ModalHeader>
+                    <ModalContent h="max-content" bg="teal.100" w={{ base: "95%", lg: "80%" }}>
+                        <ModalHeader textAlign="center" as="ins" fontSize={{ base: "xl", md: "1xl", lg: "3xl" }}>Formulario de Novedades</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                            <NewsForm data={props.data}/>
+                            <NewsForm data={props.data} />
                         </ModalBody>
                     </ModalContent>
                 </Modal>

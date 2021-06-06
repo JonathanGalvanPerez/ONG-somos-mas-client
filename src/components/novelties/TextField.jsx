@@ -5,9 +5,9 @@ import { FormControl, FormLabel, FormErrorMessage, Input } from '@chakra-ui/reac
 export const TextField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <FormControl isInvalid={meta.error && meta.touched}>
-      <FormLabel htmlFor={field.name}>{label}</FormLabel>
-      <Input {...field} {...props}/>
+    <FormControl isInvalid={meta.error && meta.touched} >
+      <FormLabel as="samp" fontSize="xl" htmlFor={field.name}>{label}: </FormLabel>
+      <Input {...field} {...props} border="2px"/>
       <FormErrorMessage>{meta.error}</FormErrorMessage>
     </FormControl>
   )}
