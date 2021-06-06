@@ -64,8 +64,8 @@ function App() {
           <Route exact path={`/actividad/${id}`} component={ActividadId} />
           <Route exact path="/backoffice/contacts" component={ContactList} />
         </Switch>
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 }

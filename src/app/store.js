@@ -4,12 +4,24 @@ import publicInfoReducer from './publicInfoSlice';
 import loginReducer from '../features/login/loginSlice'
 import activityReducer from '../features/activities/activitySlice'
 
-export default configureStore({
+const preloadedState = {
+  login: {
+    token: JSON.parse(localStorage.getItem('org_token')),
+  }
+};
+
+const store = configureStore({
   reducer: {
     counter: counterReducer,
     publicInfo: publicInfoReducer,
     login: loginReducer,
     activity:activityReducer
-
   },
+  preloadedState,
 });
+
+store.subscribe(()=>{
+  localStorage.setItem('org_token', JSON.stringify(store.getState().login.token));
+})
+
+export default store;

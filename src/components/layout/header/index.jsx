@@ -4,18 +4,23 @@ import { Flex, HStack } from '@chakra-ui/layout';
 import logoStatic from '../../../assets/images/logo.png';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderNavToggle from './HeaderNavToggle';
+import { Link as ReactLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Link as ReactLink } from 'react-router-dom';
+import { isLoggedIn } from './../../../features/login/loginSlice';
+import HeaderLogoutBtn from './HeaderLogoutBtn';
 
 export default function Header() {
+    const location = useLocation();
     const { image } = useSelector((state) => state.publicInfo.data)
+    const [isMobile] = useMediaQuery("(max-width: 1040px)");
     const [show, setShow] = React.useState(false);
     const toggleNav = () => setShow(!show);
+    const _isLoggedIn = useSelector(isLoggedIn);
+
+    if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
     
     const LOGIN_PATH = '/acceso';
     const REGISTER_PATH = '/registro';
-    
-    const [isMobile] = useMediaQuery("(max-width: 1040px)");
 
     const buttonStyle = {
         d: { base: 'none', sm: 'flex'},
@@ -28,18 +33,27 @@ export default function Header() {
         }
     }
 
+    // Botones al no estar logueado
+    const guestButtons = (<>
+    <Button as={ReactLink} to={LOGIN_PATH}
+        color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
+        {...buttonStyle} >Log in</Button>
+    <Button as={ReactLink} to={REGISTER_PATH}
+        bgColor='#18A0FB' color='white'
+        {...buttonStyle} >Registrate</Button></>)
+
+    // Botones al estar logueado
+    const memberButtons = (<HeaderLogoutBtn as={ReactLink}
+        color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
+        {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>)
+
     return (
         <Flex as='header' justify={['center', 'space-between', 'space-between', 'space-between']}
         mb={8} pos='relative' fontSize='15px'
         pr={['auto', 'auto', '10px', '27px']}
         w='100%' h='60px' fontFamily='Montserrat' zIndex='5' >
                 <HStack spacing={2} pos='absolute' right='10px' h='100%' align='center' >
-                    <Button as={ReactLink} to={LOGIN_PATH}
-                    color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
-                    {...buttonStyle} >Log in</Button>
-                    <Button as={ReactLink} to={REGISTER_PATH}
-                    bgColor='#18A0FB' color='white'
-                    {...buttonStyle} >Registrate</Button>
+                    {_isLoggedIn ? memberButtons : guestButtons}
                     <HeaderNavToggle show={show} toggleNav={toggleNav} isMobile={isMobile} />
                 </HStack>
                 <ReactLink to='/'>
