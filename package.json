@@ -17,11 +17,8 @@
     "axios": "^0.21.1",
     "formik": "^2.2.8",
     "framer-motion": "^4.1.17",
-<<<<<<< HEAD
     "html-react-parser": "^1.2.6",
-=======
     "material-table": "^1.69.3",
->>>>>>> master
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
