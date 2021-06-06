@@ -6,16 +6,17 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TextField } from './TextField';
 import * as Yup from 'yup'
 import parse from "html-react-parser"
+import axios from 'axios';
+import { API_BASE_URL } from '../../app/config';
 
-export default function NewsForm() {
+export default function NewsForm(props) {
 
-    const initialValues = {
+    const initialValues = props.data ? props.data : {
         title: '',
         content: '',
         category: '',
         image: ''
     }
-
 
     const validationSchema = Yup.object({
         title: Yup.string()
@@ -27,6 +28,15 @@ export default function NewsForm() {
         content: Yup.string()
             .required('* El contenido no es válido')
     })
+
+    const sendForm = props.type == 'edit' 
+    ? async (data) =>{
+         await axios.post(`${API_BASE_URL}/news/`, data);
+    } 
+    : async (data) =>{
+        await axios.patch(`${API_BASE_URL}/news/${props.data.id}`, data);
+   } 
+
 
     const onSubmit = (values) => {
         console.log(values)

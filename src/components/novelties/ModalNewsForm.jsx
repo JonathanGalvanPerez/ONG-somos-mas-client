@@ -8,7 +8,7 @@ import {
     ModalCloseButton
 } from '@chakra-ui/react';
 import NewsForm from './NewsForm'
-export default function ModalNewsForm() {
+export default function ModalNewsForm(props) {
 
     const [show, setShow] = useState(false);
 
@@ -17,7 +17,7 @@ export default function ModalNewsForm() {
     return (
         <div>
             <>
-                <Button onClick={handleShow}>Open Modal</Button>
+                <Button onClick={handleShow}>{props.label}</Button>
 
                 <Modal isOpen={show} onClose={handleClose}>
                     <ModalOverlay />
@@ -25,10 +25,7 @@ export default function ModalNewsForm() {
                         <ModalHeader>Formulario de Novedades</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-
-
-                            <NewsForm/>
-
+                            <NewsForm data={props.data}/>
                         </ModalBody>
                     </ModalContent>
                 </Modal>
