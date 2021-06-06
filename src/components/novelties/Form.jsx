@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button, Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton
 } from '@chakra-ui/react';
-import Input from './Input';
-import { Formik, Form } from 'formik';
+import { FormControl, FormLabel, FormErrorMessage, Input } from '@chakra-ui/react'
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-
-export default function Form() {
+export default function FormNovelties() {
 
     const [show, setShow] = useState(false);
     const [data, setData] = useState({
@@ -22,14 +22,9 @@ export default function Form() {
         category: ''
     })
 
-    // setData({
-    //     title: 'el titulo',
-    //     content: 'el contenido',
-    //     category: 'la categoria',
-    // })
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
 
     const validate = Yup.object({
         title: Yup.string()
@@ -37,11 +32,20 @@ export default function Form() {
             .required('El titulo es requerido'),
         content: Yup.string()
             .required('El contenido es requerido'),
-        category: Yup.string()
+        name: Yup.string()
             .max(15, 'Maximo de 15 caracteres')
             .required('La categoria es requerida'),
-
     })
+
+    const onSubmit = (values) => {
+      setData({
+      ...data,
+        title: values.title,
+        category:values.category
+          })
+        console.log('data:', data)
+
+    }
     return (
         <div>
             <>
@@ -56,37 +60,62 @@ export default function Form() {
 
                             <Formik
                                 initialValues={data}
-                                onSubmit={values => {
-                                    console.log(values)
-                                }}                            >
-                                {(props) => (
-                                    <Form>
-                                        <Input label="title" name="title" type="text" />
-                                        <Input label="content" name="content" type="text" />
-                                        <Input label="category" name="category" type="text" />
+                                onSubmit={onSubmit} >
+
+                
+                                {({ handleSubmit, handleChange }) => (
+                                    <form onSubmit={handleSubmit}>
+                                        <Field name="title" validate={validate}>
+                                            {({ field, form }) => (
+                                                <FormControl isInvalid={form.errors.title && form.touched.title}>
+                                                    <FormLabel htmlFor="title">Title</FormLabel>
+                                                    <Input {...field} onChange={handleChange} />
+                                                    <FormErrorMessage>{form.errors.title}</FormErrorMessage>
+                                                </FormControl>
+                                            )}
+                                        </Field>
+                                        <Field name="category" validate={validate}>
+                                            {({ field, form }) => (
+                                                <FormControl isInvalid={form.errors.category && form.touched.category}>
+                                                    <FormLabel htmlFor="category">Category</FormLabel>
+                                                    <Input {...field} onChange={handleChange} />
+                                                    <FormErrorMessage>{form.errors.category}</FormErrorMessage>
+                                                </FormControl>
+                                            )}
+                                        </Field>
+
+                                        <div >
+                                            <FormLabel htmlFor="content">Content</FormLabel>
+                                            <CKEditor
+                                                name="content"
+                                                editor={ClassicEditor}
+                                                data={data.content}
+                                                onChange={(event, editor) => {
+                                                    const text = editor.getData();
+                                                     setData({ ...data, content: text });
+                                                onSubmit()
+                                                    }}
+
+                                            />
+                                        </div>
                                         <Button
                                             mt={4}
                                             colorScheme="teal"
                                             type="submit"
                                         >
-                                            Submit
-                                        </Button>
-                                    </Form>
+                                            Listo
+                                         </Button>
+                                    </form>
                                 )}
+
+
+
+
                             </Formik>
 
 
 
                         </ModalBody>
-
-
-
-                        <ModalFooter>
-                            <Button colorScheme="blue" mr={3} onClick={onClose}>
-                                CANCELAR
-                        </Button>
-                            <Button variant="ghost">ENVIAR</Button>
-                        </ModalFooter>
                     </ModalContent>
                 </Modal>
             </>
