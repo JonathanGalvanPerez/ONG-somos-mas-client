@@ -4,8 +4,10 @@ import logo from '../../../assets/images/logo.png'
 import * as FaIcons from 'react-icons/fa';
 
 //0T34-62 ..inicio
-// const userRol = localStorage.getItem('userRol')  
-const userRol='admin'
+//Aun no trae el rolId del endpoint de acceso por lo que no va a mostrar las opciones
+//del sidebar se puede forzar la variable = 1 para ver opciones
+const userRol = localStorage.getItem('userRol')  
+// const userRol=1
 //0T34-62 ..fin
 
 const Sidebar = ({sidebarOpen,closeSidebar,openActivities,closeActivities}) =>{
@@ -28,7 +30,7 @@ const Sidebar = ({sidebarOpen,closeSidebar,openActivities,closeActivities}) =>{
                     <FaIcons.FaHome/> 
                     <a href="#">Home</a>
                 </div>
-                { userRol=='admin'?
+                { userRol=== 1?   // //0T34-62 
                 <>
                     <div className="sidebar__link">
                         <FaIcons.FaPeopleCarry />
