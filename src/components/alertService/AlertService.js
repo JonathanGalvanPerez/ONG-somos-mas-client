@@ -53,7 +53,7 @@ const confirm = async (title, text, confirmButtonText = 'Seguro', doneText = 'He
                 icon: 'success'
             });
             return true;
-        }else
+        } else
             return false;
     })
 }
@@ -95,6 +95,73 @@ const tempNotify = (title, error = false) => {
     });
 }
 
+// Input type Text
+// Alert.inputText(titulo, OPCIONAL msg (DEFAULT: 'El campo no puede quedar vacío'))
+const inputText = async (title, msg = 'El campo no puede quedar vacío') => {
+    const { value: text } = await alerts.fire({
+        title,
+        input: 'text',
+        inputPlaceholder: title,
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return msg
+            }
+        }
+    })
+
+    if (text) {
+        alerts.fire(`El valor ingresado es: ${text}`)
+    }
+    return text
+}
+
+// Input type Email
+// Alert.inputEmail(titulo)
+const inputEmail = async (title = 'Ingresa tu Email') => {
+    const { value: email } = await alerts.fire({
+        title,
+        input: 'email',
+        inputPlaceholder: title,
+        inputValidator: (value) => {
+            if (!(/^[\w]+@{1}[\w]+\.[a-z]{2,3}$/).test(value)) {
+                return ('El email no es válido!');
+            }
+        }
+    })
+
+    if (email) {
+        alerts.fire(`Email ingresado: ${email}`)
+    }
+    return email
+}
+
+// Input type Password
+// Alert.inputPassword(titulo)
+const inputPassword = async (title = 'Ingrese su contraseña') => {
+    const { value: password } = await alerts.fire({
+        title,
+        input: 'password',
+        inputPlaceholder: title,
+        inputAttributes: {
+            minlength: 5,
+            autocapitalize: 'off',
+            autocorrect: 'off'
+        },
+        inputValidator: (value) => {
+            if (value.trim().length < 5) {
+                return (`La contraseña debe tener al menos 5 caracteres! <br />
+                No se permiten espacios vacíos`);
+            }
+        }
+    })
+
+    if (password) {
+        alerts.fire(`Contraseña ingresada: ${password}`)
+    }
+    return password
+}
+
 
 
 const Alert = {
@@ -102,7 +169,10 @@ const Alert = {
     error,
     confirm,
     notify,
-    tempNotify
+    tempNotify,
+    inputText,
+    inputEmail,
+    inputPassword
 }
 
 
