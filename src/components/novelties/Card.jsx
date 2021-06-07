@@ -15,7 +15,7 @@ export default function Card(props) {
         >
           {props.title}
 
-          {((props.index == 0) || (props.index == 1)) && <Badge borderRadius="full" opacity="80%" px="2" mx="1" colorScheme="teal">
+          {((props.index === 0) || (props.index === 1)) && <Badge borderRadius="full" opacity="80%" px="2" mx="1" colorScheme="teal">
             New
           </Badge>}
 
