@@ -17,10 +17,13 @@ import { Link as RouterLink, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Alert from './../components/alertService/AlertService';
 import { API_BASE_URL } from './../app/config';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../features/login/loginSlice'
 
 export default function RegisterPage() 
 {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   // On register form submit
   // This callback will only be called after successful validation with the login information
@@ -36,8 +39,9 @@ export default function RegisterPage()
         return;
       }
       else {
-        Alert.success('Exito', 'Se ha registrado correctamente');
+        Alert.success('Hecho', 'Se ha registrado correctamente');
         // Registro exitoso
+        dispatch(logIn(result.data?.token));
         history.push("/"); // Redirecciona a home
       }
     }).catch((error) => {
