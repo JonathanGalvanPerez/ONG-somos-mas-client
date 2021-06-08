@@ -62,16 +62,23 @@ function Actividades_Backoffice() {
     
     //OT34-61...inicio
     const styles = useStyles(); 
-    const [modal,setModal]=useState(false);
+    const [modal, setModal]=useState(false);
 
     const openCloseModal=()=>{
         setModal(!modal);
     }
 
+
+   //Datos de prueba para path en el formActivitie 
+    const dataPrueba ={
+        name: '1 Actividad de prueba', 
+        image:'https://via.placeholder.com/150', 
+        content: 'contenido de prueba' }
+
     const body=(
         <div className = {styles.modal}>
             <div align="center">
-                <FormActivitie/>
+                <FormActivitie data={dataPrueba} type="edit"/>
                 <Button mt={4} colorScheme="teal"  onClick={()=>openCloseModal()}>Cancelar</Button>
             </div>                
         </div>

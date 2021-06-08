@@ -1,16 +1,15 @@
-import React, { Component,useState } from 'react';
+import React, { Component,useState,useEffect} from 'react';
 import * as FaIcons from 'react-icons/fa';
 import { FormControl, FormErrorMessage, Box, VStack, Button, FormHelperText, FormLabel,Center } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
-import AuthInput from '../../authentication/AuthInput';
+import AuthInput from '../FormActivities/Auth-input';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import parse from "html-react-parser"
 
- import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
- import { CKEditor } from '@ckeditor/ckeditor5-react';
- import parse from "html-react-parser"
 
 export default function FormActivitie(props){
-
 
     const [data, setData] = useState(props.data ? props.data : {
         name: '',
@@ -18,6 +17,7 @@ export default function FormActivitie(props){
         content: ''
     })
 
+    //  console.log(data)
 
     const validationSchema = Yup.object({
         name: Yup.string()
@@ -28,8 +28,15 @@ export default function FormActivitie(props){
             .required('* El contenido no es válido')
     })
 
+    useEffect(() => {
+        if(props.type=="edit"){
+            console.log('data in path', data);
+        }else{
+            console.log('data in post', data);
+        }
+    }, [data])
+
     const onSubmit = (values) => {
-        console.log(values)
         const { name, image, content } = values;
         setData({
             name,
@@ -47,12 +54,12 @@ export default function FormActivitie(props){
 
                     <Form onSubmit={handleSubmit} encType="multipart/form-data">
                         <VStack>
-                            <FormControl  id="first-name" isRequired>
+                            <FormControl  id="name" isRequired>
                                 <FormLabel>Nombre</FormLabel>
                                 <AuthInput type="text" name="name"  placeholder="First name" />
                             </FormControl>
 
-                            <FormControl id="url-imagen" isRequired>
+                            <FormControl id="imagen" isRequired>
                                 <FormLabel>URL imagen</FormLabel>
                                 <AuthInput  name="image" placeholder="URL imagen" />
                             </FormControl>
@@ -62,18 +69,17 @@ export default function FormActivitie(props){
                                     <CKEditor 
                                         name="content"
                                         editor={ClassicEditor}
-                                    //     data={values.content}
-                                    //     onChange={(event, editor) => {
-                                    //     const textEditor = editor.getData();
-                                    //     setValues({ ...values, content: textEditor });
-                                    // }}
+                                        data={values.content}
+                                        onChange={(event, editor) => {
+                                        const textEditor = editor.getData();
+                                        setValues({ ...values, content: textEditor });
+                                    }}
                                     />
                                 </FormControl>
 
                             
                                 <Button
                                     mt={4}
-                                    w={{ base: "70%", md: "50%", lg: "40%", xl: '30%' }}
                                     colorScheme="teal"
                                     type="submit"
                                     isDisabled={isSubmitting}
