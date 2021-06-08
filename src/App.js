@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicInfoData, publicLoading } from "./app/publicInfoSlice";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Novelties from "./pages/Novelties";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
 import Backoffice from "./components/Backoffice";
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/inicio" component={Inicio} />
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path="/actividades" component={Actividades} />
+          <Route exact path='/novedades' component={Novelties} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />

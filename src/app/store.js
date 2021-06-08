@@ -4,9 +4,6 @@ import publicInfoReducer from './publicInfoSlice';
 import loginReducer from '../features/login/loginSlice'
 import usersInfoReducer from "./usersInfoSlice"
 import activityReducer from '../features/activities/activitySlice'
-import newsDeleteReducer from '../features/news/newsDeleteSlice';
-import newsPutReducer from '../features/news/newsPutSlice';
-
 
 const preloadedState = {
   login: {
