@@ -40,7 +40,7 @@ export default function NewsForm(props) {
     })
 
     useEffect(() => {
-        if(props.type=="edit"){
+        if(props.type==="edit"){
             console.log('data in path', data);
         }else{
             console.log('data in post', data);

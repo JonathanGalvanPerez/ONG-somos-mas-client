@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicInfoData, publicLoading } from "./app/publicInfoSlice";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Novelties from "./pages/Novelties";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
 import Backoffice from "./components/Backoffice";
@@ -23,8 +24,11 @@ import Profile from "./components/Profile/index";
 import EditUserForm from "./pages/EditUserPage";
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
+import News from './components/News';
 
 import { setId } from "./features/activities/activitySlice";
+import CardDetail from "./components/novelties/CardDetail";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +55,8 @@ function App() {
           <Route exact path="/inicio" component={Inicio} />
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path="/actividades" component={Actividades} />
+          <Route exact path='/novedades' component={Novelties} />
+          <Route exact path='/novedades/:id' component={CardDetail} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />
@@ -61,6 +67,7 @@ function App() {
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
           <Route exact path={`/actividad/${id}`} component={ActividadId} />
+          <Route exact path="/backoffice/news" component={News} />
         </Switch>
         <Footer />
       </Router>

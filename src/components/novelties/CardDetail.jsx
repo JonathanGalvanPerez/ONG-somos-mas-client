@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Container, Flex, Spacer, Text } from '@chakra-ui/react'
+import moment from 'moment'
+import { useParams } from 'react-router'
 import axios from 'axios'
+
+
 export default function CardDetail() {
 
   const [data, setData] = useState({})
-
+  const {id} = useParams();
 
   useEffect(() => {
     (async () => {
-      const res = await axios.get('http://localhost:3000/news/5')
+      const res = await axios.get(`http://localhost:3000/news/${id}`)
       setData(res.data);
     })()
   }, [])
@@ -32,7 +36,7 @@ export default function CardDetail() {
           </Text>
           <Spacer/>
           <Text>
-            {data.createdAt}
+            {moment(data.createAd).format('LL')}
           </Text>
           </Flex>
           <Box
