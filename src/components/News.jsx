@@ -93,7 +93,11 @@ const News = () => {
         /* DESCOMENTAR:  Para que funcione con la logica del state local 
         let newsArray = news.filter((news) => news.id !== id);
         setNews(newsArray);*/
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire(
+          "Eliminada!",
+          "La noticia ha sido eliminada exitosamente.",
+          "success"
+        );
       }
     });
   };
