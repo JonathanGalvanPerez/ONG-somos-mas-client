@@ -2,11 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import publicInfoReducer from './publicInfoSlice';
 import loginReducer from '../features/login/loginSlice'
-<<<<<<< HEAD
 import usersInfoReducer from "./usersInfoSlice"
-=======
 import activityReducer from '../features/activities/activitySlice'
->>>>>>> master
+import newsDeleteReducer from '../features/news/newsDeleteSlice';
+import newsPutReducer from '../features/news/newsPutSlice';
+
 
 const preloadedState = {
   login: {
@@ -19,12 +19,12 @@ const store = configureStore({
     counter: counterReducer,
     publicInfo: publicInfoReducer,
     login: loginReducer,
-<<<<<<< HEAD
-    usersInfo: usersInfoReducer
-
-=======
+    activity:activityReducer,
+    newsDelete: newsDeleteReducer,
+    newsPut:newsPutReducer,
+    usersInfo: usersInfoReducer,
     activity:activityReducer
->>>>>>> master
+    
   },
   preloadedState,
 });

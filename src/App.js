@@ -23,8 +23,10 @@ import Profile from "./components/Profile/index";
 import EditUserForm from "./pages/EditUserPage";
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
+import News from './components/News';
 
 import { setId } from "./features/activities/activitySlice";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +63,7 @@ function App() {
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
           <Route exact path={`/actividad/${id}`} component={ActividadId} />
+          <Route exact path="/backoffice/news" component={News} />
         </Switch>
         <Footer />
       </Router>
