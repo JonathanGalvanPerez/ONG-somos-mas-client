@@ -16,8 +16,12 @@ const store = configureStore({
     counter: counterReducer,
     publicInfo: publicInfoReducer,
     login: loginReducer,
+    activity:activityReducer,
+    newsDelete: newsDeleteReducer,
+    newsPut:newsPutReducer,
     usersInfo: usersInfoReducer,
     activity:activityReducer
+    
   },
   preloadedState,
 });

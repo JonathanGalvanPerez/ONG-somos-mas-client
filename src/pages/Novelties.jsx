@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
@@ -13,7 +13,7 @@ export default function Novelties() {
   const [novelties, setNovelties] = useState([])
 
   useEffect(() => {
-    (async function getEntries(){
+    (async function getEntries() {
       const entries = await axios.get(`${API_BASE_URL}/news`);
       setNovelties(entries.data);
     })();
@@ -42,7 +42,7 @@ export default function Novelties() {
           p={{ base: "5", lg: "10" }}
         >
           {
-            novelties.map(({id, image, title, content, createAd}, index) => (
+            novelties.map(({ id, image, name, createAd }, index) => (
 
 
               <Link to={`/novedades/${id}`}>
@@ -52,7 +52,7 @@ export default function Novelties() {
                   transitionDuration: '0.5s',
                   borderWidth: "4px", borderColor: "teal.300"
                 }}>
-                  <Card imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={title} />
+                  <Card imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={name} />
                 </GridItem>
 
               </Link>

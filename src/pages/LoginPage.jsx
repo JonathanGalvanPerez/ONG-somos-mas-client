@@ -36,6 +36,9 @@ export default function LoginPage() {
     // }, 1000);
 
     axios.post(`${API_BASE_URL}/users/auth/login`, values).then((result) => {
+
+      localStorage.setItem("userRol", result.data.rolId);   // OT34-62
+      
       if (!result.data?.token) {
         Alert.error('Error', 'No ha logrado ingresar, verifique los datos', 'OK');
         actions.setSubmitting(false); 
