@@ -24,7 +24,7 @@ import EditUserForm from "./pages/EditUserPage";
 import ActividadId from './components/Actividades/ActividadId';
 
 import { setId } from './features/activities/activitySlice';
-
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
