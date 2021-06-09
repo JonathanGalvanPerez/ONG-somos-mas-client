@@ -13,7 +13,7 @@ export default function ContactoMsg() {
                         <Text as="em" >
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                         </Text>
-                        <Text>
+                        <Box textAlign="left" >
                             <Text as="u" fontWeight="bold" fontSize="lg">Datos de contacto: </Text>
                             <br />
                             <Text >- Mail: <Link fontWeight="bold" fontSize=".8rem">somosfundacionmas@gmail.com</Link></Text>
@@ -26,7 +26,7 @@ export default function ContactoMsg() {
                             <br />
                             <Text as="i">- Teléfono de contacto: <Link fontWeight="bold"
                                 fontSize=".9rem">1160112988</Link></Text>
-                        </Text>
+                        </Box>
                     </Stack>
                 </Container>
             </Box>
