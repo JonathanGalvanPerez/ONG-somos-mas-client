@@ -1,10 +1,9 @@
 import axios from 'axios'
-
-const endpoint = 'http://localhost:3000'
+import { API_BASE_URL } from '../../app/config'
 
 export const authenticate = async () => {
     try {
-        const res = await axios.post(endpoint + '/users/auth/login', {
+        const res = await axios.post(API_BASE_URL + '/users/auth/login', {
             email: 'test@test.com',
             password: '123456'
         });

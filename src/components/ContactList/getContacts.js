@@ -1,11 +1,10 @@
 import axios from 'axios'
-
-const endpoint = 'http://localhost:3000'
+import { API_BASE_URL } from '../../app/config'
 
 export const getContactList = async () => {
     try {
         const token = localStorage.getItem('token')
-        const res = await axios.get(endpoint + '/contacts', {
+        const res = await axios.get(API_BASE_URL + '/contacts', {
             'headers': {
                 'Authorization': 'Bearer ' + JSON.parse(token)
             }
