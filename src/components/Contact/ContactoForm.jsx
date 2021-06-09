@@ -87,6 +87,20 @@ export default function ContactoForm() {
                             <TextError props={formik.errors.email} />
                         ) : null}
 
+                        <InputGroup>
+                            <InputLeftElement
+                                pointerEvents="none"
+                                children={<PhoneIcon color="gray.300" />}
+                            />
+                            <Input type="number"
+                                id="phone"
+                                name="phone"
+                                placeholder="Número de teléfono"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.phone}
+                            />
+                        </InputGroup>
 
                         <Textarea
                             id="message"
