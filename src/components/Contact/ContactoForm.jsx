@@ -23,8 +23,20 @@ export default function ContactoForm() {
     }
 
     const onSubmit = values => {
-        const formData = values;
-        console.log('Form data', formData)
+        setLoading(true);
+        axios.post(`${API_BASE_URL}/contacts`, values).then((result) => {
+            setLoading(false);
+            if (!result.data?.ok) {
+              Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
+              return;
+            }
+            else {
+              Alert.success('Listo', 'Sus datos han sido registrados con éxito. Pronto recibirá un mail con más información.', 'Continuar');
+            }
+        }).catch((error) => {
+        setLoading(false);
+        Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
+        });
     }
 
     const validationSchema = Yup.object({
