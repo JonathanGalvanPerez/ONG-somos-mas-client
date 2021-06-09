@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Textarea } from "@chakra-ui/react"
 import { Box, Center, Stack, Text, VStack } from '@chakra-ui/layout';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/input';
-import { EditIcon, EmailIcon } from '@chakra-ui/icons';
+import { EditIcon, EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import TextError from './TextError'
+import axios from 'axios';
+import { API_BASE_URL } from '../../app/config';
+import Alert from '../alertService/AlertService';
+import Loader from '../Loading/Loader';
 
 
 export default function ContactoForm() {
+    const [ isLoading, setLoading ] = useState(false);
 
     const initialValues = {
         name: '',
         email: '',
+        phone: '',
         message: ''
     }
 
@@ -24,7 +30,8 @@ export default function ContactoForm() {
     const validationSchema = Yup.object({
         name: Yup.string().required('* El nombre es requerido'),
         email: Yup.string().email('El email no es válido').required('* El email es requerido'),
-        message: Yup.string().required('* El mensaje es requerido')
+        phone: Yup.number(),
+        message: Yup.string()
     })
 
     const formik = useFormik({
@@ -35,21 +42,22 @@ export default function ContactoForm() {
 
     return (
         <VStack width="100%" border="gray.100 solid 1px" >
+            <Loader isLoading={isLoading} />
 
             <Box width="90%" marginY="1" padding="2.5">
 
                 <form onSubmit={formik.handleSubmit}>
                     <Text fontSize="3xl" align="center" mt={2} mb={2} fontWeight="bold">Envía un mensaje</Text>
                     <Stack spacing={4} >
-                        <InputGroup >
 
+                        <InputGroup >
                             <InputLeftElement
                                 pointerEvents="none"
                                 children={<EditIcon color="gray.300" />}
                             />
                             <Input
                                 type="text"
-                                placeholder="Nombre"
+                                placeholder="*Nombre"
                                 id="name"
                                 name="name"
                                 onChange={formik.handleChange}
@@ -69,7 +77,7 @@ export default function ContactoForm() {
                             <Input type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Email de contacto"
+                                placeholder="*Email de contacto"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.email}
@@ -78,6 +86,7 @@ export default function ContactoForm() {
                         {formik.touched.email && formik.errors.email ? (
                             <TextError props={formik.errors.email} />
                         ) : null}
+
 
                         <Textarea
                             id="message"
@@ -89,9 +98,6 @@ export default function ContactoForm() {
                             onBlur={formik.handleBlur}
                             value={formik.values.message}
                         />
-                        {formik.touched.message && formik.errors.message ? (
-                            <TextError props={formik.errors.message} />
-                        ) : null}
 
                     </Stack>
                     <Center mt="3">
@@ -108,7 +114,7 @@ export default function ContactoForm() {
                             boxShadow="md"
                             _hover={{ bg: 'gray.900' }}
                         >
-                            Publicar comentario
+                            Contactarse
                         </Button>
                     </Center>
                 </form>
