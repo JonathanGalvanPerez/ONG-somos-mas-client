@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Image, Badge, Heading, Icon, VStack } from '@chakra-ui/react';
+import { Container, Text, Image, Badge, Heading, Icon, VStack, Spinner, Center } from '@chakra-ui/react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AiFillCalendar } from 'react-icons/ai';
 
@@ -11,8 +11,11 @@ const ActividadId = () => {
   const history = useHistory();
 
   const [activity, setActivity] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     const consultAPI = async () => {
       const url = `${API_BASE_URL}/activities/${id}`;
 
@@ -21,6 +24,7 @@ const ActividadId = () => {
         .then((respuesta) => {
           if (!respuesta.data) throw new Error();
           setActivity(respuesta.data);
+          setLoading(false);
         })
         .catch(() => {
           history.push('/');
@@ -30,6 +34,8 @@ const ActividadId = () => {
 
     consultAPI();
   }, []);
+
+  if (loading) return <Center p={10}><Spinner size="lg"/></Center>
 
   return (
     <Container

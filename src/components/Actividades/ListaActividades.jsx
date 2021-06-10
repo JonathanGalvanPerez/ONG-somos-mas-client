@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Image, Badge, Heading, Icon, VStack, Link, Box, LinkOverlay } from '@chakra-ui/react';
+import { Container, Text, Image, Badge, Heading, Icon, VStack, Link, Box, LinkOverlay, Skeleton, Stack, Spinner } from '@chakra-ui/react';
 import { useParams, useHistory, Link as RouterLink } from 'react-router-dom';
 import { AiFillCalendar } from 'react-icons/ai';
 import { HStack } from '@chakra-ui/react';
@@ -13,8 +13,11 @@ const MAX_TEXT_LENGTH = 100; // Caracteres max. que se mostraran en el resumen d
 const ActividadId = () => {
   const history = useHistory();
   const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     const consultAPI = async () => {
       const url = `${API_BASE_URL}/activities`;
 
@@ -23,6 +26,7 @@ const ActividadId = () => {
         .then((respuesta) => {
           if (!respuesta.data) throw new Error();
           setActivities(respuesta.data);
+          setLoading(false);
         })
         .catch(() => {
           history.push('/');
@@ -49,6 +53,9 @@ const ActividadId = () => {
       <Text letterSpacing='wide' as='h2' p={5} fontSize='xl'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
       </Text>
+      {loading && (
+          <Spinner size="lg" mt={6} />
+      )}
       <HStack
         overflowX='scroll'
         py={5}
