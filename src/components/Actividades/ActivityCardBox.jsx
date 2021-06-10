@@ -1,4 +1,4 @@
-// Card Box container with background image for an activity
+// Card Box with background image to summarize an activity
 
 import React from 'react';
 import { Box, VStack, Heading, Button, Text } from '@chakra-ui/react';
