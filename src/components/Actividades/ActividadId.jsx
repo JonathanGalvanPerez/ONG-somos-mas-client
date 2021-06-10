@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
@@ -8,7 +7,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { AiFillCalendar } from 'react-icons/ai';
 
 const ActividadId = () => {
-  //const {id} = useSelector((state) =>state.activity);
   const { id } = useParams();
   const history = useHistory();
 
