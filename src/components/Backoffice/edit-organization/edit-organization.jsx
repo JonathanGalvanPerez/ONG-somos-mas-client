@@ -37,6 +37,53 @@ export default function EditOrganization() {
   return (
 
     <Container maxWidth="xl" border="gray.100 solid 1px" mt="10" centerContent>
+      <form onSubmit={formik.handleSubmit}>
+        <Stack spacing={3} >
+          <FormControl isRequired isInvalid={formik.errors.ongName && formik.touched.ongName}>
+            <FormLabel fontSize="12"> Nombre de la organización</FormLabel>
+            <InputGroup>
+              <InputLeftElement children={<Icon name="EditIcon"/>} />
+                <Input
+                  type="text"
+                  name="ongName"
+                  id="ongName"
+                  placeholder="Editar nombre de la organización"
+                  value={formik.values.ongName}
+                  onChange={formik.handleChange}
+                />
+            </InputGroup>
+          </FormControl>
+
+          <FormControl isRequired isInvalid={formik.errors.logo && formik.touched.logo}>
+            <FormLabel fontSize="12"> Logo de la organización </FormLabel>
+            <InputGroup>
+              <InputLeftElement children={<Icon name="info" />} />
+                <Input
+                  type="text"
+                  id="logo"
+                  name="logo"
+                  placeholder="URL del logotipo"
+                  value={formik.values.logo}
+                  onChange={formik.handleChange}
+                />
+            </InputGroup>
+            <Box >
+                <Image src={formik.values.logo} alt="" />
+            </Box>
+
+          </FormControl>
+          <Button 
+            type="submit" 
+            bg="gray.700" 
+            color="white" 
+            borderRadius='full'
+            _hover= {{ background:"#265acc" }}
+            
+            >Guardar Cambios</Button>
+
+        </Stack>
+      
+      </form>   
            
       
     </Container>
