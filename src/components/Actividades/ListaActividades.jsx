@@ -4,12 +4,30 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Heading, VStack, Box, Spinner } from '@chakra-ui/react';
+import { Container, Text, Heading, Spinner } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { HStack } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/button';
 
-const MAX_TEXT_LENGTH = 100; // Caracteres max. que se mostraran en el resumen de la actividad
+import ActivityCardBox from './ActivityCardBox';
+
+// Activities list horizontal scroll bar custom style
+const scrollBarStyle = {
+  css: {
+    '&::-webkit-scrollbar': {
+      height: '10px',
+    },
+    '&::-webkit-scrollbar-track': {
+      width: '50%',
+      height: '10px',
+      borderRadius: '32px',
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(0,0,0,0.3)', //rgb(142, 203, 255) rgb(49, 130, 206) rgb(237, 75, 75)
+      borderRadius: '32px',
+    },
+  },
+};
 
 const ActividadId = () => {
   const history = useHistory();
@@ -56,61 +74,14 @@ const ActividadId = () => {
       <Text letterSpacing='wide' as='h2' p={5} fontSize='xl'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
       </Text>
-      {loading && <Spinner size='lg' mt={6} />}
-      <HStack
-        overflowX='scroll'
-        py={5}
-        maxW='100%'
-        css={{
-          '&::-webkit-scrollbar': {
-            height: '10px',
-          },
-          '&::-webkit-scrollbar-track': {
-            width: '50%',
-            height: '10px',
-            borderRadius: '32px',
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: 'rgba(0,0,0,0.3)', //rgb(142, 203, 255) rgb(49, 130, 206) rgb(237, 75, 75)
-            borderRadius: '32px',
-          },
-        }}>
-        {activities.map((activity) => (
-          <Box
-            backgroundImage={activity.image}
-            color='white'
-            minH='xs'
-            rounded='md'
-            backgroundPosition='center'
-            _hover={{ backgroundSize: 'cover' }}>
-            <Box
-              as='button'
-              d='flex'
-              flexDirection='column'
-              justifyContent='center'
-              rounded='md'
-              alignItems='center'
-              textAlign='center'
-              onClick={() => handleReadMoreClick(activity.id)}
-              p={5}
-              bg='blackAlpha.600'
-              w='sm'
-              h='xs'>
-              <VStack spacing={3}>
-                <Heading as='h3' size='md' letterSpacing='wide'>
-                  {activity.name}
-                </Heading>
 
-                <Text letterSpacing='wide' boxSize={{ base: '100%', lg: '90%' }} fontSize='lg'>
-                  {activity.content?.slice(0, MAX_TEXT_LENGTH) + '...'}{' '}
-                </Text>
-                <Button onClick={() => handleReadMoreClick(activity.id)} colorScheme='blue' _hover={{ bg: 'blue.300' }}>
-                  Leer más
-                </Button>
-              </VStack>
-            </Box>
-          </Box>
+      {/* Loading spinner */}
+      {loading && <Spinner size='lg' mt={6} />}
+
+      {/* Activities list */}
+      <HStack overflowX='scroll' py={5} maxW='100%' {...scrollBarStyle}>
+        {activities.map((activity) => (
+          <ActivityCardBox activity={activity} onClick={() => handleReadMoreClick(activity.id)} />
         ))}
       </HStack>
     </Container>
