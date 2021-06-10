@@ -14,16 +14,18 @@ import { useLocation } from 'react-router';
 
 export default function Footer() {
   const location = useLocation();
-  const { facebookUser, instagramUser, twitterUser, email, phone } = useSelector((state) => state.publicInfo.data);
+
+  const { orgContact } = useSelector((state) => state.publicInfo.data);
+  
 
   if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
 
   const socialLinks = [
-    { link: `https://facebook.com/${facebookUser}`, icon: 'facebook', tooltipText: '/'+facebookUser },
-    { link: `https://instagram.com/${instagramUser}`, icon: 'instagram', tooltipText: '/'+instagramUser },
-    { link: `https://twitter.com/${twitterUser}`, icon: 'twitter', tooltipText: '/'+twitterUser },
-    { link: `mailto:${email}`, icon: 'email', tooltipText: email },
-    { icon: 'phone', tooltipText: phone },
+    { link: orgContact[0].facebook, icon: 'facebook', tooltipText:  orgContact[0].facebook },
+    { link: orgContact[0].instagram, icon: 'instagram', tooltipText:  orgContact[0].instagram},
+    { link: orgContact[0].twitter, icon: 'twitter', tooltipText: orgContact[0].twitter },
+    { link: orgContact[0].email, icon: 'email', tooltipText: orgContact[0].email },
+    { icon: 'phone', tooltipText: 'phone' },
   ];
 
   const socialLinksRender = socialLinks.map((social) => (
