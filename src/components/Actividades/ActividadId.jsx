@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Button, Stack, Box, Image, Badge, Grid } from '@chakra-ui/react';
+import { Container, Text, Button, Stack, Box, Image, Badge, Grid, Heading, Icon, VStack } from '@chakra-ui/react';
 import { useParams, useHistory } from 'react-router-dom';
+import { AiFillCalendar } from 'react-icons/ai';
 
 const ActividadId = () => {
   //const {id} = useSelector((state) =>state.activity);
@@ -34,16 +35,38 @@ const ActividadId = () => {
   }, []);
 
   return (
-    <Container maxW='container.lg'>
-      <Text fontSize='150%'>{activity.name}</Text>
-
-      <Badge borderRadius='full' px='7' colorScheme='teal'>
-        {activity.createdAt} | Actividad
-      </Badge>
-
-      <Image mt='7' boxSize='100%' height='25rem' src={activity.image} alt={activity.name} />
-
-      <Text mt='7'>{activity.content}</Text>
+    <Container
+      maxW='container.lg'
+      d='flex'
+      border='1px'
+      borderColor='blackAlpha.300'
+      rounded='xl'
+      p={8}
+      flexDirection='column'
+      justifyContent='center'
+      alignItems='center'
+      textAlign='center'>
+      <VStack spacing={6}>
+        <VStack>
+          <Heading letterSpacing='wide'>{activity.name}</Heading>{' '}
+          <Badge borderRadius='full' px='7' colorScheme='blue' d='flex' alignItems='center'>
+            <Icon as={AiFillCalendar} mr='2px' />
+            {new Date(activity.createdAt).toLocaleDateString()} | Actividad
+          </Badge>
+        </VStack>
+        
+        <Image
+          rounded='md'
+          boxSize='90%'
+          height={{ base: '20rem', xl: '30rem' }}
+          objectFit='cover'
+          src={activity.image}
+          alt={activity.name}
+        />
+        <Text letterSpacing='wide' boxSize='90%' fontSize='120%'>
+          {activity.content}
+        </Text>
+      </VStack>
     </Container>
   );
 };
