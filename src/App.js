@@ -64,7 +64,7 @@ function App() {
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
-          <Route exact path={`/actividad/${id}`} component={ActividadId} />
+          <Route exact path="/actividad/:id" component={ActividadId} />
           <Route exact path="/backoffice/news" component={News} />
         </Switch>
         <Footer />
