@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Image, Badge, Heading, Icon, VStack, Spinner, Center } from '@chakra-ui/react';
+import { Container, Text, Image, VStack, Spinner, Center } from '@chakra-ui/react';
 import { useParams, useHistory } from 'react-router-dom';
-import { AiFillCalendar } from 'react-icons/ai';
+import ActivityHeader from './ActivityHeader';
 
 const ActividadId = () => {
   const { id } = useParams();
@@ -35,7 +35,12 @@ const ActividadId = () => {
     consultAPI();
   }, []);
 
-  if (loading) return <Center p={10}><Spinner size="lg"/></Center>
+  if (loading)
+    return (
+      <Center p={10}>
+        <Spinner size='lg' />
+      </Center>
+    );
 
   return (
     <Container
@@ -52,29 +57,7 @@ const ActividadId = () => {
       alignItems='center'
       textAlign='center'>
       <VStack spacing={6}>
-        <VStack spacing={3}>
-          <Heading
-            borderTop='2px'
-            borderBottom='2px'
-            py='15px'
-            borderTopColor='red.300'
-            borderBottomColor='yellow.300'
-            letterSpacing='wide'>
-            {activity.name}
-          </Heading>
-          <Badge
-            variant='outline'
-            borderRadius='full'
-            px='7'
-            py='1'
-            colorScheme='blue'
-            color='blue.300'
-            d='flex'
-            alignItems='center'>
-            <Icon as={AiFillCalendar} mr='2px' />
-            {new Date(activity.createdAt).toLocaleDateString()} | Actividad
-          </Badge>
-        </VStack>
+        <ActivityHeader name={activity.name} date={activity.createdAt} />
 
         <Image
           rounded='lg'
