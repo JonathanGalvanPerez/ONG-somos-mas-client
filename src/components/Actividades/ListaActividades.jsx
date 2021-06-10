@@ -37,7 +37,7 @@ const ActividadId = () => {
 
   return (
     <Container
-      maxW='90%'
+      maxW={{ base: '100%', lg: '90%' }}
       d='flex'
       flexDirection='column'
       justifyContent='center'
@@ -49,26 +49,39 @@ const ActividadId = () => {
       <Text letterSpacing='wide' as='h2' p={5} fontSize='xl'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
       </Text>
-      <HStack overflowX='scroll' p={10} maxW='97%'>
+      <HStack
+        overflowX='scroll'
+        py={5}
+        maxW='100%'
+        css={{
+          '&::-webkit-scrollbar': {
+            height: '10px',
+          },
+          '&::-webkit-scrollbar-track': {
+            width: '50%',
+            height: '10px',
+            borderRadius: '32px',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgba(0,0,0,0.3)', //rgb(142, 203, 255) rgb(49, 130, 206) rgb(237, 75, 75)
+            borderRadius: '32px',
+          },
+        }}>
         {activities.map((activity) => (
           <Box
-            d='flex'
-            flexDirection='column'
             backgroundImage={activity.image}
             color='white'
             minH='xs'
-            justifyContent='center'
-            alignItems='center'
-            textAlign='center'
+            rounded='md'
             backgroundPosition='center'
-            transitionProperty='all'
-            transitionDuration='500ms'
             _hover={{ backgroundSize: 'cover' }}>
             <Box
               as='button'
               d='flex'
               flexDirection='column'
               justifyContent='center'
+              rounded='md'
               alignItems='center'
               textAlign='center'
               onClick={() => handleReadMoreClick(activity.id)}
