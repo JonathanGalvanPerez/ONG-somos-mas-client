@@ -1,3 +1,5 @@
+// Component to display activity name with date as header
+
 import React from 'react';
 import { Badge, Heading, Icon, VStack } from '@chakra-ui/react';
 import { AiFillCalendar } from 'react-icons/ai';

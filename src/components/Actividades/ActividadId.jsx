@@ -1,3 +1,5 @@
+// Component to display an activity's detail by ID (passed as react-router path param)
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
@@ -13,6 +15,7 @@ const ActividadId = () => {
   const [activity, setActivity] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // Load activity detail from backend
   useEffect(() => {
     setLoading(true);
 

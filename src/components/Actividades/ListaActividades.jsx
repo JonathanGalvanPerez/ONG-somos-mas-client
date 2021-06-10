@@ -1,10 +1,11 @@
+// Component to display a list of activities (frontpage)
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Image, Badge, Heading, Icon, VStack, Link, Box, LinkOverlay, Skeleton, Stack, Spinner } from '@chakra-ui/react';
-import { useParams, useHistory, Link as RouterLink } from 'react-router-dom';
-import { AiFillCalendar } from 'react-icons/ai';
+import { Container, Text, Heading, VStack, Box, Spinner } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import { HStack } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/button';
 
@@ -15,6 +16,7 @@ const ActividadId = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Load activities list from backend
   useEffect(() => {
     setLoading(true);
 
@@ -37,6 +39,7 @@ const ActividadId = () => {
     consultAPI();
   }, []);
 
+  // On read more button or activity card click
   const handleReadMoreClick = (id) => history.push(`/actividad/${id}`);
 
   return (
@@ -53,9 +56,7 @@ const ActividadId = () => {
       <Text letterSpacing='wide' as='h2' p={5} fontSize='xl'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
       </Text>
-      {loading && (
-          <Spinner size="lg" mt={6} />
-      )}
+      {loading && <Spinner size='lg' mt={6} />}
       <HStack
         overflowX='scroll'
         py={5}
