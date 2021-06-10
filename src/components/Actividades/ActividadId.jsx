@@ -4,11 +4,12 @@ import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
 import { Container, Text, Button, Stack, Box, Image, Badge, Grid } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const ActividadId = () => {
   //const {id} = useSelector((state) =>state.activity);
   const { id } = useParams();
+  const history = useHistory();
 
   const [activity, setActivity] = useState({});
 
@@ -20,10 +21,11 @@ const ActividadId = () => {
       await axios
         .get(url)
         .then((respuesta) => {
-          if (!respuesta.data) throw new Error('La actividad ingresada no existe');
+          if (!respuesta.data) throw new Error();
           setActivity(respuesta.data);
         })
         .catch((error) => {
+          history.push('/');
           Alert.error('Incorrecto', 'La actividad ingresada no existe');
         });
     };
