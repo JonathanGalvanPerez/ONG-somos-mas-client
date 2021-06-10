@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { API_BASE_URL } from './../../app/config';
 import Alert from './../alertService/AlertService';
-import { Container, Text, Button, Stack, Box, Image, Badge, Grid, Heading, Icon, VStack } from '@chakra-ui/react';
+import { Container, Text, Image, Badge, Heading, Icon, VStack } from '@chakra-ui/react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AiFillCalendar } from 'react-icons/ai';
 
@@ -16,7 +16,6 @@ const ActividadId = () => {
 
   useEffect(() => {
     const consultAPI = async () => {
-      //When the get /: id endpoint is created, the information request is made and saved in the state
       const url = `${API_BASE_URL}/activities/${id}`;
 
       await axios
@@ -25,7 +24,7 @@ const ActividadId = () => {
           if (!respuesta.data) throw new Error();
           setActivity(respuesta.data);
         })
-        .catch((error) => {
+        .catch(() => {
           history.push('/');
           Alert.error('Incorrecto', 'La actividad ingresada no existe');
         });
@@ -38,32 +37,52 @@ const ActividadId = () => {
     <Container
       maxW='container.lg'
       d='flex'
-      border='1px'
+      borderLeft='1px'
+      borderRight='1px'
+      borderRightRadius='50px'
+      borderLeftRadius='50px'
       borderColor='blackAlpha.300'
-      rounded='xl'
       p={8}
       flexDirection='column'
       justifyContent='center'
       alignItems='center'
       textAlign='center'>
       <VStack spacing={6}>
-        <VStack>
-          <Heading letterSpacing='wide'>{activity.name}</Heading>{' '}
-          <Badge borderRadius='full' px='7' colorScheme='blue' d='flex' alignItems='center'>
+        <VStack spacing={3}>
+          <Heading
+            borderTop='2px'
+            borderBottom='2px'
+            py='15px'
+            borderTopColor='red.300'
+            borderBottomColor='yellow.300'
+            letterSpacing='wide'>
+            {activity.name}
+          </Heading>
+          <Badge
+            variant='outline'
+            borderRadius='full'
+            px='7'
+            py='1'
+            colorScheme='blue'
+            color='blue.300'
+            d='flex'
+            alignItems='center'>
             <Icon as={AiFillCalendar} mr='2px' />
             {new Date(activity.createdAt).toLocaleDateString()} | Actividad
           </Badge>
         </VStack>
-        
+
         <Image
-          rounded='md'
-          boxSize='90%'
-          height={{ base: '20rem', xl: '30rem' }}
+          rounded='lg'
+          boxSize={{ base: '100%', lg: '90%' }}
+          height={{ base: '13rem', sm: '22rem', lg: '25rem' }}
           objectFit='cover'
+          align='center'
           src={activity.image}
           alt={activity.name}
         />
-        <Text letterSpacing='wide' boxSize='90%' fontSize='120%'>
+
+        <Text letterSpacing='wide' boxSize={{ base: '100%', lg: '90%' }} fontSize='lg'>
           {activity.content}
         </Text>
       </VStack>
