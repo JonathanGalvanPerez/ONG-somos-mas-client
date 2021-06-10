@@ -25,6 +25,7 @@ import EditUserForm from "./pages/EditUserPage";
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
 import News from './components/News';
+import Testimonials from "./components/Backoffice/Testimonials";
 
 import { setId } from "./features/activities/activitySlice";
 
@@ -61,6 +62,7 @@ function App() {
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
           <Route exact path="/backoffice/users" component={BackofficeUsers} />
+          <Route exact path="/backoffice/testimonials" component={Testimonials} />
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
