@@ -58,7 +58,7 @@ function App() {
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
-          <Route exact path="/edit-organization" component={EditOrganization} />
+          <Route exact path="/backoffice/edit-organization" component={EditOrganization} />
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
