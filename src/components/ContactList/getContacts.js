@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_BASE_URL } from '../../app/config'
+import AlertService from '../alertService/AlertService'
 
 export const getContactList = async () => {
     try {
@@ -11,7 +12,7 @@ export const getContactList = async () => {
         });
         return res.data;
     } catch (err) {
-        // Handle Error Here
         console.error(err);
+        AlertService.error("Error", "Hubo un problema al intentar obtener el listado")
     }
 }

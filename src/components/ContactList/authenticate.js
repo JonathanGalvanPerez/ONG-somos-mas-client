@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_BASE_URL } from '../../app/config'
+import AlertService from '../alertService/AlertService'
 
 export const authenticate = async () => {
     try {
@@ -9,7 +10,8 @@ export const authenticate = async () => {
         });
         return res.data;
     } catch (err) {
-        // Handle Error Here
         console.error(err);
+        AlertService.error("Error", "Hubo un problema al intentar realizar la operación")
     }
 }
+

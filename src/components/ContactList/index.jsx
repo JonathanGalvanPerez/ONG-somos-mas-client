@@ -12,7 +12,6 @@ import {
     Td,
 } from "@chakra-ui/react"
 
-
 export default function ListaContactos() {
     const [contacts, setContacts] = useState([])
 
