@@ -10,6 +10,7 @@ import newsPutReducer from "../features/news/newsPutSlice";
 const preloadedState = {
   login: {
     token: JSON.parse(localStorage.getItem("org_token")),
+    roleId: JSON.parse(localStorage.getItem('userRole'))
   },
 };
 
@@ -21,17 +22,15 @@ const store = configureStore({
     activity: activityReducer,
     newsDelete: newsDeleteReducer,
     newsPut: newsPutReducer,
-    usersInfo: usersInfoReducer,
-    activity: activityReducer,
+    usersInfo: usersInfoReducer
   },
   preloadedState,
 });
 
-store.subscribe(() => {
-  localStorage.setItem(
-    "org_token",
-    JSON.stringify(store.getState().login.token)
-  );
-});
+window.onbeforeunload = () => {
+  const state = store.getState();
+  localStorage.setItem('org_token', JSON.stringify(state.login.token));
+  localStorage.setItem('userRole', JSON.stringify(state.login.roleId));
+}
 
 export default store;

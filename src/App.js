@@ -25,10 +25,8 @@ import Profile from "./components/Profile/index";
 import EditUserForm from "./pages/EditUserPage";
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
-import News from './components/News';
-
-import { setId } from "./features/activities/activitySlice";
-
+import News from "./components/News";
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();

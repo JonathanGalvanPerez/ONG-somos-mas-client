@@ -51,7 +51,7 @@ export default function Header() {
         <Flex as='header' justify={['center', 'space-between', 'space-between', 'space-between']}
         mb={8} pos='relative' fontSize='15px'
         pr={['auto', 'auto', '10px', '27px']}
-        w='100%' h='60px' fontFamily='Montserrat' zIndex='5' >
+        w='100%' h='60px' zIndex='5' >
                 <HStack spacing={2} pos='absolute' right='10px' h='100%' align='center' >
                     {_isLoggedIn ? memberButtons : guestButtons}
                     <HeaderNavToggle show={show} toggleNav={toggleNav} isMobile={isMobile} />
