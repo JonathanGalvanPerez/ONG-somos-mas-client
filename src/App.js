@@ -18,6 +18,7 @@ import Novelties from "./pages/Novelties";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
 import Backoffice from "./components/Backoffice";
+import EditOrganization from './components/Backoffice/edit-organization/edit-organization';
 import EditHomeForm from "./components/EditHomeForm";
 import Contacto from "./components/Contact/index";
 import Profile from "./components/Profile/index";
@@ -25,10 +26,9 @@ import EditUserForm from "./pages/EditUserPage";
 import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
-import News from './components/News';
-
-
 import { setId } from "./features/activities/activitySlice";
+import News from "./components/News";
+import './App.css';
 
 
 function App() {
@@ -63,7 +63,7 @@ function App() {
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
-          <Route exact path="/backoffice/users" component={BackofficeUsers} />
+          <Route exact path="/backoffice/edit-organization" component={EditOrganization} />
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
