@@ -22,27 +22,17 @@ const store = configureStore({
     activity: activityReducer,
     newsDelete: newsDeleteReducer,
     newsPut: newsPutReducer,
-<<<<<<< HEAD
-    usersInfo: usersInfoReducer,
-    activity: activityReducer
-
-=======
     usersInfo: usersInfoReducer
->>>>>>> master
+
   },
   preloadedState,
 });
 
-<<<<<<< HEAD
-store.subscribe(() => {
-  localStorage.setItem('org_token', JSON.stringify(store.getState().login.token));
-})
-=======
+
 window.onbeforeunload = () => {
   const state = store.getState();
   localStorage.setItem('org_token', JSON.stringify(state.login.token));
   localStorage.setItem('userRole', JSON.stringify(state.login.roleId));
 }
->>>>>>> master
 
 export default store;
