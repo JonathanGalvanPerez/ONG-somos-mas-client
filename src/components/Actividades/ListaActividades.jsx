@@ -80,8 +80,8 @@ const ActividadId = () => {
 
       {/* Activities list */}
       <HStack overflowX='scroll' py={5} maxW='100%' {...scrollBarStyle}>
-        {activities.map((activity) => (
-          <ActivityCardBox activity={activity} onClick={() => handleReadMoreClick(activity.id)} />
+        {activities.map((activity, idx) => (
+          <ActivityCardBox key={activity.id || idx} activity={activity} onClick={() => handleReadMoreClick(activity.id)} />
         ))}
       </HStack>
     </Container>
