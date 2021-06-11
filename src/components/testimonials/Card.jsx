@@ -42,7 +42,21 @@ export default function Card(props) {
                 </Text>
             </Box>
 
+            <Flex >
 
+                <Spacer />
+
+                <Button bg="orange.200" p="1" mx="1">
+                    <EditIcon />
+                </Button>
+
+                <Button bg="red.200" p="1">
+                    <DeleteIcon />
+                </Button>
+
+
+            </Flex>
+            
         </Box>
     )
 }
