@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://localhost:3000";
+export const API_BASE_URL = "http://localhost:3001";
 
 // Parámetros de validación de form autenticación
 export const AUTH_FORM_VALIDATIONS = {
