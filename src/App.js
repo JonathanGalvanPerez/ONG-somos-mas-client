@@ -26,7 +26,6 @@ import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
 import ListaActividades from "./components/Actividades/ListaActividades";
 import News from './components/News';
-import { setId } from "./features/activities/activitySlice";
 import './App.css';
 
 function App() {
@@ -39,8 +38,6 @@ function App() {
   // get loading state. repeat for every slices
   const publicloading = useSelector(publicLoading);
   const loading = publicloading === "pending";
-
-  const { id } = useSelector((state) => state.activity);
 
   return (
     <div className="App">
