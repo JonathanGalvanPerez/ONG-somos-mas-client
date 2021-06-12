@@ -33,13 +33,13 @@ export default function ContactoMsg() {
               </Text>
             </VStack>
           </Stack>
-          <HStack fontSize='lg' justify='center' mb={5} mt={6} borderTop='1px' borderColor='gray.200' pt={5}>
+          <HStack fontSize={{base:"md", sm: 'lg'}} justify='center' mb={5} mt={6} borderTop='1px' borderColor='gray.200' pt={5}>
             <MdEmail />
             <Link to={`mailto:${data.orgContact[0].email || 'somosfundacionmas@gmail.com'}`}>
               {data.orgContact[0].email || 'somosfundacionmas@gmail.com'}
             </Link>
           </HStack>
-          <SimpleGrid spacing={5} columns={2} w='75%'>
+          <SimpleGrid spacing={5} columns="2" w={{base:"95%", md:'75%'}}>
             <HStack color='blue.600' fontSize='lg' justify='center'>
               <GrFacebook />
               <Link>{data.orgContact[0].facebook || 'Somos_Más'}</Link>

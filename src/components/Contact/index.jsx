@@ -7,8 +7,16 @@ import './style.css';
 
 export default function Contacto() {
   return (
-    <Center d='flex' flexDirection='column' py={12} >
-      <Box mb={5} display={{ md: 'flex' }} border="1px" shadow="sm" borderColor="gray.200" py={12} width={{ base: '90%', lg: '75%' }} rounded='xl'>
+    <Center d='flex' flexDirection='column' py={8}>
+      <Box
+        mb={5}
+        display={{ lg: 'flex' }}
+        border='1px'
+        shadow='sm'
+        borderColor='gray.200'
+        py={8}
+        width={{ base: '95%', lg: '90%', xl: '80%' }}
+        rounded='xl'>
         <ContactoMsg />
         <ContactoForm />
       </Box>

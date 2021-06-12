@@ -60,10 +60,10 @@ export default function ContactoForm() {
   });
 
   return (
-    <VStack width='65%' borderLeft="1px" borderColor="gray.200">
+    <VStack width={{base:"100%", lg:'75%', xl: "65%"}}  borderLeft="1px" borderColor="gray.200" mt={{base: "2rem", lg: "0"}}>
       <Loader isLoading={isLoading} />
 
-      <Box width='80%'>
+      <Box width={{base:"90%", lg:'80%', xl: "75%"}}>
         <form onSubmit={formik.handleSubmit}>
           <Box fontSize='3xl' align='center' fontWeight='bold' mb={9} borderBottom="2px" borderColor="blue.100" pb={2}>
             Envíanos un mensaje

@@ -59,7 +59,7 @@ export default function RegisterPage()
   return (
     <Center
       h={{ base: '100%', md: '100vh' }}
-      bg='#F5F6F9'
+      bg='gray.100'
       w='100%'
       d='flex'
       position='relative'
@@ -96,7 +96,7 @@ export default function RegisterPage()
       {/* Bottom text */}
       <HStack mt='40px' mb="20px">
         <Text>¿Ya tienes una cuenta?</Text>
-        <Link as={RouterLink} to='/acceso' fontWeight='medium'>
+        <Link as={RouterLink} to='/acceso' fontWeight='semibold'>
           Iniciar sesión
         </Link>
       </HStack>
