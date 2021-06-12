@@ -13,6 +13,7 @@ export default function Contacto() {
         display={{ lg: 'flex' }}
         border='1px'
         shadow='sm'
+        bg="white"
         borderColor='gray.200'
         py={8}
         width={{ base: '95%', lg: '90%', xl: '80%' }}
