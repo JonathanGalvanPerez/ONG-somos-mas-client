@@ -10,6 +10,8 @@ import axios from 'axios';
 import { API_BASE_URL } from '../../app/config';
 import Alert from '../alertService/AlertService';
 import Loader from '../Loading/Loader';
+import { RiSendPlaneFill } from 'react-icons/ri';
+import { IoIosSend } from 'react-icons/io';
 
 export default function ContactoForm() {
   const [isLoading, setLoading] = useState(false);
@@ -58,20 +60,20 @@ export default function ContactoForm() {
   });
 
   return (
-    <VStack width='70%' border='gray.100 solid 1px'>
+    <VStack width='65%' borderLeft="1px" borderColor="gray.100">
       <Loader isLoading={isLoading} />
 
-      <Box width='80%' marginY='1' padding='2.5'>
+      <Box width='80%'>
         <form onSubmit={formik.handleSubmit}>
-          <Text fontSize='4xl' align='center' mt={2} mb={2} fontWeight='bold'>
+          <Box fontSize='3xl' align='center' fontWeight='bold' mb={5} borderBottom="2px" borderColor="blue.100" pb={2}>
             Envíanos un mensaje
-          </Text>
+          </Box>
           <Stack spacing={4}>
             <InputGroup>
               <InputLeftElement pointerEvents='none' children={<EditIcon color='gray.300' />} />
               <Input
                 type='text'
-                placeholder='*Nombre'
+                placeholder='* Nombre completo'
                 id='name'
                 name='name'
                 onChange={formik.handleChange}
@@ -87,7 +89,7 @@ export default function ContactoForm() {
                 type='email'
                 id='email'
                 name='email'
-                placeholder='*Email de contacto'
+                placeholder='* Email de contacto'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
@@ -111,9 +113,9 @@ export default function ContactoForm() {
             <Textarea
               id='message'
               name='message'
-              placeholder='Dejanos tu mensaje'
+              placeholder='Escribe tu mensaje'
               resize='none'
-              rows='8'
+              rows='7'
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.message}
@@ -124,6 +126,7 @@ export default function ContactoForm() {
               type='submit'
               borderRadius='full'
               size='md'
+              leftIcon={<IoIosSend />}
               mt={4}
               py={6}
               color='white'

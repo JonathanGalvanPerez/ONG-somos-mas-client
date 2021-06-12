@@ -7,14 +7,14 @@ import { SimpleGrid } from '@chakra-ui/react';
 
 export default function ContactoMsg() {
   return (
-    <VStack border='gray.100 solid 1px'>
-      <Box flexShrink={0} marginX='6' mb={5}>
+    <VStack border='gray.100 solid 1px' pr={5}>
+      <Box flexShrink={0} marginX='7' mb={5}>
         <Container centerContent>
-          <Stack spacing={10}>
-            <Text fontSize='3xl' align='center' fontWeight='bold'>
+          <Stack spacing={6}>
+            <Box fontSize='3xl' align='center' fontWeight='bold' borderBottom="2px" borderColor="red.100" pb={2}>
               Contacto
-            </Text>
-            <VStack spacing={5}>
+            </Box>
+            <VStack spacing={5} letterSpacing="wide">
               <Text>
                 Somos una asociación civil sin fines de lucro que se creó en 1997 con la intención de dar alimento a las
                 familias del barrio.
@@ -28,23 +28,22 @@ export default function ContactoMsg() {
                 deportes, primera infancia, salud, alimentación y trabajo social.
               </Text>
             </VStack>
-            <SimpleGrid spacing={3} columns={2}>
-              <HStack justify="center">
+          </Stack>
+          <SimpleGrid spacing={3} columns={2} mt={10} w="full">
+              <HStack fontSize="lg" justify="center">
                 <GrFacebook />
                 <Link>Somos_Mas</Link>
               </HStack>
-              <HStack justify="center">
+              <HStack fontSize="lg" justify="center">
                 <GrFacebook /> <Link>Somos_Mas</Link>
               </HStack>
-              <HStack justify="center">
+              <HStack fontSize="lg" justify="center">
                 <GrFacebook /> <Link>Somos_Mas</Link>
               </HStack>
-              {/* You can also use custom icons from react-icons */}
-              <HStack justify="center"  >
+              <HStack fontSize="lg" justify="center"  >
                 <GrFacebook /> <Link>Somos_Mas</Link>
               </HStack>
             </SimpleGrid>
-          </Stack>
         </Container>
       </Box>
     </VStack>
