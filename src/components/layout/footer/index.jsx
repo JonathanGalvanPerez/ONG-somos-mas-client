@@ -18,13 +18,13 @@ export default function Footer() {
   const { orgContact } = useSelector((state) => state.publicInfo.data);
   
 
-  if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
+  // if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
 
   const socialLinks = [
-    { link: orgContact[0].facebook, icon: 'facebook', tooltipText:  orgContact[0].facebook },
-    { link: orgContact[0].instagram, icon: 'instagram', tooltipText:  orgContact[0].instagram},
-    { link: orgContact[0].twitter, icon: 'twitter', tooltipText: orgContact[0].twitter },
-    { link: orgContact[0].email, icon: 'email', tooltipText: orgContact[0].email },
+    // { link: orgContact[0].facebook, icon: 'facebook', tooltipText:  orgContact[0].facebook },
+    // { link: orgContact[0].instagram, icon: 'instagram', tooltipText:  orgContact[0].instagram},
+    // { link: orgContact[0].twitter, icon: 'twitter', tooltipText: orgContact[0].twitter },
+    // { link: orgContact[0].email, icon: 'email', tooltipText: orgContact[0].email },
     { icon: 'phone', tooltipText: 'phone' },
   ];
 

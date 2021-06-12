@@ -5,7 +5,8 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import Inicio from "./components/Inicio";
+// import Inicio from "./components/Inicio";
+import PublicRoutes from './routes/public.routes'
 import Nosotros from "./components/Nosotros";
 import Actividades from "./components/Actividades";
 import Contribuye from "./components/Contribuye";
@@ -50,7 +51,8 @@ function App() {
           <Route exact path="/">
             <Redirect to="/inicio" />
           </Route>
-          <Route exact path="/inicio" component={Inicio} />
+          {/* <Route exact path="/inicio" component={Inicio} /> */}
+          <PublicRoutes/>
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path="/actividades" component={Actividades} />
           <Route exact path='/novedades' component={Novelties} />
