@@ -4,11 +4,13 @@ export const loginSlice = createSlice({
   name: "login",
   initialState: {
     nombreUsuario:null,
-    token: null
+    token: null,
+    roleId: null
   },
   reducers: {
     logIn: (state, action) => {
-        state.token = action.payload;
+        state.token = action.payload.token;
+        state.roleId = action.payload.roleId;
         }, 
         
     guardarNombre: (state, action) => {
@@ -17,6 +19,7 @@ export const loginSlice = createSlice({
     
     logOut: (state) => {
         state.token = null;
+        state.roleId = null;
     }
     
   },
@@ -25,5 +28,6 @@ export const loginSlice = createSlice({
 
 export const { logIn, logOut,guardarNombre} = loginSlice.actions
 export const isLoggedIn = (state) => state.login.token != null;
+export const isAdmin = (state) => state.login.roleId == 1;
 
 export default loginSlice.reducer
