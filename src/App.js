@@ -25,7 +25,6 @@ import EditUserForm from "./pages/EditUserPage";
 import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
-import News from './components/News';
 import Testimonials from "./components/Backoffice/Testimonials";
 
 import ListaActividades from "./components/Actividades/ListaActividades";
