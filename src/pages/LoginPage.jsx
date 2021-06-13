@@ -37,8 +37,6 @@ export default function LoginPage() {
 
     axios.post(`${API_BASE_URL}/users/auth/login`, values).then((result) => {
 
-      localStorage.setItem("userRol", result.data.rolId);   // OT34-62
-      
       if (!result.data?.token) {
         Alert.error('Error', 'No ha logrado ingresar, verifique los datos', 'OK');
         actions.setSubmitting(false); 
@@ -47,7 +45,7 @@ export default function LoginPage() {
       else {
         history.push("/"); 
         Alert.success('Hecho', 'Ha  iniciado sesión correctamente');
-        dispatch(logIn(result.data?.token))
+        dispatch(logIn({token: result.data?.token, roleId: result.data?.roleId }))
       }
     }).catch((error) => {
       Alert.error('Incorrecto', 'El mail o la contraseña son incorrectos');

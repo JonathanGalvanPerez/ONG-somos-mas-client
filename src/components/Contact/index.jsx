@@ -1,19 +1,17 @@
 import React from 'react';
 import { Box, Center } from '@chakra-ui/layout';
-import ContactoForm from './ContactoForm'
-import ContactioMsg from './ContactoMsg'
-import Logo from './Logo'
-import './style.css'
+import ContactoForm from './ContactoForm';
+import ContactoMsg from './ContactoMsg';
+import './style.css';
 
 
 export default function Contacto() {
 
     return (
         <div>
-            <Logo />
             <Center>
-                <Box mb={5} display={{ md: "flex" }} width="65%" rounded="md" shadow="dark-lg">
-                    <ContactioMsg />
+                <Box mb={5} display={{ md: "flex" }} width={{ base: '90%',  lg: '65%'}} rounded="md" shadow="dark-lg">
+                    <ContactoMsg />
                     <ContactoForm />
                 </Box >
             </Center>
