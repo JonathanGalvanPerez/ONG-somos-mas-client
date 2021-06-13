@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Inicio from "./components/Inicio";
 import Nosotros from "./components/Nosotros";
-import Actividades from "./components/Actividades";
 import Contribuye from "./components/Contribuye";
 import Loader from "./components/Loading/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +25,7 @@ import EditUserForm from "./pages/EditUserPage";
 import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
+import ListaActividades from "./components/Actividades/ListaActividades";
 import { setId } from "./features/activities/activitySlice";
 import News from "./components/News";
 import './App.css';
@@ -56,7 +56,6 @@ function App() {
           </Route>
           <Route exact path="/inicio" component={Inicio} />
           <Route exact path="/nosotros" component={Nosotros} />
-          <Route exact path="/actividades" component={Actividades} />
           <Route exact path='/novedades' component={Novelties} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
@@ -67,7 +66,8 @@ function App() {
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
-          <Route exact path={`/actividad/${id}`} component={ActividadId} />
+          <Route exact path="/actividad/:id" component={ActividadId} />
+          <Route exact path="/actividades" component={ListaActividades} />
           <Route exact path="/backoffice/contacts" component={ContactList} />
           <Route exact path="/backoffice/news" component={News} />
 
