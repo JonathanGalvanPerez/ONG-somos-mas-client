@@ -23,10 +23,13 @@ import EditHomeForm from "./components/EditHomeForm";
 import Contacto from "./components/Contact/index";
 import Profile from "./components/Profile/index";
 import EditUserForm from "./pages/EditUserPage";
+import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
+import { setId } from "./features/activities/activitySlice";
 import News from "./components/News";
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +42,8 @@ function App() {
   const publicloading = useSelector(publicLoading);
   const loading = publicloading === "pending";
 
-  const { id } = useSelector((state) => state.activity);
+
+  const { id } = useSelector((state) => state.activity)
 
   return (
     <div className="App">
@@ -64,7 +68,9 @@ function App() {
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
           <Route exact path={`/actividad/${id}`} component={ActividadId} />
+          <Route exact path="/backoffice/contacts" component={ContactList} />
           <Route exact path="/backoffice/news" component={News} />
+
         </Switch>
         <Footer />
       </Router>
