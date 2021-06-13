@@ -22,11 +22,14 @@ import EditHomeForm from "./components/EditHomeForm";
 import Contacto from "./components/Contact/index";
 import Profile from "./components/Profile/index";
 import EditUserForm from "./pages/EditUserPage";
+import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
 import ListaActividades from "./components/Actividades/ListaActividades";
-import News from './components/News';
+import { setId } from "./features/activities/activitySlice";
+import News from "./components/News";
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +41,9 @@ function App() {
   // get loading state. repeat for every slices
   const publicloading = useSelector(publicLoading);
   const loading = publicloading === "pending";
+
+
+  const { id } = useSelector((state) => state.activity)
 
   return (
     <div className="App">
@@ -62,7 +68,9 @@ function App() {
           <Route exact path="/editar-usuario" component={EditUserForm} />
           <Route exact path="/actividad/:id" component={ActividadId} />
           <Route exact path="/actividades" component={ListaActividades} />
+          <Route exact path="/backoffice/contacts" component={ContactList} />
           <Route exact path="/backoffice/news" component={News} />
+
         </Switch>
         <Footer />
       </Router>
