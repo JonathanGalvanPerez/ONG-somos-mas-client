@@ -5,7 +5,6 @@ import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
 import Card from '../components/novelties/Card';
 import axios from 'axios';
 import { API_BASE_URL } from '../app/config';
-import CardDetail from '../components/novelties/CardDetail';
 
 
 export default function Novelties() {

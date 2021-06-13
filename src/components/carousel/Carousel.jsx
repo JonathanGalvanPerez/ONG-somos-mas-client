@@ -31,8 +31,8 @@ export default function Carousel() {
     )
 
     useEffect(() => {
-        return setData({
-            ...data, items: [
+         setData({
+            ...data, items: [                
                 // <test data>
                 {
                     imageUrl: Slide1,
@@ -58,6 +58,7 @@ export default function Carousel() {
                 className='owl-theme'
                 loop margin={5}
                 responsive={data.responsiveBreakpoints}
+                key = {data.items?.length}
             >
                 {
                     data.items.map(({ imageUrl, text }, index) => {
@@ -84,8 +85,10 @@ export default function Carousel() {
                                     bg={data.logoColors[index]}
                                     opacity="0"
                                     visibility="hidden"
-                                    height="8vh"
-                                    p="2"
+                                    //OT34-105...inicio
+                                        height="0vh" 
+                                        p="0"
+                                    //OT34-105...fin
                                     overflow="hidden"
                                     rounded="sm"
                                     transition='visibility 0s, opacity 500ms linear'
