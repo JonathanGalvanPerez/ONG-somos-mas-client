@@ -7,8 +7,11 @@ export const fetchPublicInfoData = createAsyncThunk('publicInfo/fetchData', asyn
   try {
     const { data } = await axios.get(`${API_BASE_URL}/organizations/1/public`);
     return data;
+    console.log('FOOTER DATA' + data)
   } catch (err) {
     throw err;
+
+    console.log('ERROR FOOTER ')
   }
 });
 
@@ -21,10 +24,7 @@ const publicInfoSlice = createSlice({
       phone: '1160112988',
       address: 'Dirección de Prueba 123',
       welcomeText: 'Texto de bienvenida de prueba',
-      facebookUser: 'test',
-      instagramUser: 'test',
-      twitterUser: '',
-      email: 'test@test.com',
+      orgContact:[{}]
     },
     currentRequestId: '',
     loading: 'idle',

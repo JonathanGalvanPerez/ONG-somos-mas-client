@@ -10,6 +10,7 @@ export default function({children, ...props}) {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.clear();
     dispatch(logOut());
     history.push("/");
     Alert.success("Hecho", "Ha cerrado sesión exitosamente");

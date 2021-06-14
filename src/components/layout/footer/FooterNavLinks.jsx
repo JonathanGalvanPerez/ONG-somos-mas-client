@@ -6,6 +6,7 @@
 */
 
 import * as React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { Container, Link } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
 import FooterLogo from '../Logo';
@@ -57,7 +58,7 @@ export default function FooterNavLinks() {
       {isMobile && <FooterLogo gridColumn='span 3 / span 3' />}
       <Container {...footerNavStyle}>
         {footerNavLinks.leftColumn.map((navLink) => (
-          <Link key={navLink.path} {...linkStyle} href={navLink.path}>
+          <Link as={RouterLink} key={navLink.path} {...linkStyle} to={navLink.path}>
             {navLink.label}
           </Link>
         ))}
@@ -65,7 +66,7 @@ export default function FooterNavLinks() {
         {!isMobile && <FooterLogo />}
 
         {footerNavLinks.rightColumn.map((navLink) => (
-          <Link key={navLink.path} {...linkStyle} href={navLink.path}>
+          <Link as={RouterLink} key={navLink.path} {...linkStyle} to={navLink.path}>
             {navLink.label}
           </Link>
         ))}

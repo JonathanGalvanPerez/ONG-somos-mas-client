@@ -46,14 +46,14 @@ export default function Novelties() {
             novelties.map(({ id, image, name, createAd }, index) => (
 
 
-              <Link to={`/novedades/${id}`}>
+              <Link to={`/novedades/${id}`} >
 
                 <GridItem colSpan={1} cursor="pointer" borderRadius="lg" _hover={{
                   transform: 'scale(1.05)', transitionProperty: 'all',
                   transitionDuration: '0.5s',
                   borderWidth: "4px", borderColor: "teal.300"
                 }}>
-                  <Card imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={name} />
+                  <Card  imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={name} />
                 </GridItem>
 
               </Link>

@@ -4,7 +4,7 @@ export default class Actividades extends Component {
     render() {
         return (
             <div>
-                Estas en la seccion Actividades
+                Seccion de actividades
             </div>
         )
     }
