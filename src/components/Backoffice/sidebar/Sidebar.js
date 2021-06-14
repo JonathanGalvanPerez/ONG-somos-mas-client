@@ -1,17 +1,19 @@
 import React,{useState} from 'react';
 import './Sidebar.css';
-import logo from '../../../assets/images/logo.png'
+import logo from '../../../assets/images/logo.png';
 import * as FaIcons from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { isAdmin } from '../../../features/login/loginSlice';
 
 //0T34-62 ..inicio
 //Aun no trae el rolId del endpoint de acceso por lo que no va a mostrar las opciones
 //del sidebar se puede forzar la variable = 1 para ver opciones
-const userRol = localStorage.getItem('userRol')  
+//const userRole = localStorage.getItem('userRole');
 // const userRol=1
 //0T34-62 ..fin
 
 const Sidebar = ({sidebarOpen,closeSidebar,openActivities,closeActivities}) =>{
-
+    const _isAdmin = useSelector(isAdmin);
     return(
         <div className={sidebarOpen? 'sidebar-responsive' : ''} id='sidebar'>
             <div className='sidebar__title'>
@@ -30,7 +32,7 @@ const Sidebar = ({sidebarOpen,closeSidebar,openActivities,closeActivities}) =>{
                     <FaIcons.FaHome/> 
                     <a href="#">Home</a>
                 </div>
-                { userRol=== 1?   // //0T34-62 
+                { _isAdmin?   // //0T34-62 
                 <>
                     <div className="sidebar__link">
                         <FaIcons.FaPeopleCarry />

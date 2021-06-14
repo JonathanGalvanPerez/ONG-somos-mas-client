@@ -45,8 +45,8 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         { label: 'Inicio', path: '/inicio' },
         { label: 'Nosotros', path: '/nosotros' },
         { label: 'Actividades', path: '/actividades' },
-        { label: 'Novedades', path: '/inicio' },
-        { label: 'Testimonios', path: '/inicio' },
+        { label: 'Novedades', path: '/novedades' },
+        { label: 'Testimonios', path: '/testimonios' },
         { label: 'Contacto', path: '/contacto' },
         { label: 'Contribuye', path: '/contribuye' },
     ];
