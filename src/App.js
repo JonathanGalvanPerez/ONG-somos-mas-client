@@ -13,6 +13,7 @@ import './App.css';
 import BackofficeRoutes from "./routes/backoffice.routes";
 
 
+
 function App() {
   const dispatch = useDispatch();
   // Fetch organization's public info data as soon as we load the app
@@ -24,7 +25,6 @@ function App() {
   const publicloading = useSelector(publicLoading);
   const loading = publicloading === "pending";
 
-  // const { id } = useSelector((state) => state.activity);
 
   return (
     <div className="App">
@@ -32,17 +32,14 @@ function App() {
       <Router>
 
         <Header />
-
+        
         <PublicRoutes />
         <LoggedRoutes />
         <BackofficeRoutes/>
-        <Footer />
-      </Router>
 
-      {/* 
-      <Router>
-          <Route exact path={`/actividad/${id}`} component={ActividadId} />
-      </Router> */}
+        <Footer />
+
+      </Router>
 
     </div>
   );

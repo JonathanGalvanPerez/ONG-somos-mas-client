@@ -15,17 +15,17 @@ import { useLocation } from 'react-router';
 export default function Footer() {
   const location = useLocation();
 
-  const { orgContact } = useSelector((state) => state.publicInfo.data);
-  
+  const publicInfo = useSelector((state) => state.publicInfo.data);
+  const { orgContact } = publicInfo;
 
   // if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
 
   const socialLinks = [
-    // { link: orgContact[0].facebook, icon: 'facebook', tooltipText:  orgContact[0].facebook },
-    // { link: orgContact[0].instagram, icon: 'instagram', tooltipText:  orgContact[0].instagram},
-    // { link: orgContact[0].twitter, icon: 'twitter', tooltipText: orgContact[0].twitter },
-    // { link: orgContact[0].email, icon: 'email', tooltipText: orgContact[0].email },
-    { icon: 'phone', tooltipText: 'phone' },
+    { link: orgContact && orgContact[0] ? `https://facebook.com/${orgContact[0].facebook}` : "", icon: 'facebook', tooltipText:  orgContact && orgContact[0].facebook },
+    { link: orgContact && orgContact[0].instagram ? `https://instagram.com/${orgContact[0].instagram}` : "", icon: 'instagram', tooltipText:  orgContact && orgContact[0].instagram},
+    { link: orgContact && orgContact[0].twitter ? `https://twitter.com/${orgContact[0].twitter}` : "", icon: 'twitter', tooltipText: orgContact && orgContact[0].twitter },
+    { link: orgContact && orgContact[0].email ? "mailto:"+orgContact[0].email : "", icon: 'email', tooltipText: orgContact && orgContact[0].email },
+    { link: publicInfo.phone ? "tel:"+publicInfo.phone : "", icon: 'phone', tooltipText: publicInfo.phone },
   ];
 
   const socialLinksRender = socialLinks.map((social) => (

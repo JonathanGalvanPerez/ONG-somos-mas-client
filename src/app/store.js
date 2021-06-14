@@ -23,9 +23,11 @@ const store = configureStore({
     newsDelete: newsDeleteReducer,
     newsPut: newsPutReducer,
     usersInfo: usersInfoReducer
+
   },
   preloadedState,
 });
+
 
 window.onbeforeunload = () => {
   const state = store.getState();

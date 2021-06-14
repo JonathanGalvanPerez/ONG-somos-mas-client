@@ -45,7 +45,7 @@ export default function Novelties() {
             novelties.map(({ id, image, name, createAd }, index) => (
 
 
-              <Link to={`/novedades/${id}`}>
+              <Link to={`/novedades/${id}`} >
 
                 <GridItem colSpan={1} cursor="pointer" borderRadius="lg" _hover={{
                   transform: 'scale(1.05)', transitionProperty: 'all',
