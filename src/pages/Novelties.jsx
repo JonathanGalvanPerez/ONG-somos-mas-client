@@ -16,6 +16,7 @@ export default function Novelties() {
     (async function getEntries() {
       const entries = await axios.get(`${API_BASE_URL}/news`);
       setNovelties(entries.data);
+      console.log(entries.data);
     })();
   }, [])
 
