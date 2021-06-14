@@ -29,6 +29,7 @@ import Testimonials from "./components/Backoffice/Testimonials";
 
 import ListaActividades from "./components/Actividades/ListaActividades";
 import { setId } from "./features/activities/activitySlice";
+import CardDetail from "./components/novelties/CardDetail";
 import News from "./components/News";
 import './App.css';
 
@@ -59,6 +60,7 @@ function App() {
           <Route exact path="/inicio" component={Inicio} />
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path='/novedades' component={Novelties} />
+          <Route exact path='/novedades/:id' component={CardDetail} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />
