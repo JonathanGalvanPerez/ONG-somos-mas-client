@@ -25,8 +25,11 @@ import EditUserForm from "./pages/EditUserPage";
 import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
+import Testimonials from "./components/Backoffice/Testimonials";
+
 import ListaActividades from "./components/Actividades/ListaActividades";
 import { setId } from "./features/activities/activitySlice";
+import CardDetail from "./components/novelties/CardDetail";
 import News from "./components/News";
 import CategoryList from "./components/CategoryList/CategoryList"
 import './App.css';
@@ -58,11 +61,14 @@ function App() {
           <Route exact path="/inicio" component={Inicio} />
           <Route exact path="/nosotros" component={Nosotros} />
           <Route exact path='/novedades' component={Novelties} />
+          <Route exact path='/novedades/:id' component={CardDetail} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
+          <Route exact path="/backoffice/users" component={BackofficeUsers} />
+          <Route exact path="/backoffice/testimonials" component={Testimonials} />
           <Route exact path="/backoffice/edit-organization" component={EditOrganization} />
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
