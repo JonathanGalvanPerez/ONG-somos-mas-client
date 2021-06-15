@@ -32,6 +32,7 @@ import ListaActividades from "./components/Actividades/ListaActividades";
 import { setId } from "./features/activities/activitySlice";
 import CardDetail from "./components/novelties/CardDetail";
 import News from "./components/News";
+import CategoryList from "./components/CategoryList/CategoryList"
 import './App.css';
 
 //  OT34-104...inicio
@@ -93,6 +94,7 @@ function App() {
             <Route exact path="/actividades" component={ListaActividades} />
             <Route exact path="/backoffice/contacts" component={ContactList} />
             <Route exact path="/backoffice/news" component={News} />
+            <Route exact path="/backoffice/categories" component={CategoryList} />
           </Animator>
         </Switch>
         <Footer />
