@@ -16,6 +16,7 @@ export default function Novelties() {
     (async function getEntries() {
       const entries = await axios.get(`${API_BASE_URL}/news`);
       setNovelties(entries.data);
+      console.log(entries.data);
     })();
   }, [])
 
@@ -52,7 +53,7 @@ export default function Novelties() {
                   transitionDuration: '0.5s',
                   borderWidth: "4px", borderColor: "teal.300"
                 }}>
-                  <Card imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={name} />
+                  <Card  imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={name} />
                 </GridItem>
 
               </Link>
