@@ -3,14 +3,12 @@ import React from "react";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
-import PublicRoutes from './routes/public.routes'
-import LoggedRoutes from './routes/logged.routes'
+import AllRoutes from './routes/routes'
 
 import Loader from "./components/Loading/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicInfoData, publicLoading } from "./app/publicInfoSlice";
 import './App.css';
-import BackofficeRoutes from "./routes/backoffice.routes";
 
 
 
@@ -31,12 +29,8 @@ function App() {
       <Loader isLoading={loading} />
       <Router>
 
-        <Header />
-        
-        <PublicRoutes />
-        <LoggedRoutes />
-        <BackofficeRoutes/>
-
+        <Header /> 
+        <AllRoutes/>
         <Footer />
 
       </Router>
