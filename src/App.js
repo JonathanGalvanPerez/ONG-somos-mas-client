@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Inicio from "./components/Inicio";
 import Nosotros from "./components/Nosotros";
-import Actividades from "./components/Actividades";
 import Contribuye from "./components/Contribuye";
 import Loader from "./components/Loading/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,10 +22,18 @@ import EditHomeForm from "./components/EditHomeForm";
 import Contacto from "./components/Contact/index";
 import Profile from "./components/Profile/index";
 import EditUserForm from "./pages/EditUserPage";
+import ContactList from './components/ContactList/index'
 import BackofficeUsers from "./components/BackofficeUsers";
 import ActividadId from "./components/Actividades/ActividadId";
+import Testimonials from "./components/Backoffice/Testimonials";
+
+import ListaActividades from "./components/Actividades/ListaActividades";
+import { setId } from "./features/activities/activitySlice";
+import CardDetail from "./components/novelties/CardDetail";
 import News from "./components/News";
+import CategoryList from "./components/CategoryList/CategoryList"
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +46,8 @@ function App() {
   const publicloading = useSelector(publicLoading);
   const loading = publicloading === "pending";
 
-  const { id } = useSelector((state) => state.activity);
+
+  const { id } = useSelector((state) => state.activity)
 
   return (
     <div className="App">
@@ -52,19 +60,24 @@ function App() {
           </Route>
           <Route exact path="/inicio" component={Inicio} />
           <Route exact path="/nosotros" component={Nosotros} />
-          <Route exact path="/actividades" component={Actividades} />
           <Route exact path='/novedades' component={Novelties} />
+          <Route exact path='/novedades/:id' component={CardDetail} />
           <Route exact path="/contribuye" component={Contribuye} />
           <Route exact path="/acceso" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/editar-inicio" component={EditHomeForm} />
           <Route exact path="/backoffice" component={Backoffice} />
+          <Route exact path="/backoffice/users" component={BackofficeUsers} />
+          <Route exact path="/backoffice/testimonials" component={Testimonials} />
           <Route exact path="/backoffice/edit-organization" component={EditOrganization} />
           <Route exact path="/contacto" component={Contacto} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/editar-usuario" component={EditUserForm} />
-          <Route exact path={`/actividad/${id}`} component={ActividadId} />
+          <Route exact path="/actividad/:id" component={ActividadId} />
+          <Route exact path="/actividades" component={ListaActividades} />
+          <Route exact path="/backoffice/contacts" component={ContactList} />
           <Route exact path="/backoffice/news" component={News} />
+          <Route exact path="/backoffice/categories" component={CategoryList} />
         </Switch>
         <Footer />
       </Router>
