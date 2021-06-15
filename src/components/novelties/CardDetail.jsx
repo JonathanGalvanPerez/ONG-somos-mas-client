@@ -19,12 +19,12 @@ export default function CardDetail() {
 
 
   return (
-    <Container maxW="container.lg">
-      <Box w="100%" borderWidth="6px" borderRadius="lg" boxShadow="xl">
+    <Container maxW="container.lg" >
+      <Box w="100%" borderWidth="6px" borderRadius="lg" boxShadow="xl" >
 
-        <Box backgroundImage={data.image} backgroundSize="cover" height="55vh" />
+        <Box  backgroundImage={data.image} backgroundSize="cover" height="75vh" />
 
-        <Box padding="3" bg="gray.200">
+        <Box  padding="5" bg="gray.200">
           <Flex>
           <Text
             ml="2"
