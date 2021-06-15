@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Center } from '@chakra-ui/layout';
 import ContactoForm from './ContactoForm';
 import ContactoMsg from './ContactoMsg';
-import AboutUs from './AboutUs';
 import './style.css';
 
 export default function Contacto() {
