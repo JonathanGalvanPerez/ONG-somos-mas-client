@@ -41,7 +41,7 @@ export default function RegisterPage()
       else {
         Alert.success('Hecho', 'Se ha registrado correctamente');
         // Registro exitoso
-        dispatch(logIn(result.data?.token));
+        dispatch(logIn({token: result.data?.token, roleId: result.data?.roleId }))        
         history.push("/"); // Redirecciona a home
       }
     }).catch((error) => {
