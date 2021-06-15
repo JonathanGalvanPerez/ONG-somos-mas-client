@@ -15,7 +15,7 @@ import ActividadId from "../components/Actividades/ActividadId";
 
 const PublicRoutes = () => {
     return (
-        <Switch>
+        <>
             <PublicRoute exact path="/inicio" component={Home} />
             <PublicRoute exact path="/nosotros" ccomponent={Nosotros} />
             <PublicRoute exact path="/contacto" component={Contacto} />
@@ -26,8 +26,7 @@ const PublicRoutes = () => {
             <PublicRoute exact path="/contribuye" component={Contribuye} />
             <PublicRoute exact path="/acceso" component={LoginPage} />
             <PublicRoute exact path="/registro" component={RegisterPage} />
-            <Redirect path="/**" to="/inicio" />
-        </Switch>
+        </>
     )
 }
 
