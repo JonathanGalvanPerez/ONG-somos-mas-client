@@ -14,21 +14,29 @@ export default function NewsForm(props) {
     console.log(props.type)
 
     const [data, setData] = useState(props.data ? props.data : {
-        title: '',
+        name: '',
         content: '',
         category: '',
         image: ''
     })
-    
+
     const validationSchema = Yup.object({
-        title: Yup.string()
-            .required('* El titulo es requerido'),
-        image: Yup.mixed()
-            .required("* El imagen es requerido"),
+        name: Yup.string()
+            .required('* El titulo es requerido.'),
+        image: Yup.string()
+        .test("validate-url", "* Ingrese una URL valida.", (value) => {
+            try {
+                new URL(value);
+              } catch (e) {
+                console.error(e);
+                return false;
+              }
+              return true;
+        }),
         category: Yup.string()
-            .required('* La categoria es requerido'),
+            .required('* La categoria es requerido.'),
         content: Yup.string()
-            .required('* El contenido no es válido')
+            .required('* El contenido no es válido.')
     })
 
     useEffect(() => {
@@ -42,9 +50,9 @@ export default function NewsForm(props) {
 
     const onSubmit = (values) => {
         console.log(values)
-        const { title, category, content, image } = values;
+        const { name, category, content, image } = values;
         setData({
-            title,
+            name,
             category,
             content: parse(content).props.children,
             image
@@ -61,18 +69,16 @@ export default function NewsForm(props) {
                     validationSchema={validationSchema}
                 >
 
-                    {({ handleSubmit, isSubmitting, values, setValues, setFieldValue }) => (
+                    {({ handleSubmit, isSubmitting, values, setValues, handleChange }) => (
                         <form onSubmit={handleSubmit} encType="multipart/form-data">
 
-                            <TextField label="Title" name="title" type="text" />
+                            <TextField label="Titulo" name="name" type="text" />
                             <TextField label="Category" name="category" type="text" />
                             <Field name="image">
-                                {({ form }) => (
+                                {({ field, form }) => (
                                     <FormControl isInvalid={form.errors.image && form.touched.image}>
-                                        <FormLabel as="samp" fontSize="xl" htmlFor="category">Image: </FormLabel>
-                                        <Input id="image" name="image" type="file" onChange={(event) => {
-                                            setFieldValue("image", event.currentTarget.files[0]);
-                                        }} />
+                                        <FormLabel as="samp" fontSize="xl" htmlFor="category">Image URL: </FormLabel>
+                                        <Input {...field} onChange={handleChange} />
                                         <FormErrorMessage>{form.errors.image}</FormErrorMessage>
                                     </FormControl>
                                 )}
