@@ -28,6 +28,6 @@ export const loginSlice = createSlice({
 
 export const { logIn, logOut,guardarNombre} = loginSlice.actions
 export const isLoggedIn = (state) => state.login.token != null;
-export const isAdmin = (state) => state.login.roleId == 1;
+export const isAdmin = (state) => state.login.roleId === 1;
 
 export default loginSlice.reducer
