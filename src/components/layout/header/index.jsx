@@ -17,7 +17,10 @@ export default function Header() {
     const toggleNav = () => setShow(!show);
     const _isLoggedIn = useSelector(isLoggedIn);
 
-    if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
+    // Desactivar componente para ciertas paginas
+    const pagesExcluded = ['/acceso', '/registro', '/backoffice'];
+    if (pagesExcluded.includes(location.pathname))
+        return null;
     
     const LOGIN_PATH = '/acceso';
     const REGISTER_PATH = '/registro';

@@ -17,8 +17,10 @@ export default function Footer() {
 
   const { orgContact } = useSelector((state) => state.publicInfo.data);
   
-
-  if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
+  // Desactivar componente para ciertas paginas
+  const pagesExcluded = ['/acceso', '/registro', '/backoffice'];
+  if (pagesExcluded.includes(location.pathname))
+    return null;
 
   const socialLinks = [
     { link: orgContact[0].facebook, icon: 'facebook', tooltipText:  orgContact[0].facebook },
