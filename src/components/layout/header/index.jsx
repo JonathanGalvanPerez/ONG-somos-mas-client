@@ -12,7 +12,7 @@ import HeaderLogoutBtn from './HeaderLogoutBtn';
 export default function Header() {
     const location = useLocation();
     const { image } = useSelector((state) => state.publicInfo.data)
-    const [isMobile] = useMediaQuery("(max-width: 1040px)");
+    const [isMobile] = useMediaQuery("(max-width: 1050px)");
     const [show, setShow] = React.useState(false);
     const toggleNav = () => setShow(!show);
     const _isLoggedIn = useSelector(isLoggedIn);
@@ -53,7 +53,6 @@ export default function Header() {
     return (
         <Flex as='header' justify={['center', 'space-between', 'space-between', 'space-between']}
         mb={8} pos='relative' fontSize='15px'
-        pr={['auto', 'auto', '10px', '27px']}
         w='100%' h='60px' zIndex='5' >
                 <HStack spacing={2} pos='absolute' right='10px' h='100%' align='center' >
                     {_isLoggedIn ? memberButtons : guestButtons}

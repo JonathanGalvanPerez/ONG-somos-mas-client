@@ -1,23 +1,24 @@
 import React from 'react';
 import HeaderNavLink from './HeaderNavLink';
-import { Button } from '@chakra-ui/button';
+import { Button } from '@chakra-ui/react';
 import { Box, Flex } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/transition';
 import '../header-style/header.css';
 import { useSelector } from 'react-redux';
 import { isLoggedIn } from './../../../features/login/loginSlice';
 import HeaderLogoutBtn from './HeaderLogoutBtn';
+import { Link } from 'react-router-dom';
 
 export default function HeaderNavbar({ show, toggleNav, isMobile }) {
     const _isLoggedIn = useSelector(isLoggedIn);
 
     const navbarStyle = {
         d: 'block',
-        pos: ['absolute', 'absolute', 'absolute', isMobile ? 'absolute' : 'static'],
-        top: ['100%', '100%', '100%', isMobile ? '100%' : '0'],
-        left: ['0', '0', '0', isMobile ? '0' : 'auto'],
-        w: ['100%', '100%', '100%', isMobile ? '100%' : 'auto'],
-        h: '100%',
+        pos: isMobile ? 'absolute' : 'static',
+        top: isMobile ? '100%' : '0',
+        left: isMobile ? '0' : 'auto',
+        w: isMobile ? '100%' : 'auto',
+        py: isMobile ? '0' : '5px',
         flexGrow: '1'
     };
     const navItemsListStyle = {
@@ -30,7 +31,7 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         spacing: 0
     };
     const buttonStyle = {
-        d: { base: 'inline-block', sm: 'none' },
+        d: { base: 'flex', sm: 'none' },
         fontSize: '15px',
         w: '40%',
         my: '5px',
@@ -53,9 +54,11 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
 
     // Botones al no estar logueado
     const guestButtons = (<>                    
-        <Button color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
+        <Button as={Link} to='/acceso'
+        color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
         {...buttonStyle} >Log in</Button>
-        <Button bgColor='#18A0FB' color='white' border='1px solid white'
+        <Button as={Link} to='/registro'
+        bgColor='#18A0FB' color='white' border='1px solid white'
         {...buttonStyle} >Registrate</Button>
     </>); 
     
