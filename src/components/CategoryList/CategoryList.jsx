@@ -19,15 +19,15 @@ import CategoriasForm from './../Categorias/CategoriasForm/CategoriasForm';
 
 export default function ListaCategorias() {
     const [categories, setCategories] = useState([])
-    const [editData, setEditData] = useState(null);
+    const [data, setData] = useState(null);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(() => {
         async function fetchData() {
 
-            const data = await getCategories()
-            if (data) {
-                setCategories(data)
+            const result = await getCategories()
+            if (result) {
+                setCategories(result)
             }
         }
         fetchData()
@@ -48,11 +48,11 @@ export default function ListaCategorias() {
 
     }
     const handleCreateButton = () => {
-        setEditData(null);
+        setData(null);
         onOpen();
     }
     const handleEditButton = (categoryData) => {
-        setEditData(categoryData);
+        setData(categoryData);
         onOpen();
     }
     const handleCloseModal = (success) => {
@@ -97,8 +97,8 @@ export default function ListaCategorias() {
                     </Table>
                 </Box >
             </Center>
-            <Modal isOpen={isOpen} onClose={onClose} label={editData? 'Editar Categoria': 'Crear Categoria' }>
-                <CategoriasForm onClose={handleCloseModal} data={editData} />
+            <Modal isOpen={isOpen} onClose={onClose} label={data? 'Editar Categoria': 'Crear Categoria' }>
+                <CategoriasForm onClose={handleCloseModal} data={data} />
             </Modal>
         </Box>
     )
