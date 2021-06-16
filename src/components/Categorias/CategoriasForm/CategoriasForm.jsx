@@ -6,8 +6,12 @@ import { FormLabel, InputGroup, Input, Textarea, Button, VStack, HStack, Box } f
 import axios from 'axios';
 import Alert from '../../alertService/AlertService';
 import { API_BASE_URL } from './../../../app/config';
+import { useSelector } from 'react-redux';
+import { getToken } from './../../../features/login/loginSlice';
 
 export default function CategoriasForm({ data, onClose }) {
+    
+    const token = useSelector(getToken);
     const editMode = data !== null;
     const initialValues = editMode ?
     {
@@ -23,18 +27,22 @@ export default function CategoriasForm({ data, onClose }) {
         description: Yup.string()
     });
     const onSubmit = (values, actions) => {
+        const options = {
+            'headers': {
+                'Authorization': 'Bearer ' + token
+            }
+        };
         const requestPromise = editMode ?
-            axios.patch(`${API_BASE_URL}/categories/${data.id}`, values)
+            axios.patch(`${API_BASE_URL}/categories/${data.id}`, values, options)
             :
-            axios.post(`${API_BASE_URL}/categories`, values);
-        console.log('values form: ', values);
-        console.log('editMode? ', editMode);
+            axios.post(`${API_BASE_URL}/categories`, values, options);
         requestPromise.then((result) => {
             actions.setSubmitting(false);
-            onClose();
-            if(result.data?.ok) {
+            if(result.data?.success) {
+                onClose(true);
                 Alert.success('Hecho', editMode ? 'Los cambios ha sido guardados' : 'La categoria ha sido creada');
             } else {
+                onClose();
                 Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
             }
         }).catch((error) => {
