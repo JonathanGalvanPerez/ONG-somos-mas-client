@@ -33,7 +33,7 @@ export default function CategoriasForm({ data, onClose }) {
             }
         };
         const requestPromise = editMode ?
-            axios.patch(`${API_BASE_URL}/categories/${data.id}`, values, options)
+            axios.put(`${API_BASE_URL}/categories/${data.id}`, values, options)
             :
             axios.post(`${API_BASE_URL}/categories`, values, options);
         requestPromise.then((result) => {
