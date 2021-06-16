@@ -62,7 +62,7 @@ export default function LoginPage() {
   return (
     <Center
       h={{ base: '100vh', md: '100vh' }}
-      bg='#F5F6F9'
+      bg='gray.100'
       w='100%'
       d='flex'
       position='relative'
@@ -90,7 +90,7 @@ export default function LoginPage() {
           <LoginForm onLoginSubmit={handleLoginSubmit} />
 
           {/* Box footer */}
-          <Link as={RouterLink} to='/recuperar-contraseña' fontWeight='medium'>
+          <Link as={RouterLink} to='/recuperar-contraseña' fontWeight='semibold'>
             Olvidé mi contraseña
           </Link>
         </VStack>
@@ -99,7 +99,7 @@ export default function LoginPage() {
       {/* Bottom text */}
       <HStack mt='40px' mb={{ base: '0px', md: '100px' }}>
         <Text>¿Necesitas crear una cuenta?</Text>
-        <Link as={RouterLink} to='/registro' fontWeight='medium'>
+        <Link as={RouterLink} to='/registro' fontWeight='semibold'>
           Registrarme
         </Link>
       </HStack>

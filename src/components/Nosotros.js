@@ -70,7 +70,7 @@ const Nosotros = () => {
       <Text align="center" fontSize="xl" mb={5}>
         lorem ipsum dolor sit amet, consectet
       </Text>
-      <Grid templateColumns="repeat(4, 1fr)" gap={6} mt="4">
+      <Grid centerContent templateColumns={{base:"repeat(2, 1fr)", lg:"repeat(4, 1fr)"}} gap={6} mt="4">
         {members.map((member) => (
           <Box
             maxW="lg"
