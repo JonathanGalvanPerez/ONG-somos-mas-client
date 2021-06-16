@@ -22,7 +22,7 @@ export const LoggedRoute = ({ component, ...options }) => {
 export const BackofficeRoute = ({ component, ...options }) => {
     const isAuth = localStorage.getItem('org_token');
     const role = localStorage.getItem('userRole');
-    if (isAuth !== "null" && role === 1) { return <Route {...options} component={component} /> }
+    if (role !== "null" && isAuth !== "null" && JSON.parse(role) === 1) { return <Route {...options} component={component} /> }
     else {
         Alert.error('ACCESO DENEGADO', 'Necesitas ser ADMINISTRADOR para continuar.');
         return <Redirect to="/acceso" />
