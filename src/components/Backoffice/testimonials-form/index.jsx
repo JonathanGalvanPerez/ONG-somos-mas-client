@@ -1,24 +1,18 @@
 import * as React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { API_BASE_URL } from '../../../app/config';
 import alert from '../../alertService/AlertService';
 import { Container, Stack, Box, Heading } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { InputGroup, Input, InputLeftElement } from '@chakra-ui/input';
 import { BsFillImageFill, BsFillPersonLinesFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import "./ckeditor.css";
 
 export default function () {
-  // TODO: TEST
-  /*testimonio = {
-    id: 2,
-    name: 'Test Nombre',
-    content: 'test contenido 123',
-    image: 'test imagen',
-  };*/
   const { state } = useLocation();
   const testimonio = state?.testimonio;
 
@@ -67,7 +61,7 @@ export default function () {
   // On API success response (both edit & creation mode)
   const handleSuccessResponse = ({ data }) => {
     const title = id ? `Testimonio #${id} modificado` : `Testimonio #${data.id} creado`;
-    alert.success(title, 'testetsadasdwqeads');
+    alert.success(title, 'Se han guardado los cambios exitosamente');
   };
 
   // On Submit button click
@@ -113,7 +107,7 @@ export default function () {
   return (
     <Container maxW='container.sm'>
       <Stack align='center' justify='center' spacing={4}>
-        <Heading as='h1' size='lg'>
+        <Heading as='h1' size='lg'p={3}>
           {id ? `Modificando Testimonio #${id}` : 'Creando nuevo testimonio'}
         </Heading>
         <InputGroup>
@@ -126,11 +120,12 @@ export default function () {
           <Input name='image' onChange={handleInputChange} value={image} placeholder='URL de imagen' />
         </InputGroup>
 
-        <Container>
+        <Container position="relative" w="108%">
           <CKEditor editor={ClassicEditor} data={content} onChange={handleContentChange} />
+          {!content && <Text pointerEvents="none"  position="absolute" top="3.2rem" left="2rem" color="gray.400">Contenido</Text>}
         </Container>
 
-        <Button maxW='15%' colorScheme='blue' onClick={onFormSubmit} isLoading={loading}>
+        <Button maxW='15rem' colorScheme='blue' onClick={onFormSubmit} isLoading={loading}>
           Enviar
         </Button>
       </Stack>
