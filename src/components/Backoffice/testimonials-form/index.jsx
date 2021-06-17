@@ -28,7 +28,6 @@ export default function () {
   // Initialize edit mode if we get a 'testimonio' object
   React.useEffect(() => {
     if (testimonio && id == null) {
-      console.log(testimonio);
       const { name, content, image, id } = testimonio;
       setName(name);
       setContent(content);
@@ -60,8 +59,15 @@ export default function () {
 
   // On API success response (both edit & creation mode)
   const handleSuccessResponse = ({ data }) => {
-    const title = id ? `Testimonio #${id} modificado` : `Testimonio #${data.id} creado`;
+    const isEditMode = id != null;
+    const title = isEditMode ? `Testimonio #${id} modificado` : `Testimonio #${data.id} creado`;
     alert.success(title, 'Se han guardado los cambios exitosamente');
+
+    if (!isEditMode) {
+      setContent("");
+      setName("");
+      setImage("");
+    }
   };
 
   // On Submit button click
@@ -126,7 +132,7 @@ export default function () {
         </Container>
 
         <Button maxW='15rem' colorScheme='blue' onClick={onFormSubmit} isLoading={loading}>
-          Enviar
+          {id ? "Actualizar Testimonio" : "Crear Testimonio"}
         </Button>
       </Stack>
     </Container>
