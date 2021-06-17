@@ -1,8 +1,13 @@
 import React from 'react'
 import Card from '../testimonials/Card'
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
+import { useHistory } from 'react-router-dom';
+import { IconButton } from '@chakra-ui/button';
+import {  AddIcon } from '@chakra-ui/icons'
+import { SimpleGrid } from '@chakra-ui/react';
 
 export default function Testimonials() {
+  const history = useHistory();
 
   const testimonials = [
     {
@@ -32,10 +37,11 @@ export default function Testimonials() {
        
         w={{ base: "100%", lg: "80%" }} >
 
-        <Box bg="#9AC9FB" textAlign="center">
+        <Box bg="#9AC9FB" textAlign="center" d="flex" justifyContent="center" alignItems="center">
 
           <Text 
           color="#474645"
+          justifySelf="self-end"
           fontWeight="bold"
           as="i"
           fontSize={{ base: "3xl", md:"4xl", lg: "5xl" }}
@@ -45,6 +51,14 @@ export default function Testimonials() {
             Testimonials
           </Text>
 
+          <IconButton
+            ml={5}
+            justifySelf="self-end"
+            bg="gray.700" color="white" _hover={{bg: "gray.900"}}
+            aria-label="Crear Testimonio"
+            size="sm"
+            icon={<AddIcon />}
+          />
         </Box>
 
 

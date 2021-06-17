@@ -90,7 +90,7 @@ export default function () {
     };
 
     const data = { name, content, image };
-
+    
     setLoading(true);
 
     if (id) {
