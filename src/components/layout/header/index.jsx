@@ -13,7 +13,7 @@ export default function Header() {
     const location = useLocation();
     const history = useHistory();
     const { image } = useSelector((state) => state.publicInfo.data)
-    const [isMobile] = useMediaQuery("(max-width: 1050px)");
+    const [isMobile] = useMediaQuery("(max-width: 1322px)");
     const [show, setShow] = React.useState(false);
     const toggleNav = () => setShow(!show);
     const _isLoggedIn = useSelector(isLoggedIn);
@@ -31,7 +31,7 @@ export default function Header() {
     }
 
     const buttonStyle = {
-        d: { base: 'none', sm: 'flex'},
+        d: { base: 'none', md: 'flex'},
         fontSize: '15px',
         w: '130px',
         fontWeight: '550',
