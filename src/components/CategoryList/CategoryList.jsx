@@ -3,6 +3,10 @@ import { getCategories } from './getCategories'
 import { Box, Center, Heading, Text } from '@chakra-ui/layout';
 import { DeleteIcon } from '@chakra-ui/icons'
 
+import Alert from './../alertService/AlertService';
+import axios from 'axios';
+import { API_BASE_URL } from './../../app/config';
+import { useSelector } from 'react-redux';
 import {
     Table,
     Thead,
@@ -14,12 +18,9 @@ import {
 } from "@chakra-ui/react"
 
 export default function ListaCategorias() {
-    const [categories, setCategories] = useState([])
-
-    const handleDeleteButton = () => {
-        /* Mostrar alerta y mandar un DELETE al server */
-
-    }
+    const [categories, setCategories] = useState([]);
+    //const token = useSelector(getToken);
+    const token = useSelector((state) => state.login.token)
 
     useEffect(() => {
         async function fetchData() {
@@ -30,7 +31,26 @@ export default function ListaCategorias() {
             }
         }
         fetchData()
-    }, [])
+    }, []);
+    
+    const handleDeleteButton = async (categoryData) => {
+        /* Mostrar alerta y mandar un DELETE al server */
+        try {
+            const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta Categoria', 'esta accion es irreversible');
+            if(confirmed){
+                const result = await axios.delete(API_BASE_URL + '/categories/' + categoryData.id, {
+                    headers: { Authorization: 'Bearer ' + token }
+                });
+                if(result.data?.succes)
+                    Alert.success('Hecho', 'La categoria ha sido eliminada');
+                else
+                    Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
+            }
+        } catch(err) {
+            console.log(err);
+            Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
+        }
+    }
 
     return (
         <div>
@@ -55,7 +75,7 @@ export default function ListaCategorias() {
                             {categories.length > 0 ? categories.map((category, index) =>
                                 <Tr key={index}>
                                     <Td fontWeight="bold">{category.name}</Td>
-                                    <Td textAlign="end"><DeleteIcon color="red.500" cursor="pointer" h={6} w={6} onClick={handleDeleteButton} /></Td>
+                                    <Td textAlign="end"><DeleteIcon color="red.500" cursor="pointer" h={6} w={6} onClick={() => handleDeleteButton(category)} /></Td>
                                 </Tr>)
                                 : null
                             }
