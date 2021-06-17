@@ -1,14 +1,15 @@
-import React, { Component, useState } from 'react' ;
+import React, { useState, useEffect } from 'react' ;
 import MaterialTable from 'material-table' ;
 import './activities.css'
 import * as FaIcons from 'react-icons/fa';
 
 //OT34-61...inicio
-import {Modal, TextField} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles';
-import FormActivitie from '../../Actividades/FormActivities/FormActivitie';
-import {Button} from '@chakra-ui/react'
+import FormActivities from '../../Actividades/FormActivities/FormActivities';
 // import theme from '@chakra-ui/theme';
+import Modal from './../../common/ModalWrapper';
+import { useDisclosure } from '@chakra-ui/react';
+import { getActivities } from './getActivities';
 
 const useStyles=makeStyles((theme) =>({
 
@@ -34,7 +35,7 @@ function Actividades_Backoffice() {
     const columnas = [
         {
             title:'Nombre Actividad',
-            field:'activitie'
+            field:'name'
         },
         {
             title:'URL image',
@@ -51,39 +52,24 @@ function Actividades_Backoffice() {
         },
         
     ];
-    
-    const data = [
-        {activitie: '1 Actividad de prueba', image:'https://via.placeholder.com/150', content: 'contenido de prueba' , deletedAt:1},
-        {activitie: '2 Actividad de prueba', image:'https://via.placeholder.com/150', content: 'contenido de prueba' , deletedAt:0},
-        {activitie: '3 Actividad de prueba', image:'https://via.placeholder.com/150', content: 'contenido de prueba' , deletedAt:1},
-        {activitie: '4 Actividad de prueba', image:'https://via.placeholder.com/150', content: 'contenido de prueba' , deletedAt:1},
-        {activitie: '5 Actividad de prueba', image:'https://via.placeholder.com/150', content: 'contenido de prueba' , deletedAt:0}
-    ] ;
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        getActivities().then((result) => {
+            setData(result);
+        })
+    }, [])
     
     //OT34-61...inicio
-    const styles = useStyles(); 
-    const [modal, setModal]=useState(false);
-
-    const openCloseModal=()=>{
-        setModal(!modal);
+    const styles = useStyles();
+    const [editData, setEditData] = useState(null);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const handleCloseModal = (success) => {
+        if(success)
+            getActivities().then(result =>  setData(result));
+        onClose();
     }
-
-
-   //Datos de prueba para path en el formActivitie 
-    const dataPrueba ={
-        name: '1 Actividad de prueba', 
-        image:'https://via.placeholder.com/150', 
-        content: 'contenido de prueba' }
-
-    const body=(
-        <div className = {styles.modal}>
-            <div align="center">
-                <FormActivitie data={dataPrueba} type="edit"/>
-                <Button mt={4} colorScheme="teal"  onClick={()=>openCloseModal()}>Cancelar</Button>
-            </div>                
-        </div>
-    )
-    //OT34-61...fin
 
         return (
             <div  className='materialTable'>
@@ -95,13 +81,15 @@ function Actividades_Backoffice() {
                         {
                             icon:FaIcons.FaEdit ,
                             tooltip:'Editar',
-                            onClick:(event, rowData) => openCloseModal() 
-                            
+                            onClick:(event, rowData) => {
+                                setEditData(rowData);
+                                onOpen();
+                            }
                         },
                         {
                             icon:FaIcons.FaTrash ,
                             tooltip:'Eliminar',
-                            onClick:(event, rowData) => alert ('vas a eliminar: ' + rowData.activitie)
+                            onClick:(event, rowData) => alert ('vas a eliminar: ' + rowData.name)
                         }
                     ]}
                     //Agregamos las acciones en la ultima columna
@@ -117,9 +105,9 @@ function Actividades_Backoffice() {
                 />
             
             {/* //OT34-61...inicio */}
-                <Modal open={modal} onClose={openCloseModal}>
-                    {body}
-                </Modal>   
+            <Modal isOpen={isOpen} onClose={onClose} label={data? 'Crear Actividad': 'Editar Actividad'}>
+                <FormActivities data={editData} onClose={handleCloseModal} />
+            </Modal>
             {/* //OT34-61...fin */}
 
             </div>                   
