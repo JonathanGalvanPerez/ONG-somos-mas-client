@@ -1,5 +1,4 @@
 import React from "react";
-
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
@@ -9,7 +8,6 @@ import Loader from "./components/Loading/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicInfoData, publicLoading } from "./app/publicInfoSlice";
 import './App.css';
-
 
 
 function App() {
