@@ -3,18 +3,23 @@ import Card from '../testimonials/Card'
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
 
 export default function Testimonials() {
+
   const testimonials = [
     {
+      id: 1,
       name: "James Cameron",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     },
     {
+      id: 2,
       name: "Tim Burton",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     },{
+      id: 3,
       name: "Quentin Tarantino",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     },{
+      id: 4,
       name: "Steven Spielberg",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     }    
@@ -50,11 +55,11 @@ export default function Testimonials() {
           p={{ base: "5", lg: "10" }}
         >
           {
-            testimonials.map(({ name, content }) => (
+            testimonials.map((testimonio) => (
 
 
                 <GridItem colSpan={1} cursor="pointer">
-                  <Card name={name} content={content}  />
+                  <Card testimonio={testimonio}  />
                 </GridItem>
 
 
