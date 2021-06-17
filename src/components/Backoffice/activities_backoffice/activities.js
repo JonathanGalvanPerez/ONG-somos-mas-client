@@ -1,15 +1,19 @@
-import React, { Component, useState } from 'react' ;
+import React, { useState } from 'react' ;
 import MaterialTable from 'material-table' ;
 import './activities.css'
 import * as FaIcons from 'react-icons/fa';
 
 //OT34-61...inicio
-import {Modal, TextField} from '@material-ui/core'
+import {Modal} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles';
 import FormActivitie from '../../Actividades/FormActivities/FormActivitie';
 import {Button} from '@chakra-ui/react'
-// import theme from '@chakra-ui/theme';
+import Alert from '../../alertService/AlertService';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { API_BASE_URL } from './../../../app/config';
 
+// import theme from '@chakra-ui/theme';
 const useStyles=makeStyles((theme) =>({
 
     modal:{
@@ -63,11 +67,29 @@ function Actividades_Backoffice() {
     //OT34-61...inicio
     const styles = useStyles(); 
     const [modal, setModal]=useState(false);
+    const token = useSelector(state => state.login.token);
 
     const openCloseModal=()=>{
         setModal(!modal);
     }
 
+    const handleDeleteButton = async (activityData) => {
+        const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta actividad?', 'Esta accion es irreversible');
+        try{
+            if(confirmed) {
+                const result = await axios.delete(API_BASE_URL + '/activities/' + activityData.id, {
+                    headers: { Authorization: 'Bearer ' + token }
+                });
+                if (result)
+                    Alert.success('Hecho', 'La actividad fue eliminada');
+                else
+                    Alert.error('Ups', 'Parece que hubo un error. Intentelo de nuevo mas tarde');
+            }
+        } catch(err) {
+            console.log(err)
+            Alert.error('Ups', 'Parece que hubo un error. Intentelo de nuevo mas tarde');
+        }
+    }
 
    //Datos de prueba para path en el formActivitie 
     const dataPrueba ={
@@ -101,7 +123,7 @@ function Actividades_Backoffice() {
                         {
                             icon:FaIcons.FaTrash ,
                             tooltip:'Eliminar',
-                            onClick:(event, rowData) => alert ('vas a eliminar: ' + rowData.activitie)
+                            onClick:(event, rowData) => handleDeleteButton(rowData)
                         }
                     ]}
                     //Agregamos las acciones en la ultima columna
