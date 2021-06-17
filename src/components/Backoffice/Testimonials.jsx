@@ -1,13 +1,13 @@
 import React from 'react'
 import Card from '../testimonials/Card'
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { IconButton } from '@chakra-ui/button';
 import {  AddIcon } from '@chakra-ui/icons'
-import { SimpleGrid } from '@chakra-ui/react';
 
 export default function Testimonials() {
   const history = useHistory();
+  const match = useRouteMatch();
 
   const testimonials = [
     {
@@ -29,6 +29,9 @@ export default function Testimonials() {
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     }    
   ]
+
+  const onAddBtnClick = () => history.push(`${match.url}/form`)
+
   return (
     <Box display="flex" justifyContent="center" p="2px">
 
@@ -53,6 +56,7 @@ export default function Testimonials() {
 
           <IconButton
             ml={5}
+            onClick={onAddBtnClick}
             justifySelf="self-end"
             bg="gray.700" color="white" _hover={{bg: "gray.900"}}
             aria-label="Crear Testimonio"
@@ -83,6 +87,7 @@ export default function Testimonials() {
 
         </Grid>
       </Box>
+
     </Box>
   )
 }

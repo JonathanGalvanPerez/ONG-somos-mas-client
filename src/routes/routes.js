@@ -23,6 +23,7 @@ import News from '../components/News'
 import Testimonials from "../components/Backoffice/Testimonials";
 import BackofficeUsers from "../components/BackofficeUsers/index";
 import CategoryList from "../components/CategoryList/CategoryList";
+import TestimonialsForm from "../components/Backoffice/testimonials-form";
 
 
 //  OT34-104...inicio
@@ -69,6 +70,7 @@ const PublicRoutes = () => {
                   <BackofficeRoute exact path="/backoffice/testimonials" component={Testimonials} />
                   <BackofficeRoute exact path="/backoffice/edit-organization" component={EditOrganization} />
                   <BackofficeRoute exact path="/backoffice/categories" component={CategoryList} />
+                  <BackofficeRoute exact path="/backoffice/testimonials/form" component={TestimonialsForm} />
 
                   <Redirect path="/**" to="/inicio" />
           </Switch>
