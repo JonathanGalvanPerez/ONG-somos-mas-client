@@ -22,9 +22,10 @@ import ContactList from '../components/ContactList/index'
 import News from '../components/News'
 import Testimonials from "../components/Backoffice/Testimonials";
 import BackofficeUsers from "../components/BackofficeUsers/index";
+import CategoryList from "../components/CategoryList/CategoryList";
+
 
 //  OT34-104...inicio
-
 import {motion} from 'framer-motion';
 
 const Animator = ({ children }) => {
@@ -37,6 +38,7 @@ const Animator = ({ children }) => {
   );
 };
 //OT34-104...fin
+
 
 const PublicRoutes = () => {
     return (
@@ -63,9 +65,9 @@ const PublicRoutes = () => {
                 <BackofficeRoute exact path="/backoffice/contacts" component={ContactList} />
                 <BackofficeRoute exact path="/backoffice/testimonials" component={Testimonials} />
                 <BackofficeRoute exact path="/backoffice/edit-organization" component={EditOrganization} />
+                <BackofficeRoute exact path="/backoffice/categories" component={CategoryList} />
 
                 <Redirect path="/**" to="/inicio" />
-
             </Animator>
 
         </Switch>
