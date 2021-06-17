@@ -35,13 +35,14 @@ export default function Novelties() {
 
         </Box>
 
-
+{(!novelties || novelties.length === 0) && <Text mt={16}>No se pudo cargar ninguna novedad</Text>}
 
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }}
           gap={6}
           p={{ base: "5", lg: "10" }}
         >
+          
           {
             novelties.map(({ id, image, name, createAd }, index) => (
 
