@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import Navbar from "../Backoffice/navbar/Navbar";
-import Sidebar from "../Backoffice/sidebar/Sidebar";
 import "../Backoffice/index.css";
 
 import { Box } from "@chakra-ui/layout";
@@ -12,20 +10,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUsersData, usersInfoData } from "../../app/usersInfoSlice";
 
 export default function BackofficeUsers() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const dispatch = useDispatch();
   // lista de usuarios recibido del store
   const usersData = useSelector(usersInfoData);
   // creo una nueva instancia de la información recibida ya que sino material-table no me deja pasárselo como parámetro a el objeto data
   const dataForTable = usersData?.map((user) => ({ ...user })) || {};
-
-  const openSidebar = () => {
-    setSidebarOpen(true);
-  };
-
-  const closeSidebar = () => {
-    setSidebarOpen(false);
-  };
 
   // uso el dispatch para ejecutar la función creada en el slice y así actualizar los datos en el store
   useEffect(() => {
@@ -52,35 +41,25 @@ export default function BackofficeUsers() {
   };
 
   //configuración de columnas de material-table
-  const [columns, setColumns] = useState([
-    {
-      title: "Nombre",
-      field: "firstName",
-      cellStyle: {
-        width: 300,
-        maxWidth: 300,
+  const columns = [
+      {
+        title: "Nombre",
+        field: "firstName",
       },
-      headerStyle: {
-        width: 300,
-        maxWidth: 300,
+      {
+        title: "Apellido",
+        field: "lastName",
+        initialEditValue: "initial edit value",
       },
-    },
-    {
-      title: "Apellido",
-      field: "lastName",
-      initialEditValue: "initial edit value",
-    },
-    { title: "Email", field: "email" },
-  ]);
+      { title: "Email", field: "email" },
+    ]
 
   return (
-    <div className="container">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+    <div>
       <Box
         bg="#F5F6F9"
         mx="auto"
-        w={["full", "full", "full", "200%"]}
+        w="full"
         color="#18A0FB"
       >
         <MaterialTable
