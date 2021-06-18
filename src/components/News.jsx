@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import {
-  Container,
   Text,
   Button,
   Stack,
@@ -14,9 +13,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { deleteNews, selectNewsDelete } from "../features/news/newsDeleteSlice";
 import { edit } from "../features/news/newsPutSlice";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-import Footer from "../components/layout/footer/index";
+import Alert from "./alertService/AlertService";
 
 const News = () => {
   const [news, setNews] = useState([
@@ -73,33 +70,25 @@ const News = () => {
 
   const deleteStatus = useSelector(selectNewsDelete);
 
-  const MySwal = withReactContent(Swal);
-
   const dispatch = useDispatch();
 
   const handleDelete = (e, id) => {
     e.preventDefault();
-    Swal.fire({
-      title: "Estas seguro?",
-      text: "No podras revertir estos cambios!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "Si, deseo borrarla!",
-    }).then((result) => {
-      if (result.isConfirmed) {
+    Alert.confirm("Estas seguro?", "No podras revertir estos cambios!", "Si, deseo borrarla!",
+    ).then((confirmed) => {
+      if (confirmed) {
         dispatch(deleteNews(id));
         /* DESCOMENTAR:  Para que funcione con la logica del state local 
         let newsArray = news.filter((news) => news.id !== id);
         setNews(newsArray);*/
-        Swal.fire(
+        Alert.success(
           "Eliminada!",
-          "La noticia ha sido eliminada exitosamente.",
-          "success"
+          "La noticia ha sido eliminada exitosamente."
         );
       }
+    }).catch((err) => {
+      console.log(err);
+      Alert.error("Ups", "Parece que hubo un error. Vuelva a intentarlo más tarde")
     });
   };
 
@@ -108,9 +97,8 @@ const News = () => {
       {" "}
       {/* Cada vez que se elimina un news se vuelve a solicitar informacion a la api  */}
       {/* {deleteStatus.status==='success'?consultarAPi() : null} */}
-      <Container maxW="container.lg">
-        <Text fontSize="3xl">Colocar header cuando este finalizado</Text>
-        <Text fontSize="xl">Listado de Novedades Somos Mas</Text>
+      <Box>
+        <Text fontSize="3xl">Gestionar Novedades</Text>
         <Center>
           <Grid
             centerContent
@@ -183,8 +171,7 @@ const News = () => {
             ))}
           </Grid>
         </Center>
-      </Container>
-      <Footer />
+      </Box>
     </>
   );
 };
