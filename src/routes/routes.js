@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { BackofficeRoute } from './helpersRoutes';
+import { LoggedRoute } from './helpersRoutes';
 
 import PublicPage from '../pages/PublicPage';
 import LoginPage from '../pages/LoginPage';
@@ -15,7 +15,7 @@ export default function Routes() {
                 <Route exact path="/acceso" component={LoginPage} />
                 <Route exact path="/registro" component={RegisterPage} />
 
-                <BackofficeRoute path="/backoffice" component={BackofficePage} />
+                <LoggedRoute path="/backoffice" component={BackofficePage} />
 
                 <Route path="/" component={PublicPage} />
                 
