@@ -6,10 +6,6 @@ import { isAdmin } from '../features/login/loginSlice';
 import { isLoggedIn } from './../features/login/loginSlice';
 
 
-export const PublicRoute = ({ component, ...options }) => {
-    return <Route {...options} component={component} />
-}
-
 export const LoggedRoute = ({ component, ...options }) => {
     const _isLoggedIn = useSelector(isLoggedIn);
     if (_isLoggedIn)
