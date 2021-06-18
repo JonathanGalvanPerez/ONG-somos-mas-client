@@ -1,8 +1,20 @@
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { Box, Spacer, Text, Button, Flex } from '@chakra-ui/react'
 import React from 'react'
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
-export default function Card(props) {
+export default function Card({ testimonio }) {
+    const history = useHistory();
+    const match = useRouteMatch();
+
+    const handleEditClick = () => {
+        history.push(`${match.url}/form`,  { testimonio })
+    }
+
+    const handleDeleteClick = () => {
+
+    }
+
     return (
         <Box
             bg="white" p="2.5"
@@ -19,7 +31,7 @@ export default function Card(props) {
                 fontWeight="semibold"
             >
 
-                {props.name}
+                {testimonio.name}
 
             </Text>
 
@@ -36,7 +48,7 @@ export default function Card(props) {
                     fontSize="lg"
                 >
 
-                    <q>{props.content}</q>
+                    <q>{testimonio.content}</q>
 
 
                 </Text>
@@ -46,11 +58,11 @@ export default function Card(props) {
 
                 <Spacer />
 
-                <Button bg="orange.200" p="1" mx="1">
+                <Button bg="orange.200" p="1" mx="1" onClick={handleEditClick}>
                     <EditIcon />
                 </Button>
 
-                <Button bg="red.200" p="1">
+                <Button bg="red.200" p="1" onClick={handleDeleteClick}>
                     <DeleteIcon />
                 </Button>
 

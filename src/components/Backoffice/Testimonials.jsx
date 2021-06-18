@@ -1,24 +1,37 @@
 import React from 'react'
 import Card from '../testimonials/Card'
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import { IconButton } from '@chakra-ui/button';
+import {  AddIcon } from '@chakra-ui/icons'
 
 export default function Testimonials() {
+  const history = useHistory();
+  const match = useRouteMatch();
+
   const testimonials = [
     {
+      id: 1,
       name: "James Cameron",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     },
     {
+      id: 2,
       name: "Tim Burton",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     },{
+      id: 3,
       name: "Quentin Tarantino",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     },{
+      id: 4,
       name: "Steven Spielberg",
       content:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga esse eligendi repellat modi similique reiciendis!"
     }    
   ]
+
+  const onAddBtnClick = () => history.push(`${match.url}/form`)
+
   return (
     <Box display="flex" justifyContent="center" p="2px">
 
@@ -27,10 +40,11 @@ export default function Testimonials() {
        
         w={{ base: "100%", lg: "80%" }} >
 
-        <Box bg="#9AC9FB" textAlign="center">
+        <Box bg="#9AC9FB" textAlign="center" d="flex" justifyContent="center" alignItems="center">
 
           <Text 
           color="#474645"
+          justifySelf="self-end"
           fontWeight="bold"
           as="i"
           fontSize={{ base: "3xl", md:"4xl", lg: "5xl" }}
@@ -40,6 +54,15 @@ export default function Testimonials() {
             Testimonials
           </Text>
 
+          <IconButton
+            ml={5}
+            onClick={onAddBtnClick}
+            justifySelf="self-end"
+            bg="gray.700" color="white" _hover={{bg: "gray.900"}}
+            aria-label="Crear Testimonio"
+            size="sm"
+            icon={<AddIcon />}
+          />
         </Box>
 
 
@@ -50,11 +73,11 @@ export default function Testimonials() {
           p={{ base: "5", lg: "10" }}
         >
           {
-            testimonials.map(({ name, content }) => (
+            testimonials.map((testimonio) => (
 
 
                 <GridItem colSpan={1} cursor="pointer">
-                  <Card name={name} content={content}  />
+                  <Card testimonio={testimonio}  />
                 </GridItem>
 
 
@@ -64,6 +87,7 @@ export default function Testimonials() {
 
         </Grid>
       </Box>
+
     </Box>
   )
 }
