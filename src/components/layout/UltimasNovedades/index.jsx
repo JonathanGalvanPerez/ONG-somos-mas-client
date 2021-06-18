@@ -53,8 +53,9 @@ export default function UltimasNovedades() {
         Últimas novedades
       </Text>
       <Grid
-        templateColumns="repeat(4, 1fr)"
+        templateColumns={{base: "repeat(2, 1fr)", lg:"repeat(4, 1fr)"}}
         gap={6}
+        h={{base:"15rem", md:"25rem", lg:"15rem"}}
         px=".5em"
         my="1em"
         overflowX="scroll"
@@ -67,8 +68,7 @@ export default function UltimasNovedades() {
         {novedades.map((novedad) => (
           <VStack
             key={novedad.id}
-            h="200px"
-            w="250px"
+            h="full" w="full"
             justifySelf="center"
             backgroundImage={novedad.image}
             backgroundSize="cover"

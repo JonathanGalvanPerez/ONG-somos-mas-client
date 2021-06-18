@@ -1,12 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import AllRoutes from './routes/routes'
 
 import Loader from "./components/Loading/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicInfoData, publicLoading } from "./app/publicInfoSlice";
 import './App.css';
-
 
 
 function App() {

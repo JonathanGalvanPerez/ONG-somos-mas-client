@@ -4,7 +4,7 @@ import AlertService from '../alertService/AlertService'
 
 export const getContactList = async () => {
     try {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('org_token')
         const res = await axios.get(API_BASE_URL + '/contacts', {
             'headers': {
                 'Authorization': 'Bearer ' + JSON.parse(token)
