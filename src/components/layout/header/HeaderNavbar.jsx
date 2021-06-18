@@ -5,12 +5,13 @@ import { Box, Flex } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/transition';
 import '../header-style/header.css';
 import { useSelector } from 'react-redux';
-import { isLoggedIn } from './../../../features/login/loginSlice';
+import { isAdmin, isLoggedIn } from './../../../features/login/loginSlice';
 import HeaderLogoutBtn from './HeaderLogoutBtn';
 import { Link } from 'react-router-dom';
 
 export default function HeaderNavbar({ show, toggleNav, isMobile }) {
     const _isLoggedIn = useSelector(isLoggedIn);
+    const _isAdmin = useSelector(isAdmin)
 
     const navbarStyle = {
         d: 'block',
@@ -61,10 +62,13 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         bgColor='#18A0FB' color='white' border='1px solid white'
         {...buttonStyle} >Registrate</Button>
     </>); 
-    
     // Botones al estar logueado
-    const memberButtons = (<HeaderLogoutBtn color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
-    {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>); 
+    const memberButtons = (<>
+    <HeaderLogoutBtn color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
+    {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>
+    <Button as={Link} to='/backoffice'
+    color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
+    {...buttonStyle} >Backoffice</Button></>);
 
     return (
         <Box {...navbarStyle} >

@@ -6,7 +6,7 @@ import HeaderNavbar from './HeaderNavbar';
 import HeaderNavToggle from './HeaderNavToggle';
 import { Link as ReactLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { isLoggedIn } from './../../../features/login/loginSlice';
+import { isAdmin, isLoggedIn } from './../../../features/login/loginSlice';
 import HeaderLogoutBtn from './HeaderLogoutBtn';
 
 export default function Header() {
@@ -16,6 +16,7 @@ export default function Header() {
     const [show, setShow] = React.useState(false);
     const toggleNav = () => setShow(!show);
     const _isLoggedIn = useSelector(isLoggedIn);
+    const _isAdmin = useSelector(isAdmin);
 
     // Desactivar componente para ciertas paginas
     const pagesExcluded = ['/acceso', '/registro', '/backoffice'];
@@ -46,9 +47,13 @@ export default function Header() {
         {...buttonStyle} >Registrate</Button></>)
 
     // Botones al estar logueado
-    const memberButtons = (<HeaderLogoutBtn as={ReactLink}
+    const memberButtons = (<>
+        <Button as={ReactLink} to='/backoffice'
+        bgColor='#18A0FB' color='white'
+        {...buttonStyle} >Backoffice</Button>
+        <HeaderLogoutBtn as={ReactLink}
         color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
-        {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>)
+        {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn></>)
 
     return (
         <Flex as='header' justify={['center', 'space-between', 'space-between', 'space-between']}
