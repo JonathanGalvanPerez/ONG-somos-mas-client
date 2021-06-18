@@ -70,7 +70,7 @@ const Sidebar = ({isOpen, isAdmin}) =>{
             : null
             }
             <Button onClick={logOutHandler} colorScheme="red" {...navLinkStyle}>
-                <Icon as={FaIcons.FaPowerOff} /> Log out
+                <Icon as={FaIcons.FaPowerOff} /> Cerrar Sesión
             </Button>
         </VStack>
     )
