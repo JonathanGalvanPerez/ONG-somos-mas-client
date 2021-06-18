@@ -3,15 +3,16 @@ import { Formik, Form, Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { FormLabel, InputGroup, Input, Textarea, Button, VStack, HStack, Box } from '@chakra-ui/react';
-import axios from 'axios';
-import Alert from '../../alertService/AlertService';
-import { API_BASE_URL } from './../../../app/config';
 import { useSelector } from 'react-redux';
 import { getToken } from './../../../features/login/loginSlice';
+import { useDispatch } from 'react-redux';
+import { addCategory } from './../../../features/categories/addCategoryThunk';
+import { editCategory } from './../../../features/categories/editCategoryThunk';
 
 export default function CategoriasForm({ data, onClose }) {
     
     const token = useSelector(getToken);
+    const dispatch = useDispatch();
     const editMode = data !== null;
     const initialValues = editMode ?
     {
@@ -27,29 +28,27 @@ export default function CategoriasForm({ data, onClose }) {
         description: Yup.string()
     });
     const onSubmit = (values, actions) => {
-        const options = {
-            'headers': {
-                'Authorization': 'Bearer ' + token
-            }
-        };
-        const requestPromise = editMode ?
-            axios.put(`${API_BASE_URL}/categories/${data.id}`, values, options)
-            :
-            axios.post(`${API_BASE_URL}/categories`, values, options);
-        requestPromise.then((result) => {
+        if(editMode)
+            dispatch(editCategory({
+                token,
+                values,
+                id: data.id,
+                done: () => {
+                    actions.setSubmitting(false);
+                    onClose();
+                }
+            }));
+        else{
+            dispatch(addCategory({
+                token,
+                values,
+                done: () => {
+                    actions.setSubmitting(false);
+                    onClose();
+                }
+            }));
             actions.setSubmitting(false);
-            if(result.data?.success) {
-                onClose(true);
-                Alert.success('Hecho', editMode ? 'Los cambios ha sido guardados' : 'La categoria ha sido creada');
-            } else {
-                onClose();
-                Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
-            }
-        }).catch((error) => {
-            actions.setSubmitting(false);
-            onClose();
-            Alert.error('Ups', 'Hubo un problema. Intente nuevamente más tarde');
-        })
+        }
     }
     return (
         <Box>
