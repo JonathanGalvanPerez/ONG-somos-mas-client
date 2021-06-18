@@ -25,7 +25,7 @@ export default function BackofficePage() {
         <Box>
             <Navbar isOpen={isOpen} onToggle={onToggle} isAdmin={_isAdmin} />
             <Flex w="100%" alignItems="stretch">
-                <Sidebar isOpen={isOpen} isAdmin={_isAdmin} />
+                <Sidebar isOpen={isOpen} isAdmin={_isAdmin} onToggle={onToggle} />
                 <Switch>
                     <Route exact path="/backoffice/perfil" component={Profile} />
                     <BackofficeRoute exact path="/backoffice/activities" component={Activities} />

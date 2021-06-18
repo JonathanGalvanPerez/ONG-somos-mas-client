@@ -71,9 +71,10 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
     return (
         <Box {...navbarStyle} >
             <Collapse in={!isMobile || show} >
-                <Flex onClick={toggleNav} {...navItemsListStyle} >
+                <Flex {...navItemsListStyle} >
                     {navItems.map((navItem) => (
-                        <HeaderNavLink key={navItem.label} path={navItem.path} isMobile={isMobile} >
+                        <HeaderNavLink key={navItem.label} path={navItem.path} isMobile={isMobile}
+                            onClick={toggleNav}>
                             {navItem.label}
                         </HeaderNavLink>
                     ))}

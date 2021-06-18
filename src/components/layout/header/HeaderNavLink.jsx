@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from '@chakra-ui/layout';
 import { useLocation } from 'react-router-dom';
 
-export default function HeaderNavLink({ children, path, isMobile }) {
+export default function HeaderNavLink({ children, path, isMobile, onClick }) {
     const location = useLocation();
     const active = location.pathname === path;
 
@@ -35,7 +35,7 @@ export default function HeaderNavLink({ children, path, isMobile }) {
 
     return (
         
-        <Link as={NavLink} exact to={path} {...linkStyle}>
+        <Link as={NavLink} exact to={path} onClick={onClick} {...linkStyle}>
             {children}
         </Link>
         

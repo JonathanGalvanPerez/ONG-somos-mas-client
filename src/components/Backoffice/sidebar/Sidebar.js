@@ -7,7 +7,7 @@ import { VStack } from '@chakra-ui/layout';
 import { Icon, Link, Button } from '@chakra-ui/react';
 import styles from './Sidebar.module.css';
 
-const Sidebar = ({isOpen, isAdmin}) =>{
+const Sidebar = ({isOpen, isAdmin, onToggle}) =>{
     const dispatch =  useDispatch();
     const history = useHistory();
     const sidebarStyle ={
@@ -28,7 +28,8 @@ const Sidebar = ({isOpen, isAdmin}) =>{
         padding: '10px',
         w: { base: '80vw', md: '90%'},
         borderRadius: "lg",
-        activeClassName: styles.active
+        activeClassName: styles.active,
+        onClick: onToggle
     }
     const logOutHandler = () => {
         dispatch(logOut());
