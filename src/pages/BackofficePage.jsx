@@ -4,31 +4,41 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Navbar from '../components/Backoffice/navbar/Navbar';
 import Sidebar from '../components/Backoffice/sidebar/Sidebar';
+import Profile from '../components/Profile';
 import EditOrganization from '../components/Backoffice/edit-organization/edit-organization'
 import ContactList from '../components/ContactList/index'
 import News from '../components/News'
 import Testimonials from "../components/Backoffice/Testimonials";
 import BackofficeUsers from "../components/BackofficeUsers/index";
 import CategoryList from "../components/CategoryList/CategoryList";
-import '../components/Backoffice/index.css';
+import Activities from "../components/Backoffice/activities_backoffice/activities";
+import EditHomeForm from '../components/EditHomeForm';
+import { Box, Flex } from '@chakra-ui/layout';
+import { useSelector } from 'react-redux';
+import { isAdmin } from '../features/login/loginSlice';
+import { BackofficeRoute } from '../routes/helpersRoutes';
 
 export default function BackofficePage() {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const _isAdmin = useSelector(isAdmin);
+    const { isOpen, onToggle } = useDisclosure();
     return (
-        <div className="container">
-            <Navbar isOpen={isOpen} onOpen={onOpen} />
-            <Sidebar
-                isOpen={isOpen}
-                onClose={onClose}
-            />
-            <Switch>
-                <Route exact path="/backoffice/users" component={BackofficeUsers} />
-                <Route exact path="/backoffice/news" component={News} />
-                <Route exact path="/backoffice/contacts" component={ContactList} />
-                <Route exact path="/backoffice/testimonials" component={Testimonials} />
-                <Route exact path="/backoffice/edit-organization" component={EditOrganization} />
-                <Route exact path="/backoffice/categories" component={CategoryList} />
-            </Switch>
-        </div>
+        <Box>
+            <Navbar isOpen={isOpen} onToggle={onToggle} isAdmin={_isAdmin} />
+            <Flex w="100%" alignItems="stretch">
+                <Sidebar isOpen={isOpen} isAdmin={_isAdmin} />
+                <Switch>
+                    <Route exact path="/backoffice/perfil" component={Profile} />
+                    <BackofficeRoute exact path="/backoffice/activities" component={Activities} />
+                    <BackofficeRoute exact path="/backoffice/users" component={BackofficeUsers} />
+                    <BackofficeRoute exact path="/backoffice/news" component={News} />
+                    <BackofficeRoute exact path="/backoffice/contacts" component={ContactList} />
+                    <BackofficeRoute exact path="/backoffice/testimonials" component={Testimonials} />
+                    <BackofficeRoute exact path="/backoffice/edit-organization" component={EditOrganization} />
+                    <BackofficeRoute exact path="/backoffice/categories" component={CategoryList} />
+                    <BackofficeRoute exact path="/backoffice/edit-home" component={EditHomeForm} />
+                    <Redirect path={'/**'} to='/backoffice/perfil' />
+                </Switch>
+            </Flex>
+        </Box>
     )
 }
