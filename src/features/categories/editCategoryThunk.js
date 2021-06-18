@@ -4,7 +4,7 @@ import Alert from '../../components/alertService/AlertService';
 import { API_BASE_URL } from './../../app/config';
 import { fetchCategoryData } from './fetchCategoryThunk';
 
-export const editCategory = createAsyncThunk('category/addCategory', async ({token, values, id, done}, {dispatch}) => {
+export const editCategory = createAsyncThunk('category/addCategory', async ({token, values, id}, {dispatch}) => {
 	try {
 		const result = await axios.put(`${API_BASE_URL}/categories/${id}`, {
 			...values
@@ -18,7 +18,6 @@ export const editCategory = createAsyncThunk('category/addCategory', async ({tok
 			dispatch(fetchCategoryData());
 		} else
 			Alert.error('Error', 'Hubo un problema al intentar modificar la categoría');
-		done();
 		return result.data;
 	} catch (err) {
 		Alert.error("Error", "Hubo un problema al intentar modificar la categoría");

@@ -4,7 +4,7 @@ import Alert from '../../components/alertService/AlertService';
 import { API_BASE_URL } from './../../app/config';
 import { fetchCategoryData } from './fetchCategoryThunk';
 
-export const addCategory = createAsyncThunk('category/addCategory', async ({token, values, done}, {dispatch}) => {
+export const addCategory = createAsyncThunk('category/addCategory', async ({token, values}, {dispatch}) => {
 	try {
 		const result = await axios.post(`${API_BASE_URL}/categories`, {
 			...values
@@ -18,7 +18,6 @@ export const addCategory = createAsyncThunk('category/addCategory', async ({toke
 			dispatch(fetchCategoryData());
 		} else
 			Alert.error('Error', 'Hubo un problema al intentar crear la categoría');
-		done();
 		return result.data;
 	} catch (err) {
 		Alert.error("Error", "Hubo un problema al intentar crear la categoría");

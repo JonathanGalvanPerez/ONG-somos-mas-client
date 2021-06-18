@@ -32,22 +32,25 @@ export default function CategoriasForm({ data, onClose }) {
             dispatch(editCategory({
                 token,
                 values,
-                id: data.id,
-                done: () => {
-                    actions.setSubmitting(false);
-                    onClose();
-                }
-            }));
+                id: data.id
+            })).then(() => {
+                actions.setSubmitting(false);
+                onClose();
+            }).catch(() => {
+                actions.setSubmitting(false);
+                onClose();
+            })
         else{
             dispatch(addCategory({
                 token,
-                values,
-                done: () => {
-                    actions.setSubmitting(false);
-                    onClose();
-                }
-            }));
-            actions.setSubmitting(false);
+                values
+            })).then(() => {
+                actions.setSubmitting(false);
+                onClose();
+            }).catch(() => {
+                actions.setSubmitting(false);
+                onClose();
+            });
         }
     }
     return (

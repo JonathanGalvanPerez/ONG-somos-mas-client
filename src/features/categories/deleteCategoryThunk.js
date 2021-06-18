@@ -11,7 +11,7 @@ export const deleteCategory = createAsyncThunk('category/deleteCategory', async 
 				'Authorization': 'Bearer ' + token
 			}
 		});
-		if(result.data?.succes){
+		if(result.data?.success){
 			Alert.success('Hecho', 'La categoria ha sido eliminada');
 			dispatch(fetchCategoryData());
 		} else
