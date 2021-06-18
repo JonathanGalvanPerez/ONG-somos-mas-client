@@ -13,9 +13,6 @@ import Contribuye from '../components/Contribuye';
 import Header from '../components/layout/header/index';
 import Footer from '../components/layout/footer';
 
-import Profile from '../components/Profile';
-import EditHomeForm from '../components/EditHomeForm';
-import EditUserForm from '../components/EditUser/editUserForm';
 
 export default function PublicPage() {
     return (
@@ -30,9 +27,6 @@ export default function PublicPage() {
                 <Route exact path={'/actividades'} component={Actividades} />
                 <Route exact path={'/actividad/:id'} component={ActividadId} />
                 <Route exact path={'/contribuye'} component={Contribuye} />
-                <LoggedRoute exact path="/perfil" component={Profile} />
-                <LoggedRoute exact path="/editar-inicio" component={EditHomeForm} />
-                <LoggedRoute exact path="/editar-usuario" component={EditUserForm} />
                 <Redirect path={'/**'} to='/inicio' />
             </Switch>
             <Footer />
