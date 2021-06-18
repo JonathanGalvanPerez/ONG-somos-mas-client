@@ -3,7 +3,6 @@ import MaterialTable from 'material-table' ;
 import './activities.css'
 import * as FaIcons from 'react-icons/fa';
 import { useDisclosure } from '@chakra-ui/react';
-import {makeStyles} from '@material-ui/core/styles';
 import FormActivities from '../../Actividades/FormActivities/FormActivities';
 import Modal from './../../common/ModalWrapper';
 import Alert from '../../alertService/AlertService';
@@ -11,24 +10,6 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { API_BASE_URL } from './../../../app/config';
 import { getActivities } from './getActivities';
-
-// import theme from '@chakra-ui/theme';
-const useStyles=makeStyles((theme) =>({
-
-    modal:{
-        position:'absolute',
-        width:400,
-        backgroundColor:'white',
-        border:'2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2,4,3),  //padding: "16px 32px 24px"       
-        //mostrar en medio de la pantalla
-        top:'50%',
-        left:'50%',
-        transform: 'translate(-50%, -50%)'
-    }
-
-}))
 
 
 function Actividades_Backoffice() {
@@ -55,25 +36,20 @@ function Actividades_Backoffice() {
     ];
 
     const [data, setData] = useState([]);
-
+    const [editData, setEditData] = useState(null);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const token = useSelector(state => state.login.token);
     useEffect(() => {
         getActivities().then((result) => {
             setData(result);
         })
-    }, [])
-    
-    //OT34-61...inicio
-    const styles = useStyles();
-    const [editData, setEditData] = useState(null);
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const token = useSelector(state => state.login.token);
-    
+    }, []);
+
     const handleCloseModal = (success) => {
         if(success)
             getActivities().then(result =>  setData(result));
         onClose();
     }
-
     const handleDeleteButton = async (activityData) => {
         const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta actividad?', 'Esta accion es irreversible');
         try{
