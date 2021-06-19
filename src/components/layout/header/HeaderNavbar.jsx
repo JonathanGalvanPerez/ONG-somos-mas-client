@@ -3,7 +3,6 @@ import HeaderNavLink from './HeaderNavLink';
 import { Button } from '@chakra-ui/react';
 import { Box, Flex } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/transition';
-import '../header-style/header.css';
 import { useSelector } from 'react-redux';
 import { isLoggedIn } from './../../../features/login/loginSlice';
 import HeaderLogoutBtn from './HeaderLogoutBtn';
@@ -14,6 +13,7 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
 
     const navbarStyle = {
         d: 'block',
+        ml: isMobile ? 0 : 5,
         pos: isMobile ? 'absolute' : 'static',
         top: isMobile ? '100%' : '0',
         left: isMobile ? '0' : 'auto',
