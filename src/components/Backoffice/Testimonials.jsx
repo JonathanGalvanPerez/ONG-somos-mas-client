@@ -3,6 +3,7 @@ import Card from '../testimonials/Card'
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
 
 export default function Testimonials() {
+
   const testimonials = [
     {
       name: "James Cameron",
@@ -25,17 +26,21 @@ export default function Testimonials() {
       <Box
         bg="blue.100" h="max-content"
        
-        w={{ base: "100%", lg: "80%" }} >
+        w={{ base: "100%", lg: "80%" }}
+        
+        borderRadius="xl"
+        boxShadow="md"
 
-        <Box bg="#9AC9FB" textAlign="center">
+        >  
+
+        <Box bg="#9AC9FB" textAlign="center" borderTopRadius="xl" >
 
           <Text 
           color="#474645"
           fontWeight="bold"
-          as="i"
-          fontSize={{ base: "3xl", md:"4xl", lg: "5xl" }}
+          fontSize={{ base: "4xl", md:"5xl", lg: "5xl" }}
           textTransform="uppercase"
-          textShadow="2px 2px white"
+          textShadow="-2px 0px 2px #FAFA88"
            >
             Testimonials
           </Text>
