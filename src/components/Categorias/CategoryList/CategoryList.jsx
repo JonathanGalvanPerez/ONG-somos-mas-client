@@ -16,6 +16,7 @@ import {
     HStack,
     Button
 } from "@chakra-ui/react"
+import { AddIcon } from "@chakra-ui/icons"
 import Modal from '../../common/ModalWrapper';
 import CategoriasForm from '../CategoriasForm/CategoriasForm';
 import Loader from '../../Loading/Loader';
@@ -38,16 +39,6 @@ export default function ListaCategorias() {
     const categories = useSelector(getCategories);
     const _isLoading = useSelector(isLoading);
 
-    const createButtonStyle = {
-        pos: { base: "static", md: "absolute" },
-        right: { base: "auto", md: "5px" },
-        top: { base: "auto", md: "5px" },
-        w: { base: "100%", md: "auto" },
-        px: "40px",
-        bgColor: "#fafa88",
-        mb: "10px"
-    }
-
     const handleDeleteButton = async (categoryData) => {
         console.log('mi id es: ', categoryData.id);
         const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta Categoria', 'esta accion es irreversible');
@@ -66,57 +57,79 @@ export default function ListaCategorias() {
     return (
 
         <Box
-            w={{ base: "98%", lg: "80%" }} m="2"
+            w={{ base: "98%", lg: "80%" }}
         >
 
-            <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)" }}>
+            <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)" }} mb="1">
 
-                <GridItem colSpan={1}>
+                <GridItem colSpan={1} >
 
-                    <Text fontSize={{ base: "xl", sm: "1xl", lg: "2xl" }}
+                    <Text fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
                         align="center" fontWeight="bold"
-                        mt={2} mb={2} w="100%"
+                        mt={2} mb={2} w="100%" textTransform="uppercase"
+                        textShadow="1.5px 2px 3px gray"
                     >
-
                         Categorías
 
                     </Text>
 
                 </GridItem>
 
-                <GridItem colSpan={1}
-                    p="2" d="flex"
+                <GridItem
+                    d="flex" colSpan={1}
                     alignItems="center" justifyContent="center"
                 >
 
                     <Button
                         onClick={handleCreateButton}
-                        bgColor="#fafa88" w="75%"
+                        bgColor="#fafa88" w="max-content" py="2"
+                        border="1px solid gray"
+                        _hover={{ border: "3px solid black" }}
                     >
-                        Crear categoria
+                        <AddIcon m="1" />
+                        <Text fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}>
+                            CREAR CATEGORIA
+                        </Text>
                     </Button>
 
                 </GridItem>
 
             </Grid>
 
-            <Center>
-                <Box overflow="auto" m="5" display={{ md: "flex" }} w="100%" rounded="md" shadow="xl">
+            <Center borderTop="1px solid #1a202c" mx="5">
+
+                <Box
+                    w={{ base: "100%", lg: "80%" }}
+                    overflow="auto" rounded="md"
+                    mx="5"  pt="1"
+                    shadow="2xl"
+                >
+
+
                     <Table variant="striped">
+
                         <Thead bgColor={"#9AC9FB"}>
+
                             <Tr>
                                 <Th w="80%">Nombre</Th>
                                 <Th textAlign="center">Acciones</Th>
                             </Tr>
+
                         </Thead>
+
                         {categories.length === 0 ?
                             <TableCaption >
+
                                 <Heading size="md" textAlign="center" mb={5}>No hay categorias guardadas</Heading>
+
                             </TableCaption>
                             : null
                         }
+
                         <Tbody>
+
                             {categories.length > 0 ? categories.map((category, index) =>
+
                                 <Tr key={index}>
                                     <Td fontWeight="bold">{category.name}</Td>
                                     <Td>
@@ -128,14 +141,21 @@ export default function ListaCategorias() {
                                 </Tr>)
                                 : null
                             }
+
                         </Tbody>
+
                     </Table>
+
                 </Box >
+
             </Center>
+
             <Modal isOpen={isOpen} onClose={onClose} label={data ? 'Editar Categoria' : 'Crear Categoria'}>
                 <CategoriasForm onClose={onClose} data={data} />
             </Modal>
+
             <Loader isLoading={_isLoading} />
+
         </Box>
     )
 }
