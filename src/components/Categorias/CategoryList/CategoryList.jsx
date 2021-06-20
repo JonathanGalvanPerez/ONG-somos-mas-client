@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Center, Heading, Text } from '@chakra-ui/layout';
+import { Box, Center, GridItem, Grid, Heading, Text } from '@chakra-ui/layout';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 
-import Alert from './../alertService/AlertService';
+import Alert from '../../alertService/AlertService';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     Table,
@@ -16,13 +16,14 @@ import {
     HStack,
     Button
 } from "@chakra-ui/react"
-import Modal from '../common/ModalWrapper';
-import CategoriasForm from './../Categorias/CategoriasForm/CategoriasForm';
-import Loader from '../Loading/Loader';
-import { getToken } from './../../features/login/loginSlice';
-import { getCategories, isLoading } from './../../features/categories/categorySlice';
-import { fetchCategoryData } from '../../features/categories/fetchCategoryThunk';
-import { deleteCategory } from '../../features/categories/deleteCategoryThunk';
+import Modal from '../../common/ModalWrapper';
+import CategoriasForm from '../CategoriasForm/CategoriasForm';
+import Loader from '../../Loading/Loader';
+import { getToken } from '../../../features/login/loginSlice';
+import { getCategories, isLoading } from '../../../features/categories/categorySlice';
+import { fetchCategoryData } from '../../../features/categories/fetchCategoryThunk';
+import { deleteCategory } from '../../../features/categories/deleteCategoryThunk';
+
 
 export default function ListaCategorias() {
     const token = useSelector(getToken);
@@ -38,19 +39,19 @@ export default function ListaCategorias() {
     const _isLoading = useSelector(isLoading);
 
     const createButtonStyle = {
-        pos: { base: "static", md: "absolute"},
-        right: { base: "auto", md: "5px"},
-        top: { base: "auto", md: "5px"},
+        pos: { base: "static", md: "absolute" },
+        right: { base: "auto", md: "5px" },
+        top: { base: "auto", md: "5px" },
         w: { base: "100%", md: "auto" },
         px: "40px",
         bgColor: "#fafa88",
         mb: "10px"
     }
-    
+
     const handleDeleteButton = async (categoryData) => {
-		console.log('mi id es: ', categoryData.id);
+        console.log('mi id es: ', categoryData.id);
         const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta Categoria', 'esta accion es irreversible');
-        if(confirmed)
+        if (confirmed)
             dispatch(deleteCategory({ token, id: categoryData.id }));
     }
     const handleCreateButton = () => {
@@ -63,11 +64,44 @@ export default function ListaCategorias() {
     }
 
     return (
-        <Box w={{base: "98%", lg: "80%"}} mx="auto" pos="relative">
-            <Text fontSize="3xl" align="center" mt={2} mb={2} w="100%" fontWeight="bold">Categorías</Text>
-            <Button onClick={handleCreateButton} {...createButtonStyle}>+ Crear categoria</Button>
+
+        <Box
+            w={{ base: "98%", lg: "80%" }} m="2"
+        >
+
+            <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)" }}>
+
+                <GridItem colSpan={1}>
+
+                    <Text fontSize={{ base: "xl", sm: "1xl", lg: "2xl" }}
+                        align="center" fontWeight="bold"
+                        mt={2} mb={2} w="100%"
+                    >
+
+                        Categorías
+
+                    </Text>
+
+                </GridItem>
+
+                <GridItem colSpan={1}
+                    p="2" d="flex"
+                    alignItems="center" justifyContent="center"
+                >
+
+                    <Button
+                        onClick={handleCreateButton}
+                        bgColor="#fafa88" w="75%"
+                    >
+                        Crear categoria
+                    </Button>
+
+                </GridItem>
+
+            </Grid>
+
             <Center>
-                <Box overflow="auto" mb={5} display={{ md: "flex" }} w="100%" rounded="md" shadow="dark-lg">
+                <Box overflow="auto" m="5" display={{ md: "flex" }} w="100%" rounded="md" shadow="xl">
                     <Table variant="striped">
                         <Thead bgColor={"#9AC9FB"}>
                             <Tr>
@@ -98,7 +132,7 @@ export default function ListaCategorias() {
                     </Table>
                 </Box >
             </Center>
-            <Modal isOpen={isOpen} onClose={onClose} label={data? 'Editar Categoria': 'Crear Categoria' }>
+            <Modal isOpen={isOpen} onClose={onClose} label={data ? 'Editar Categoria' : 'Crear Categoria'}>
                 <CategoriasForm onClose={onClose} data={data} />
             </Modal>
             <Loader isLoading={_isLoading} />
