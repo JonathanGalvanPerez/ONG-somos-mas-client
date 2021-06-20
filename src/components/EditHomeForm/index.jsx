@@ -267,7 +267,6 @@ export default function EditHomeForm() {
           </form>
         )}
       </Formik>
-      <Footer />
     </Box>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getCategories } from './getCategories'
 import { Box, Center, Heading, Text } from '@chakra-ui/layout';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+
+import Alert from './../alertService/AlertService';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Table,
     Thead,
@@ -16,22 +18,24 @@ import {
 } from "@chakra-ui/react"
 import Modal from '../common/ModalWrapper';
 import CategoriasForm from './../Categorias/CategoriasForm/CategoriasForm';
+import Loader from '../Loading/Loader';
+import { getToken } from './../../features/login/loginSlice';
+import { getCategories, isLoading } from './../../features/categories/categorySlice';
+import { fetchCategoryData } from '../../features/categories/fetchCategoryThunk';
+import { deleteCategory } from '../../features/categories/deleteCategoryThunk';
 
 export default function ListaCategorias() {
-    const [categories, setCategories] = useState([])
+    const token = useSelector(getToken);
     const [data, setData] = useState(null);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        async function fetchData() {
+        dispatch(fetchCategoryData())
+    }, [dispatch]);
 
-            const result = await getCategories()
-            if (result) {
-                setCategories(result)
-            }
-        }
-        fetchData()
-    }, []);
+    const categories = useSelector(getCategories);
+    const _isLoading = useSelector(isLoading);
 
     const createButtonStyle = {
         pos: { base: "static", md: "absolute"},
@@ -43,9 +47,11 @@ export default function ListaCategorias() {
         mb: "10px"
     }
     
-    const handleDeleteButton = () => {
-        /* Mostrar alerta y mandar un DELETE al server */
-
+    const handleDeleteButton = async (categoryData) => {
+		console.log('mi id es: ', categoryData.id);
+        const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta Categoria', 'esta accion es irreversible');
+        if(confirmed)
+            dispatch(deleteCategory({ token, id: categoryData.id }));
     }
     const handleCreateButton = () => {
         setData(null);
@@ -54,11 +60,6 @@ export default function ListaCategorias() {
     const handleEditButton = (categoryData) => {
         setData(categoryData);
         onOpen();
-    }
-    const handleCloseModal = (success) => {
-        if(success)
-            getCategories().then(result => setCategories(result));
-        onClose();
     }
 
     return (
@@ -86,7 +87,7 @@ export default function ListaCategorias() {
                                     <Td fontWeight="bold">{category.name}</Td>
                                     <Td>
                                         <HStack justify='space-around'>
-                                            <DeleteIcon color="red.500" cursor="pointer" h={6} w={6} onClick={handleDeleteButton} />
+                                            <DeleteIcon color="red.500" cursor="pointer" h={6} w={6} onClick={() => handleDeleteButton(category)} />
                                             <EditIcon color="red.500" cursor="pointer" h={6} w={6} onClick={() => handleEditButton(category)} />
                                         </HStack>
                                     </Td>
@@ -98,8 +99,9 @@ export default function ListaCategorias() {
                 </Box >
             </Center>
             <Modal isOpen={isOpen} onClose={onClose} label={data? 'Editar Categoria': 'Crear Categoria' }>
-                <CategoriasForm onClose={handleCloseModal} data={data} />
+                <CategoriasForm onClose={onClose} data={data} />
             </Modal>
+            <Loader isLoading={_isLoading} />
         </Box>
     )
 }

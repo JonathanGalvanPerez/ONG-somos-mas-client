@@ -6,10 +6,6 @@ import { isAdmin } from '../features/login/loginSlice';
 import { isLoggedIn } from './../features/login/loginSlice';
 
 
-export const PublicRoute = ({ component, ...options }) => {
-    return <Route {...options} component={component} />
-}
-
 export const LoggedRoute = ({ component, ...options }) => {
     const _isLoggedIn = useSelector(isLoggedIn);
     if (_isLoggedIn)
@@ -22,11 +18,15 @@ export const LoggedRoute = ({ component, ...options }) => {
 }
 
 export const BackofficeRoute = ({ component, ...options }) => {
+    const _isLoggedIn = useSelector(isLoggedIn);
     const _isAdmin = useSelector(isAdmin);
     if (_isAdmin)
         return <Route {...options} component={component} />;
     else {
         Alert.error('ACCESO DENEGADO', 'Necesitas ser ADMINISTRADOR para continuar.');
-        return <Redirect to="/acceso" />
+        if(_isLoggedIn)
+            return <Redirect to="/backoffice/perfil" />
+        else
+            return <Redirect to="/acceso" />
     }
 }
