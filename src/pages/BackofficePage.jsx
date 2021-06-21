@@ -10,7 +10,7 @@ import ContactList from '../components/ContactList/index'
 import News from '../components/News'
 import Testimonials from "../components/Backoffice/Testimonials";
 import BackofficeUsers from "../components/BackofficeUsers/index";
-import CategoryList from "../components/CategoryList/CategoryList";
+import CategoryList from "../components/Categorias/CategoryList/CategoryList";
 import Activities from "../components/Backoffice/activities_backoffice/activities";
 import EditHomeForm from '../components/EditHomeForm';
 import { Box, Flex } from '@chakra-ui/layout';
