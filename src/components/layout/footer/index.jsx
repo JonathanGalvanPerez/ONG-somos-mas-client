@@ -13,12 +13,15 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
 export default function Footer() {
-  const location = useLocation();
 
   const publicInfo = useSelector((state) => state.publicInfo.data);
   const { orgContact } = publicInfo;
-
-  if (location.pathname === "/acceso" || location.pathname === "/registro") return null; // Desactivar componente para ciertas paginas
+  
+  const location = useLocation();
+  // Desactivar componente para ciertas paginas
+  const pagesExcluded = ['/acceso', '/registro', '/backoffice'];
+  if (pagesExcluded.includes(location.pathname))
+    return null;
 
   const socialLinks = [
     { link: orgContact && orgContact[0] ? `https://facebook.com/${orgContact[0].facebook}` : "", icon: 'facebook', tooltipText:  orgContact && orgContact[0].facebook },

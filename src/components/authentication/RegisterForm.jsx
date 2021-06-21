@@ -91,7 +91,7 @@ function RegisterForm({ onRegisterSubmit, ...props }) {
                     <Checkbox
                       {...field}
                       id='termsAgreement'
-                    >Acepto los <Link fontWeight="medium">Términos y Condiciones</Link></Checkbox>
+                    >Acepto los <Link fontWeight="semibold">Términos y Condiciones</Link></Checkbox>
                     <FormErrorMessage>{form.errors.termsAgreement}</FormErrorMessage>
                   </FormControl>
                 )}

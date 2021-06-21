@@ -1,73 +1,79 @@
-import React,{useState} from 'react';
-import './Sidebar.css';
-import logo from '../../../assets/images/logo.png';
+import React from 'react';
 import * as FaIcons from 'react-icons/fa';
-import { useSelector } from 'react-redux';
-import { isAdmin } from '../../../features/login/loginSlice';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../../features/login/loginSlice';
+import { NavLink, useHistory } from 'react-router-dom';
+import { VStack } from '@chakra-ui/layout';
+import { Icon, Link, Button } from '@chakra-ui/react';
+import styles from './Sidebar.module.css';
 
-//0T34-62 ..inicio
-//Aun no trae el rolId del endpoint de acceso por lo que no va a mostrar las opciones
-//del sidebar se puede forzar la variable = 1 para ver opciones
-//const userRole = localStorage.getItem('userRole');
-// const userRol=1
-//0T34-62 ..fin
-
-const Sidebar = ({sidebarOpen,closeSidebar,openActivities,closeActivities}) =>{
-    const _isAdmin = useSelector(isAdmin);
+const Sidebar = ({isOpen, isAdmin, onToggle}) =>{
+    const dispatch =  useDispatch();
+    const history = useHistory();
+    const sidebarStyle ={
+        background: 'gray',
+        h: '90vh',
+        w: { base: '100%', md: '30%'},
+        minWidth: '300px',
+        py: '10px',
+        transition: 'all 0.5s',
+        zIndex: '4',
+        top: '60px',
+        pos: { base: 'fixed', md: 'sticky' },
+        d: { base: isOpen ? 'flex' : 'none', md: 'flex'}
+    }
+    const navLinkStyle = {
+        d: 'block',
+        color: '#f3f4f6',
+        padding: '10px',
+        w: { base: '80vw', md: '90%'},
+        borderRadius: "lg",
+        activeClassName: styles.active,
+        onClick: onToggle
+    }
+    const logOutHandler = () => {
+        dispatch(logOut());
+        history.push("/");
+    }
     return(
-        <div className={sidebarOpen? 'sidebar-responsive' : ''} id='sidebar'>
-            <div className='sidebar__title'>
-                <div className='sidebar__img'>
-                     <img src={logo} alt='logo' />
-                </div>
-
-                <div className='faIcon'>
-                    <FaIcons.FaArrowAltCircleLeft onClick = {() => closeSidebar()} id="sidebarIcon" aria-hidden="true"/>
-                </div>
-            </div>
-
-            <div className="sidebar__menu">
+        <VStack as="nav" {...sidebarStyle}>
             {/* active_menu_link */}
-                <div className="sidebar__link ">                    
-                    <FaIcons.FaHome/> 
-                    <a href="#">Home</a>
-                </div>
-                { _isAdmin?   // //0T34-62 
-                <>
-                    <div className="sidebar__link">
-                        <FaIcons.FaPeopleCarry />
-                        <a href="#">Nosotros</a>
-                    </div> 
-                    <div className="sidebar__link">
-                        <FaIcons.FaRunning />
-                        <a href="#" onClick = {()=>openActivities()} >Actividades</a>
-                    </div>
-                    <div className="sidebar__link">
-                        <FaIcons.FaNewspaper />
-                        <a href="#">Novedades</a>
-                    </div>
-                    <div className="sidebar__link">
-                        <FaIcons.FaPeopleCarry />
-                        <a href="#">Testimonios</a>
-                    </div>
-                    <div className="sidebar__link">
-                        <FaIcons.FaPhone />
-                        <a href="#">Contacto</a>
-                    </div>
-                    <div className="sidebar__link">
-                        <FaIcons.FaHeart />
-                        <a href="#">Contribuye</a>
-                    </div>
-                    <div className="sidebar__logout">
-                        <FaIcons.FaPowerOff />
-                        <a href="#">Log out</a>
-                    </div>
-                    </>
-                    : null    
-                }
-            </div>
-
-        </div>
+            <Link as={NavLink} to="/backoffice/perfil" {...navLinkStyle}>                    
+                <Icon as={FaIcons.FaUser} /> Perfil
+            </Link>
+            { isAdmin?
+            <>
+                <Link as={NavLink} to="/backoffice/edit-home" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaHome} /> Home
+                </Link>
+                <Link as={NavLink} to="/backoffice/edit-organization" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaPeopleCarry} /> Organizacion
+                </Link> 
+                <Link as={NavLink} to="/backoffice/activities" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaRunning} /> Actividades
+                </Link>
+                <Link as={NavLink} to="/backoffice/news" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaNewspaper} /> Novedades
+                </Link>
+                <Link as={NavLink} to="/backoffice/testimonials" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaCommentAlt} /> Testimonios
+                </Link>
+                <Link as={NavLink} to="/backoffice/contacts" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaPhone} /> Contactos
+                </Link>
+                <Link as={NavLink} to="/backoffice/users" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaHeart} /> Usuarios
+                </Link>
+                <Link as={NavLink} to="/backoffice/categories" {...navLinkStyle}>
+                    <Icon as={FaIcons.FaTags} /> Categories
+                </Link>
+            </>
+            : null
+            }
+            <Button onClick={logOutHandler} colorScheme="red" {...navLinkStyle}>
+                <Icon as={FaIcons.FaPowerOff} /> Cerrar Sesión
+            </Button>
+        </VStack>
     )
 }
 

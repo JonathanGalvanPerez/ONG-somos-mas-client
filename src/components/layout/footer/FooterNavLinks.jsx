@@ -22,7 +22,7 @@ const footerNavStyle = {
   fontWeight: 'semibold',
   flexDirection: { base: 'column', md: 'row' },
   alignItems: 'center',
-  maxW: { base: '95%', md: '95%', xl: '75%' },
+  maxW: { base: '95%', md: '95%', xl: '90%' },
 };
 
 // Link style

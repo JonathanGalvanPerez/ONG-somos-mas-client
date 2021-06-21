@@ -17,7 +17,7 @@ const logoStyle = {
   _hover: { transform: 'scale(1.1)' },
   transitionProperty: 'all',
   transitionDuration: '500ms',
-  width: { base: '250px', md: '270px' },
+  width: { base: '230px', md: '250px' },
 };
 
 export default function Logo({...props}) {
