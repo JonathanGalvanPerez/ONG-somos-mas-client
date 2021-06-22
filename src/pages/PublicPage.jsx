@@ -6,6 +6,7 @@ import Home from '../components/Inicio';
 import Nosotros from '../components/Nosotros';
 import Contactos from '../components/Contact';
 import Novelties from './Novelties';
+import Testimonials from './Testimonials';
 import CardDetail from '../components/novelties/CardDetail';
 import Actividades from "../components/Actividades/ListaActividades";
 import ActividadId from '../components/Actividades/ActividadId';
@@ -37,6 +38,7 @@ export default function PublicPage() {
                     <Route exact path={'/nosotros'} component={Nosotros} />
                     <Route exact path={'/contacto'} component={Contactos} />
                     <Route exact path={'/novedades'} component={Novelties} />
+                    <Route exact path={'/testimonios'} component={Testimonials} />
                     <Route exact path={'/novedades/:id'} component={CardDetail} />
                     <Route exact path={'/actividades'} component={Actividades} />
                     <Route exact path={'/actividad/:id'} component={ActividadId} />
