@@ -1,10 +1,10 @@
 import React from 'react';
 import HeaderNavLink from './HeaderNavLink';
 import { Button } from '@chakra-ui/react';
-import { Box, Flex } from '@chakra-ui/layout';
+import { Box, Flex, Stack } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/transition';
 import { useSelector } from 'react-redux';
-import { isLoggedIn } from './../../../features/login/loginSlice';
+import { isAdmin, isLoggedIn } from './../../../features/login/loginSlice';
 import HeaderLogoutBtn from './HeaderLogoutBtn';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,6 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
 
     const navbarStyle = {
         d: 'block',
-        ml: isMobile ? 0 : 5,
         pos: isMobile ? 'absolute' : 'static',
         top: isMobile ? '100%' : '0',
         left: isMobile ? '0' : 'auto',
@@ -31,9 +30,9 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         spacing: 0
     };
     const buttonStyle = {
-        d: { base: 'flex', sm: 'none' },
+        d: { base: 'flex', md: 'none' },
         fontSize: '15px',
-        w: '40%',
+        w: {base: '80%', md: '40%'},
         my: '5px',
         fontWeight: '550',
         px: '0',
@@ -53,7 +52,7 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
     ];
 
     // Botones al no estar logueado
-    const guestButtons = (<>                    
+    const guestButtons = (<>
         <Button as={Link} to='/acceso'
         color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
         {...buttonStyle} >Log in</Button>
@@ -61,21 +60,28 @@ export default function HeaderNavbar({ show, toggleNav, isMobile }) {
         bgColor='#18A0FB' color='white' border='1px solid white'
         {...buttonStyle} >Registrate</Button>
     </>); 
-    
     // Botones al estar logueado
-    const memberButtons = (<HeaderLogoutBtn color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
-    {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>); 
+    const memberButtons = (<>
+    <HeaderLogoutBtn color='#18A0FB' border='1px solid #18A0FB' bgColor='black'
+    {...buttonStyle} >Cerrar sesión</HeaderLogoutBtn>
+    <Button as={Link} to='/backoffice'
+    color='#18A0FB' border='1px solid #18A0FB' bgColor='white'
+    {...buttonStyle} >Backoffice</Button></>);
 
     return (
         <Box {...navbarStyle} >
             <Collapse in={!isMobile || show} >
-                <Flex onClick={toggleNav} {...navItemsListStyle} >
+                <Flex {...navItemsListStyle} >
                     {navItems.map((navItem) => (
-                        <HeaderNavLink key={navItem.label} path={navItem.path} isMobile={isMobile} >
+                        <HeaderNavLink key={navItem.label} path={navItem.path} isMobile={isMobile}
+                            onClick={toggleNav}>
                             {navItem.label}
                         </HeaderNavLink>
                     ))}
-                    {_isLoggedIn ? memberButtons : guestButtons}
+                    <Stack align="center" justify="center" w="100%"
+                    direction={['column', 'row']} p={['3', '3', '0']} >
+                        {_isLoggedIn ? memberButtons : guestButtons}
+                    </Stack>
                 </Flex>
             </Collapse>
         </Box>

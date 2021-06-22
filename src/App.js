@@ -1,7 +1,4 @@
 import React from "react";
-import Footer from "./components/layout/footer";
-import Header from "./components/layout/header";
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import AllRoutes from './routes/routes'
 
 import Loader from "./components/Loading/Loader";
@@ -24,15 +21,8 @@ function App() {
 
   return (
     <div className="App">
+      <AllRoutes/>
       <Loader isLoading={loading} />
-      <Router>
-
-        <Header /> 
-        <AllRoutes/>
-        <Footer />
-
-      </Router>
-
     </div>
   );
 }

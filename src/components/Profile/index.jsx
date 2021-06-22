@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Center, Heading, Text } from '@chakra-ui/layout';
+import { Box, Heading, Text, VStack } from '@chakra-ui/layout';
 import ProfileForm from './ProfileForm'
 import DeleteAccount from './DeleteAccount'
 import ChangePassword from './ChangePassword'
+import { Stack } from '@chakra-ui/react';
 
 export default function Profile() {
 
@@ -14,31 +15,21 @@ export default function Profile() {
     }
 
     return (
-        <>
+        <VStack mx="auto" spacing={5} py="15px">
             <Box textAlign="center" mt={10}>
                 <Heading as="h1" size="xl" >
                     Mi perfil
                 </Heading>
             </Box>
-            <Center>
-                <Box mb={5} mt={4} width="60%" rounded="md" shadow="dark-lg">
-                    <Text as="u" fontSize="xl" ml={12} >Editar cuenta</Text>
-                    <Center>
-                        <Box w="90%" m={12} rounded="md" bg="white">
-                            <ProfileForm userData={userData} />
-                        </Box>
-                    </Center>
-                </Box >
-            </Center>
-            <Center>
-                <Box mb={5} textAlign="center" display={{ md: "flex" }} width="60%" shadow="inner">
-                    <Center marginLeft="auto" marginRight="auto">
-                        <ChangePassword />
-                        <DeleteAccount />
-                    </Center>
-                </Box >
-            </Center>
+            <VStack p="20px" width={{ base: "95%", md: "80%"}} rounded="md" shadow="dark-lg">
+                <Text as="u" fontSize="xl" textAlign="center" >Editar cuenta</Text>
+                <ProfileForm userData={userData} />
+            </VStack>
+            <Stack direction={{base: "column", md: "row"}} shadow="dark-lg">
+                <ChangePassword />
+                <DeleteAccount />
+            </Stack>
 
-        </ >
+        </VStack>
     )
 }

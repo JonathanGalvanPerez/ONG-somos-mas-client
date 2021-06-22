@@ -47,11 +47,6 @@ const confirm = async (title, text, confirmButtonText = 'Seguro', doneText = 'He
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            alerts.fire({
-                title: doneText,
-                confirmButtonText: 'Continuar',
-                icon: 'success'
-            });
             return true;
         } else
             return false;

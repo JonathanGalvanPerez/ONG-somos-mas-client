@@ -2,32 +2,14 @@ import React, { useState, useEffect } from 'react' ;
 import MaterialTable from 'material-table' ;
 import './activities.css'
 import * as FaIcons from 'react-icons/fa';
-
-//OT34-61...inicio
-import {makeStyles} from '@material-ui/core/styles';
-import FormActivities from '../../Actividades/FormActivities/FormActivities';
-// import theme from '@chakra-ui/theme';
-import Modal from './../../common/ModalWrapper';
 import { useDisclosure } from '@chakra-ui/react';
+import FormActivities from '../../Actividades/FormActivities/FormActivities';
+import Modal from './../../common/ModalWrapper';
+import Alert from '../../alertService/AlertService';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { API_BASE_URL } from './../../../app/config';
 import { getActivities } from './getActivities';
-
-const useStyles=makeStyles((theme) =>({
-
-    modal:{
-        position:'absolute',
-        width:400,
-        backgroundColor:'white',
-        border:'2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2,4,3),  //padding: "16px 32px 24px"       
-        //mostrar en medio de la pantalla
-        top:'50%',
-        left:'50%',
-        transform: 'translate(-50%, -50%)'
-    }
-
-}))
-//OT34-61...fin
 
 
 function Actividades_Backoffice() {
@@ -54,23 +36,37 @@ function Actividades_Backoffice() {
     ];
 
     const [data, setData] = useState([]);
-
+    const [editData, setEditData] = useState(null);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const token = useSelector(state => state.login.token);
     useEffect(() => {
         getActivities().then((result) => {
             setData(result);
         })
-    }, [])
-    
-    //OT34-61...inicio
-    const styles = useStyles();
-    const [editData, setEditData] = useState(null);
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    }, []);
+
     const handleCloseModal = (success) => {
         if(success)
             getActivities().then(result =>  setData(result));
         onClose();
     }
-
+    const handleDeleteButton = async (activityData) => {
+        const confirmed = await Alert.confirm('Esta seguro de querer eliminar esta actividad?', 'Esta accion es irreversible');
+        try{
+            if(confirmed) {
+                const result = await axios.delete(API_BASE_URL + '/activities/' + activityData.id, {
+                    headers: { Authorization: 'Bearer ' + token }
+                });
+                if (result)
+                    Alert.success('Hecho', 'La actividad fue eliminada');
+                else
+                    Alert.error('Ups', 'Parece que hubo un error. Intentelo de nuevo mas tarde');
+            }
+        } catch(err) {
+            console.log(err)
+            Alert.error('Ups', 'Parece que hubo un error. Intentelo de nuevo mas tarde');
+        }
+    }
         return (
             <div  className='materialTable'>
                 <MaterialTable 
@@ -89,7 +85,7 @@ function Actividades_Backoffice() {
                         {
                             icon:FaIcons.FaTrash ,
                             tooltip:'Eliminar',
-                            onClick:(event, rowData) => alert ('vas a eliminar: ' + rowData.name)
+                            onClick:(event, rowData) => handleDeleteButton(rowData)
                         }
                     ]}
                     //Agregamos las acciones en la ultima columna
@@ -104,11 +100,9 @@ function Actividades_Backoffice() {
                     }}
                 />
             
-            {/* //OT34-61...inicio */}
-            <Modal isOpen={isOpen} onClose={onClose} label={data? 'Crear Actividad': 'Editar Actividad'}>
-                <FormActivities data={editData} onClose={handleCloseModal} />
-            </Modal>
-            {/* //OT34-61...fin */}
+                <Modal isOpen={isOpen} onClose={onClose} label={editData? 'Crear Actividad': 'Editar Actividad'}>
+                    <FormActivities data={editData} onClose={handleCloseModal} />
+                </Modal>
 
             </div>                   
         )

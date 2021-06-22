@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@chakra-ui/button'
-import { Container, Text, Stack } from '@chakra-ui/layout'
+import { Text, VStack } from '@chakra-ui/layout'
 import AlertService from '../alertService/AlertService'
 
 function ChangePassword() {
@@ -24,25 +24,19 @@ function ChangePassword() {
     }
 
     return (
-        <Stack spacing={12} mt={12} ml={12} mb={4}>
-
+        <VStack spacing={5} p="20px">
             <Text fontSize="1rem">CONTRASEÑA</Text>
-
-            <Container width="100%">
-                <Button
-                    colorScheme="blue"
-                    onClick={handleClick}
-                    width="auto"
-                    textAlign="center"
-                    display="inline-block"
-                    p={3}
-                >
-                    Cambiar contraseña
+            <Button
+                colorScheme="blue"
+                onClick={handleClick}
+                width="auto"
+                textAlign="center"
+                display="inline-block"
+                p={3}
+            >
+                Cambiar contraseña
             </Button>
-
-            </Container>
-
-        </Stack>
+        </VStack>
     )
 }
 
