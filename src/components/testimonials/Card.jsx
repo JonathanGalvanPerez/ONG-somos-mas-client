@@ -1,14 +1,9 @@
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { Box, Spacer, Text, Button, Flex } from '@chakra-ui/react'
 import React from 'react'
-import { useHistory, useRouteMatch } from 'react-router-dom';
-
-export default function Card({ testimonio }) {
-    const history = useHistory();
-    const match = useRouteMatch();
+export default function Card({testimonio}) {
 
     const handleEditClick = () => {
-        history.push(`${match.url}/form`,  { testimonio })
     }
 
     const handleDeleteClick = () => {
@@ -22,15 +17,13 @@ export default function Card({ testimonio }) {
             borderRadius="lg"
             boxShadow="lg"
         >
-
             <Text
                 p="2.5"
                 textTransform="uppercase"
                 fontSize="2xl"
                 textShadow="-2px 0px 2px #FAFA88"
                 fontWeight="semibold"
-            >
-
+            >   
                 {testimonio.name}
 
             </Text>
@@ -54,10 +47,12 @@ export default function Card({ testimonio }) {
                 </Text>
             </Box>
 
+         {   window.location.pathname === '/backoffice/testimonials' &&
             <Flex >
 
                 <Spacer />
-
+                
+                
                 <Button bg="orange.200" p="1" mx="1" onClick={handleEditClick}>
                     <EditIcon />
                 </Button>
@@ -67,7 +62,7 @@ export default function Card({ testimonio }) {
                 </Button>
 
 
-            </Flex>
+            </Flex>}
             
         </Box>
     )
