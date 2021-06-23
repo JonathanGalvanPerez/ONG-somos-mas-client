@@ -36,10 +36,10 @@ export default function PublicPage() {
                     <RouteTransition path={'/inicio'} component={Home} />
                     <RouteTransition path={'/nosotros'} component={Nosotros} />
                     <RouteTransition path={'/contacto'} component={Contactos} />
-                    <RouteTransition path={'/novedades'} component={Novelties} />
                     <RouteTransition path={'/novedades/:id'} component={CardDetail} />
+                    <RouteTransition path={'/novedades'} component={Novelties} />
+                    <RouteTransition path={'/actividades/:id'} component={ActividadId} />
                     <RouteTransition path={'/actividades'} component={Actividades} />
-                    <RouteTransition path={'/actividad/:id'} component={ActividadId} />
                     <RouteTransition path={'/contribuye'} component={Contribuye} />
                     <Redirect path={'/**'} to='/inicio' />
                 </Switch>
