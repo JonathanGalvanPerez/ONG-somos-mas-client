@@ -69,13 +69,15 @@ export default function Carousel() {
                                 key={index}
                                 transitionProperty="all"
                                 transitionDuration="500ms"
-                                boxShadow="2xl" rounded="md"
+                                boxShadow="2xl"
+                                borderRadius="md"
+                                overflow="hidden"
                                 _hover={{
-                                    transform: 'scale(1.03)',
                                     '.textBox': {
                                         height: 'max-content',
                                         opacity: '1',
-                                        visibility: 'visible'
+                                        visibility: 'visible',
+                                        pb: '15px'
                                     }
                                 }}
 
@@ -85,23 +87,17 @@ export default function Carousel() {
                                     bg={data.logoColors[index]}
                                     opacity="0"
                                     visibility="hidden"
-                                    //OT34-105...inicio
-                                        height="0vh" 
-                                        p="0"
-                                    //OT34-105...fin
-                                    overflow="hidden"
-                                    rounded="sm"
+                                    height="0px" 
+                                    p="0px"
                                     transition='visibility 0s, opacity 500ms linear'
 
                                 >
 
                                     <Box
-                                        rounded="md"
                                         opacity="95%"
                                         bg="gray.800"
                                         paddingY="2"
                                         paddingX="5"
-
                                     >
 
                                         <Text
