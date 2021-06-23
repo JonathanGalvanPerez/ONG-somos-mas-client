@@ -1,39 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Text, Grid, Stack, Button, VStack } from "@chakra-ui/react";
-//imágenes de prueba, luego eliminar cuando no sean necesarias
-import Image1 from "../../../assets/images/novedad1.jpg";
-import Image2 from "../../../assets/images/novedad2.jpg";
-import Image3 from "../../../assets/images/novedad3.jpg";
-import Image4 from "../../../assets/images/novedad4.jpg";
+import axios  from 'axios';
+import { API_BASE_URL } from './../../../app/config';
+import { Link } from 'react-router-dom';
 
 export default function UltimasNovedades() {
-  //datos de prueba
-  const novedades = [
-    {
-      title: "novedad 1",
-      id: 1,
-      image: Image1,
-      url: "ej/novedades/1",
-    },
-    {
-      title: "novedad 2",
-      id: 2,
-      image: Image2,
-      url: "ej/novedades/2",
-    },
-    {
-      title: "novedad 3",
-      id: 3,
-      image: Image3,
-      url: "ej/novedades/3",
-    },
-    {
-      title: "novedad 4",
-      id: 4,
-      image: Image4,
-      url: "ej/novedades/4",
-    },
-  ];
+  const [novelties, setNovelties] = useState([])
+  useEffect(() => {
+    (async function getEntries() {
+      const entries = await axios.get(`${API_BASE_URL}/news`);
+      setNovelties(entries.data.slice(0, 5));
+    })();
+  }, [])
 
   return (
     <Box
@@ -65,12 +43,12 @@ export default function UltimasNovedades() {
           },
         }}
       >
-        {novedades.map((novedad) => (
+        {novelties.map((novedad) => (
           <VStack
             key={novedad.id}
             h="full" w="full"
             justifySelf="center"
-            backgroundImage={novedad.image}
+            backgroundImage={API_BASE_URL + '/' + novedad.image}
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
@@ -84,9 +62,11 @@ export default function UltimasNovedades() {
             }}
           >
             <Text color="white" fontSize="1.5em">
-              {novedad.title}
+              {novedad.name}
             </Text>
             <Button
+              as={Link}
+              to={"/novedades/"+novedad.id}
               border="1px"
               height="30px"
               borderColor="#18A0FB"
@@ -101,6 +81,8 @@ export default function UltimasNovedades() {
       </Grid>
       <Stack mx="auto" my="2em">
         <Button
+          as={Link}
+          to="/novedades"
           border="1px"
           borderColor="#18A0FB"
           bg="white"

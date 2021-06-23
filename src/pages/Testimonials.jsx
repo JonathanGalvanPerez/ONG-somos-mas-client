@@ -19,7 +19,7 @@ export default function Testimonials() {
 
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box mt="3" display="flex" justifyContent="center" w="100%">
 
       <Box
         bg="blue.100" h="max-content"
@@ -27,7 +27,10 @@ export default function Testimonials() {
 
         <Box bg="blue.200" textAlign="center">
 
-          <Text fontSize="5xl" as="em">
+          <Text fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+            align="center" fontWeight="bold"
+            mb={2} w="100%" textTransform="uppercase"
+            textShadow="1.5px 2px 3px gray">
             Testimonios
           </Text>
 

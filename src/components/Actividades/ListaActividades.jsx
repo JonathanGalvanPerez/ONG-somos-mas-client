@@ -58,7 +58,7 @@ const ActividadId = () => {
   }, []);
 
   // On read more button or activity card click
-  const handleReadMoreClick = (id) => history.push(`/actividad/${id}`);
+  const handleReadMoreClick = (id) => history.push(`/actividades/${id}`);
 
   return (
     <Container

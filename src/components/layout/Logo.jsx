@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 
 // Logo style
 const logoStyle = {
-  _hover: { transform: 'scale(1.1)' },
+  _hover: { transform: 'scale(1.05)' },
   transitionProperty: 'all',
   transitionDuration: '500ms',
   width: { base: '230px', md: '250px' },

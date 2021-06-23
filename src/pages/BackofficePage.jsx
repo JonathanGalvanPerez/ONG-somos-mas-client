@@ -8,7 +8,7 @@ import Profile from '../components/Profile';
 import EditOrganization from '../components/Backoffice/edit-organization/edit-organization'
 import ContactList from '../components/ContactList/index'
 import News from '../components/News'
-import Testimonials from "../components/Backoffice/Testimonials";
+import Testimonials from "../pages/Testimonials";
 import BackofficeUsers from "../components/BackofficeUsers/index";
 import CategoryList from "../components/Categorias/CategoryList/CategoryList";
 import Activities from "../components/Backoffice/activities_backoffice/activities";
