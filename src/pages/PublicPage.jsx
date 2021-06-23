@@ -6,6 +6,7 @@ import Home from '../components/Inicio';
 import Nosotros from '../components/Nosotros';
 import Contactos from '../components/Contact';
 import Novelties from './Novelties';
+import Testimonials from '../pages/Testimonials';
 import CardDetail from '../components/novelties/CardDetail';
 import Actividades from "../components/Actividades/ListaActividades";
 import ActividadId from '../components/Actividades/ActividadId';
@@ -38,6 +39,7 @@ export default function PublicPage() {
                     <RouteTransition path={'/contacto'} component={Contactos} />
                     <RouteTransition path={'/novedades/:id'} component={CardDetail} />
                     <RouteTransition path={'/novedades'} component={Novelties} />
+                    <RouteTransition path={'/testimonios'} component={Testimonials} />
                     <RouteTransition path={'/actividades/:id'} component={ActividadId} />
                     <RouteTransition path={'/actividades'} component={Actividades} />
                     <RouteTransition path={'/contribuye'} component={Contribuye} />
