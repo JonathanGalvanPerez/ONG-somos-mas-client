@@ -24,6 +24,7 @@ export default function Carousel() {
     }
     
     const { slides } = useSelector(publicData);
+    const listSlides = slides ? slides : [];
     const publicloading = useSelector(publicLoading);
     const isLoading = publicloading === 'pending';
     return (
@@ -35,7 +36,7 @@ export default function Carousel() {
                 key = {slides?.length}
             >
                 {
-                    slides.map(({ imageUrl, text }, index) => {
+                    listSlides.map(({ imageUrl, text }, index) => {
                         return (
 
                             <Box
