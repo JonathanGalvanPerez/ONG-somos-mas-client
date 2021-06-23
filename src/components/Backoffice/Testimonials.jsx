@@ -38,18 +38,22 @@ export default function Testimonials() {
       <Box
         bg="blue.100" h="max-content"
        
-        w={{ base: "100%", lg: "80%" }} >
+        w={{ base: "100%", lg: "80%" }}
+        
+        borderRadius="xl"
+        boxShadow="md"
 
-        <Box bg="#9AC9FB" textAlign="center" d="flex" justifyContent="center" alignItems="center">
+        >  
+
+        <Box bg="#9AC9FB" textAlign="center" d="flex" justifyContent="center" alignItems="center" borderTopRadius="lg">
 
           <Text 
           color="#474645"
           justifySelf="self-end"
           fontWeight="bold"
-          as="i"
-          fontSize={{ base: "3xl", md:"4xl", lg: "5xl" }}
+          fontSize={{ base: "4xl", md:"5xl", lg: "5xl" }}
           textTransform="uppercase"
-          textShadow="2px 2px white"
+          textShadow="-2px 0px 2px #FAFA88"
            >
             Testimonials
           </Text>
