@@ -58,7 +58,7 @@ export default function RegisterPage()
 
   return (
     <Center
-      h={{ base: '100%', md: '100vh' }}
+      // h={{ base: '100%', md: '100vh' }}
       bg='gray.100'
       w='100%'
       d='flex'
