@@ -12,38 +12,38 @@ import ActividadId from '../components/Actividades/ActividadId';
 import Contribuye from '../components/Contribuye';
 import Header from '../components/layout/header/index';
 import Footer from '../components/layout/footer';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 
-const Animator = ({ children }) => {
-  const location = useLocation();
-
-  const opacityRoutes = ["/acceso", "/registro"];
-  const isOpacityRoute = opacityRoutes.includes(location.pathname);
-
+const RouteTransition = (props) => {
   return(
-    <motion.div initial={{x:isOpacityRoute ? 0 : -1000, opacity: isOpacityRoute ? 0 : 1}} animate={{x:0, opacity: 1}} transition={{duration:0.8}} key={location.pathname}>
-      {children}
-    </motion.div>
-  );
+      <motion.div
+        initial={{x:-100, opacity: 0}}
+        animate={{x:0, opacity: 1}}
+        exit={{x:100, opacity: 0}}
+        transition={{ type: 'spring', duration: 0.4 }}>
+          <Route exact {...props} />
+      </motion.div>
+    );
 };
 
 export default function PublicPage() {
+  const location = useLocation();
     return (
         <>
             <Header />
-            <Animator>
-                <Switch>
-                    <Route exact path={'/inicio'} component={Home} />
-                    <Route exact path={'/nosotros'} component={Nosotros} />
-                    <Route exact path={'/contacto'} component={Contactos} />
-                    <Route exact path={'/novedades'} component={Novelties} />
-                    <Route exact path={'/novedades/:id'} component={CardDetail} />
-                    <Route exact path={'/actividades'} component={Actividades} />
-                    <Route exact path={'/actividad/:id'} component={ActividadId} />
-                    <Route exact path={'/contribuye'} component={Contribuye} />
+            <AnimatePresence exitBeforeEnter initial={false}>
+                <Switch location={location} key={location.key}>
+                    <RouteTransition path={'/inicio'} component={Home} />
+                    <RouteTransition path={'/nosotros'} component={Nosotros} />
+                    <RouteTransition path={'/contacto'} component={Contactos} />
+                    <RouteTransition path={'/novedades'} component={Novelties} />
+                    <RouteTransition path={'/novedades/:id'} component={CardDetail} />
+                    <RouteTransition path={'/actividades'} component={Actividades} />
+                    <RouteTransition path={'/actividad/:id'} component={ActividadId} />
+                    <RouteTransition path={'/contribuye'} component={Contribuye} />
                     <Redirect path={'/**'} to='/inicio' />
                 </Switch>
-            </Animator>
+            </AnimatePresence>
             <Footer />
         </>
     )
