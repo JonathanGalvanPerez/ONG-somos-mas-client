@@ -58,7 +58,7 @@ export default function RegisterPage()
 
   return (
     <Center
-      // h={{ base: '100%', md: '100vh' }}
+      h='100%'
       bg='gray.100'
       w='100%'
       d='flex'
@@ -67,7 +67,7 @@ export default function RegisterPage()
       justifyContent='center'
       alignItems='center'>
       {/* Logo */}
-      <Logo onClick={handleLogoClick} cursor='pointer' mb='35px' mt={{ base: '50px', md: '0px' }} />
+      <Logo onClick={handleLogoClick} cursor='pointer' mb='20px' mt={{ base: '30px', md: '10px' }} />
 
       {/* Box */}
       <AuthBox maxW='md' position='relative'>
