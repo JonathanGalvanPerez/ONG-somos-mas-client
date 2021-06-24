@@ -7,12 +7,12 @@ import { ModalBody } from '@chakra-ui/modal';
 
 export default function ModalWrapper({ label, isOpen, onClose, children }) {
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size="full">
+        <Modal isOpen={isOpen} onClose={onClose} size="2xl">
             <ModalOverlay />
-            <ModalContent h="max-content" bg="#9ac9fb" w={{ base: "95%", lg: "80%" }}>
+            <ModalContent>
                 <ModalHeader textAlign="center" as="ins" fontSize={{ base: "xl", md: "1xl", lg: "3xl" }}>{label}</ModalHeader>
                 <ModalCloseButton />
-                <ModalBody>
+                <ModalBody p={5}>
                     {children}
                 </ModalBody>
             </ModalContent>
