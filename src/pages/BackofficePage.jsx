@@ -22,22 +22,24 @@ export default function BackofficePage() {
     const _isAdmin = useSelector(isAdmin);
     const { isOpen, onToggle } = useDisclosure();
     return (
-        <Box>
+        <Box bg="#F5F6F9" h="100vh">
             <Navbar isOpen={isOpen} onToggle={onToggle} isAdmin={_isAdmin} />
-            <Flex w="100%" alignItems="stretch">
+            <Flex w="100%">
                 <Sidebar isOpen={isOpen} isAdmin={_isAdmin} onToggle={onToggle} />
-                <Switch>
-                    <Route exact path="/backoffice/perfil" component={Profile} />
-                    <BackofficeRoute exact path="/backoffice/activities" component={Activities} />
-                    <BackofficeRoute exact path="/backoffice/users" component={BackofficeUsers} />
-                    <BackofficeRoute exact path="/backoffice/news" component={News} />
-                    <BackofficeRoute exact path="/backoffice/contacts" component={ContactList} />
-                    <BackofficeRoute exact path="/backoffice/testimonials" component={Testimonials} />
-                    <BackofficeRoute exact path="/backoffice/edit-organization" component={EditOrganization} />
-                    <BackofficeRoute exact path="/backoffice/categories" component={CategoryList} />
-                    <BackofficeRoute exact path="/backoffice/edit-home" component={EditHomeForm} />
-                    <Redirect path={'/**'} to='/backoffice/perfil' />
-                </Switch>
+                <Box w="full" h="full" pt="30px" ml={{base: "0px", md: "300px"}}>
+                    <Switch>
+                        <Route exact path="/backoffice/perfil" component={Profile} />
+                        <BackofficeRoute exact path="/backoffice/activities" component={Activities} />
+                        <BackofficeRoute exact path="/backoffice/users" component={BackofficeUsers} />
+                        <BackofficeRoute exact path="/backoffice/news" component={News} />
+                        <BackofficeRoute exact path="/backoffice/contacts" component={ContactList} />
+                        <BackofficeRoute exact path="/backoffice/testimonials" component={Testimonials} />
+                        <BackofficeRoute exact path="/backoffice/edit-organization" component={EditOrganization} />
+                        <BackofficeRoute exact path="/backoffice/categories" component={CategoryList} />
+                        <BackofficeRoute exact path="/backoffice/edit-home" component={EditHomeForm} />
+                        <Redirect path={'/**'} to='/backoffice/perfil' />
+                    </Switch>
+                </Box>
             </Flex>
         </Box>
     )
