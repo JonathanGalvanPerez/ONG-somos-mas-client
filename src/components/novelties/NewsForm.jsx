@@ -17,6 +17,7 @@ import { getToken } from './../../features/login/loginSlice';
 import { addNew } from './../../features/news/addNewThunk';
 import { fetchNewData } from './../../features/news/fetchNewThunk';
 import Alert from '../alertService/AlertService';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 export default function NewsForm({ data, onClose }) {
 
@@ -68,29 +69,35 @@ export default function NewsForm({ data, onClose }) {
                 token,
                 values,
                 id: data.id
-            })).then(() => {
+            }))
+            .then(unwrapResult)
+            .then((data) => {
+                console.log("data devuelta por edit: ", data)
                 actions.setSubmitting(false);
-                dispatch(fetchNewData());
+                onClose();
+                if(data?.success){
+                    Alert.success("Listo", "La novedad ha sido modificada exitosamente");
+                    dispatch(fetchNewData());
+                } else
+                    Alert.error("Hubo un problema", "No se pudo modificar la novedad correctamente"); 
+            }).catch(() => {
+                actions.setSubmitting(false);
+                onClose();
+                Alert.error("Hubo un problema", "No se pudo modificar la novedad correctamente");
+            })
+        else{
+            dispatch(addNew({
+                token,
+                values
+            }))
+            .then(() => {
+                actions.setSubmitting(false);
                 onClose();
                 Alert.success("Listo", "La novedad ha sido creada exitosamente");
             }).catch(() => {
                 actions.setSubmitting(false);
                 onClose();
                 Alert.error("Hubo un problema", "No se pudo crear la novedad correctamente");
-            })
-        else{
-            dispatch(addNew({
-                token,
-                values
-            })).then(() => {
-                actions.setSubmitting(false);
-                dispatch(fetchNewData());
-                onClose();
-                Alert.success("Listo", "La novedad ha sido modificada exitosamente");
-            }).catch(() => {
-                actions.setSubmitting(false);
-                onClose();
-                Alert.error("Hubo un problema", "No se pudp modificar la novedad correctamente");
             });
     }
 }
