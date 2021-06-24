@@ -21,7 +21,7 @@ export default function Profile() {
                     Mi perfil
                 </Heading>
             </Box>
-            <VStack py="30px" width={{ base: "95%", md: "70%", xl: "35%"}} rounded="lg"  shadow="sm" bg="white">
+            <VStack py="30px" width={{ base: "95%", md: "70%", xl: "35%"}} rounded="lg"  shadow="lg" bg="white">
                 <Text as="u" fontSize="xl" textAlign="center" >Información</Text>
                 <ProfileForm userData={userData} />
             </VStack>
