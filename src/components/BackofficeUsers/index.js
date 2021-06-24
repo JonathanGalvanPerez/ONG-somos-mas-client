@@ -59,7 +59,8 @@ export default function BackofficeUsers() {
       <Box
         bg="#F5F6F9"
         mx="auto"
-        w="full"
+        w="97%"
+        mt={10}
         color="#18A0FB"
       >
         <MaterialTable
