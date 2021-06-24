@@ -17,10 +17,6 @@ export default function ListaContactos() {
 
     useEffect(() => {
         async function fetchData() {
-            const token = await authenticate()
-            if (token) {
-                localStorage.setItem('token', JSON.stringify(token.token))
-            }
 
             const data = await getContactList()
             if (data) {
@@ -31,10 +27,10 @@ export default function ListaContactos() {
     }, [])
 
     return (
-        <div>
-            <Center><Heading mb={3} mt={-10}>Contactos</Heading></Center>
-            <Center>
-                <Box overflow="auto" mb={5} display={{ md: "flex" }} width="65%" rounded="md" shadow="dark-lg">
+        <Center pt="5rem" d="flex" flexDirection="column">
+            <Heading mb={3} mt={-10}>Contactos</Heading>
+            
+                <Box overflow="auto" mb={5} display={{ md: "flex" }} width="65%" rounded="md" shadow="xl">
                     <Table variant="striped" bgColor={"#9AC9FB"}>
                         <Thead>
                             <Tr>
@@ -61,7 +57,7 @@ export default function ListaContactos() {
                         </Tbody>
                     </Table>
                 </Box >
-            </Center>
-        </div>
+          
+        </Center>
     )
 }

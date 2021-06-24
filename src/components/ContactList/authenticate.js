@@ -11,7 +11,7 @@ export const authenticate = async () => {
         return res.data;
     } catch (err) {
         console.error(err);
-        AlertService.error("Error", "Hubo un problema al intentar realizar la operación")
+        // AlertService.error("Error", "Hubo un problema al intentar realizar la operación")
     }
 }
 
