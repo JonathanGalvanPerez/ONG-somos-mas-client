@@ -25,7 +25,8 @@ function Actividades_Backoffice() {
         },
         {
             title:'Contenido',
-            field:'content'
+            field:'content',
+            render: rowData => rowData.content.slice(0, 50) + "..."
         },
         {
             title:'Eliminado',
