@@ -93,7 +93,7 @@ const Sidebar = ({isOpen, isAdmin, onToggle}) =>{
             </>
             : null
             }
-            <Button onClick={logOutHandler} colorScheme="red" {...navLinkStyle}>
+            <Button colorScheme="red" {...navLinkStyle} onClick={logOutHandler} >
                 <Icon as={FaIcons.FaPowerOff} /> <Text {...navLinkLabelStyle}>Cerrar Sesión</Text>
             </Button>
         </VStack>
