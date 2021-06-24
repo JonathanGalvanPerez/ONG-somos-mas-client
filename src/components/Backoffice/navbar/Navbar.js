@@ -14,6 +14,7 @@ const Navbar = ({ isOpen, onToggle, isAdmin }) => {
         justify: "center",
         pos: "fixed",
         bg: {base:"gray.100", md:"transparent"},
+        shadow: {base:"lg", md:"none"},
         top: "0px",
         zIndex: "6",
         py: "4px",
@@ -36,8 +37,8 @@ const Navbar = ({ isOpen, onToggle, isAdmin }) => {
             <Link to="/inicio">
                 <Image h='60px' py='4px' px='15px' d={{base:"flex", md:"none"}} src={image || logo} />
             </Link>
-            <HStack pos="absolute" right="10px" spacing={3}>
-                <Text as="h1" fontSize="lg" fontWeight="bold" d={{base: "none", sm: "block"}}>
+            <HStack pos="absolute" right="16px" spacing={3}>
+                <Text as="h1" fontSize="lg" fontWeight="bold" d={{base: "none", md: "block"}}>
                     {isAdmin ? 'Administrador' : 'Usuario'}
                     </Text>
                 <Link to="/backoffice/editar-usuario" >
