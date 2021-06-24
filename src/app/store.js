@@ -3,9 +3,8 @@ import publicInfoReducer from "./publicInfoSlice";
 import loginReducer from "../features/login/loginSlice";
 import usersInfoReducer from "./usersInfoSlice";
 import activityReducer from "../features/activities/activitySlice";
-import newsDeleteReducer from "../features/news/newsDeleteSlice";
-import newsPutReducer from "../features/news/newsPutSlice";
 import categoryReducer from "../features/categories/categorySlice";
+import newReducer from "../features/news/newSlice";
 
 const preloadedState = {
   login: {
@@ -19,8 +18,7 @@ const store = configureStore({
     publicInfo: publicInfoReducer,
     login: loginReducer,
     activity: activityReducer,
-    newsDelete: newsDeleteReducer,
-    newsPut: newsPutReducer,
+    new: newReducer,
     usersInfo: usersInfoReducer,
     category: categoryReducer
 
