@@ -33,7 +33,7 @@ export default function Carousel() {
                 className='owl-theme'
                 loop margin={5}
                 responsive={responsiveBreakpoints}
-                key = {slides?.length}
+                key = {listSlides?.length}
             >
                 {
                     listSlides.map(({ imageUrl, text }, index) => {

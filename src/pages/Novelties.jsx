@@ -54,7 +54,7 @@ export default function Novelties() {
                   transitionDuration: '0.5s',
                   borderWidth: "4px", borderColor: "teal.300"
                 }}>
-                  <Card  imageUrl={image} index={index} createAt={moment(createAd).format('LL')} title={name} />
+                  <Card  imageUrl={API_BASE_URL + '/' + image} index={index} createAt={moment(createAd).format('LL')} title={name} />
                 </GridItem>
 
               </Link>
