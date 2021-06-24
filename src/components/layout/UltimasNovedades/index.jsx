@@ -9,7 +9,7 @@ export default function UltimasNovedades() {
   useEffect(() => {
     (async function getEntries() {
       const entries = await axios.get(`${API_BASE_URL}/news`);
-      setNovelties(entries.data.slice(0, 5));
+      setNovelties(entries.data.slice(0, 4));
     })();
   }, [])
 

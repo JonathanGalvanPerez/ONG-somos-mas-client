@@ -54,7 +54,7 @@ export default function CategoriasForm({ data, onClose }) {
         }
     }
     return (
-        <Box>
+        <Box w={{ base: "100%", lg: "85%" }} bg="gray.100" p="5" borderRadius="lg" >
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                 {(props) => (
                     <Form>
