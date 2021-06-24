@@ -11,9 +11,10 @@ export const fetchUsersData = createAsyncThunk(
   "usersInfo/fetchUsersData",
   async (_, thunkAPI) => {
     try {
+      const token = JSON.parse(localStorage.getItem("org_token"))
       const { data } = await axios.get(`${API_BASE_URL}/users`, {
         headers: {
-          authorization: `Bearer ${TOKEN}`,
+          authorization: `Bearer ${token}`,
         },
       });
       return data;

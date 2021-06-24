@@ -134,20 +134,21 @@ const News = () => {
       {" "}
       {/* Cada vez que se elimina un news se vuelve a solicitar informacion a la api  */}
       {/* {deleteStatus.status==='success'?consultarAPi() : null} */}
-      <Box w="100%" p="5px">
-        <Flex w="100%" flexDirection="column" justify="space-between" align={{base: "center", sm: "flex-end"}} px="5px">
+      <Box w="100%" p="5px" mt="8">
+        <Flex w="100%" justify="center" alignItems="center" px="5px">
           <Text w="100%" fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
             my={2} textShadow="1.5px 2px 3px gray">
             Gestionar Novedades</Text>
               
             <Button
               onClick={handleCreateButton}
-              bgColor="#fafa88" w="max-content" py="2"
+              bgColor="#fafa88"  py="2"
               border="1px solid gray"
+              fontSize="sm"
               _hover={{ border: "3px solid black" }}
             >
-              <AddIcon m="1" />
-              <Text fontSize="md">
+              <AddIcon m="1"  />
+              <Text >
                 CREAR NOVEDAD
               </Text>
             </Button>

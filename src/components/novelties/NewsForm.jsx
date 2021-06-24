@@ -105,7 +105,7 @@ export default function NewsForm({ data, onClose }) {
 
     return (
         <Center  >
-            <Box w={{ base: "100%", lg: "85%" }} bg="gray.100" p="5" borderRadius="lg" >
+            <Box p="5" borderRadius="lg" >
                 <Formik
                     initialValues={initialValues}
                     onSubmit={onSubmit}
@@ -155,6 +155,7 @@ export default function NewsForm({ data, onClose }) {
                                     name="content"
                                     editor={ClassicEditor}
                                     data={values.content}
+                                    config={{height: "500px"}}
                                     onChange={(event, editor) => {
                                         const textEditor = editor.getData();
                                         setValues({ ...values, content: textEditor });

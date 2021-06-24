@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { API_BASE_URL } from './../../../app/config';
 import { getActivities } from './getActivities';
+import { Container } from '@chakra-ui/layout';
 
 
 function Actividades_Backoffice() {
@@ -25,7 +26,8 @@ function Actividades_Backoffice() {
         },
         {
             title:'Contenido',
-            field:'content'
+            field:'content',
+            render: rowData => rowData.content.slice(0, 50) + "..."
         },
         {
             title:'Eliminado',
@@ -68,43 +70,45 @@ function Actividades_Backoffice() {
         }
     }
         return (
-            <div  className='materialTable'>
-                <MaterialTable 
-                    columns={columnas}
-                    data = {data}
-                    title = 'Actividades'
-                    actions={[
-                        {
-                            icon:FaIcons.FaEdit ,
-                            tooltip:'Editar',
-                            onClick:(event, rowData) => {
-                                setEditData(rowData);
-                                onOpen();
+            <Container mt="40px" maxW="full">
+                <div  className='materialTable'>
+                    <MaterialTable 
+                        columns={columnas}
+                        data = {data}
+                        title = 'Actividades'
+                        actions={[
+                            {
+                                icon:FaIcons.FaEdit ,
+                                tooltip:'Editar',
+                                onClick:(event, rowData) => {
+                                    setEditData(rowData);
+                                    onOpen();
+                                }
+                            },
+                            {
+                                icon:FaIcons.FaTrash ,
+                                tooltip:'Eliminar',
+                                onClick:(event, rowData) => handleDeleteButton(rowData)
                             }
-                        },
-                        {
-                            icon:FaIcons.FaTrash ,
-                            tooltip:'Eliminar',
-                            onClick:(event, rowData) => handleDeleteButton(rowData)
-                        }
-                    ]}
-                    //Agregamos las acciones en la ultima columna
-                    options={{
-                        actionsColumnIndex:-1
-                    }}
-                    //cambiamos el titulo de la ultima columna 
-                    localization = {{
-                        header:{
-                            actions : 'Acciones'
-                        }
-                    }}
-                />
-            
-                <Modal isOpen={isOpen} onClose={onClose} label={editData? 'Crear Actividad': 'Editar Actividad'}>
-                    <FormActivities data={editData} onClose={handleCloseModal} />
-                </Modal>
+                        ]}
+                        //Agregamos las acciones en la ultima columna
+                        options={{
+                            actionsColumnIndex:-1
+                        }}
+                        //cambiamos el titulo de la ultima columna 
+                        localization = {{
+                            header:{
+                                actions : 'Acciones'
+                            }
+                        }}
+                    />
+                
+                    <Modal isOpen={isOpen} onClose={onClose} label={editData? 'Crear Actividad': 'Editar Actividad'}>
+                        <FormActivities data={editData} onClose={handleCloseModal} />
+                    </Modal>
 
-            </div>                   
+                </div>       
+            </Container>            
         )
 
 }

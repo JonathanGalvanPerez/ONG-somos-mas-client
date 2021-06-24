@@ -58,7 +58,7 @@ export default function RegisterPage()
 
   return (
     <Center
-      h='100%'
+      h='100vh'
       bg='gray.100'
       w='100%'
       d='flex'

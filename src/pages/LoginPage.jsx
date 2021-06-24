@@ -61,7 +61,7 @@ export default function LoginPage() {
 
   return (
     <Center
-      h="100%"
+      h="100vh"
       bg='gray.100'
       w='100%'
       d='flex'

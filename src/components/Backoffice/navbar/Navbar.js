@@ -12,11 +12,13 @@ const Navbar = ({ isOpen, onToggle, isAdmin }) => {
     const navbarStyle = {
         w: "100%",
         justify: "center",
-        h: "10vh",
-        bgColor: "white",
-        pos: "sticky",
+        pos: "fixed",
+        bg: {base:"white", md:"transparent"},
+        shadow: {base:"lg", md:"none"},
         top: "0px",
-        zIndex: "8"
+        zIndex: "6",
+        py: "4px",
+        h:"60px"
     }
     const toggleStyle = {
         pos: "absolute",
@@ -28,14 +30,14 @@ const Navbar = ({ isOpen, onToggle, isAdmin }) => {
     };
     return (
         <HStack {...navbarStyle} >
-            <Button onClick={onToggle} {...toggleStyle} >
+            <Button onClick={onToggle} {...toggleStyle}>
                 {isOpen ? <CloseIcon boxSize='1.1em' /> : <HamburgerIcon boxSize='2em' />}
             </Button>
             <Link to="/inicio">
-                <Image h='60px' py='4px' px='15px' src={image || logo} />
+                <Image h='60px' py='4px' px='15px' d={{base:"flex", md:"none"}} src={image || logo} />
             </Link>
-            <HStack pos="absolute" right="10px" spacing={3}>
-                <Text as="h1" fontSize="lg" fontWeight="bold" d={{base: "none", sm: "block"}}>
+            <HStack pos="absolute" right="16px" spacing={3}>
+                <Text as="h1" fontSize="lg" fontWeight="bold" d={{base: "none", md: "block"}}>
                     {isAdmin ? 'Administrador' : 'Usuario'}
                     </Text>
                 <Link to="/backoffice/editar-usuario" >
