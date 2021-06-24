@@ -13,7 +13,7 @@ const Navbar = ({ isOpen, onToggle, isAdmin }) => {
         w: "100%",
         justify: "center",
         pos: "fixed",
-        bg: {base:"gray.100", md:"transparent"},
+        bg: {base:"white", md:"transparent"},
         shadow: {base:"lg", md:"none"},
         top: "0px",
         zIndex: "6",
@@ -22,7 +22,6 @@ const Navbar = ({ isOpen, onToggle, isAdmin }) => {
     }
     const toggleStyle = {
         pos: "absolute",
-        bg: "gray.200",
         left: "10px",
         d: { base:'flex', md: 'none'},
         size: '40px',

@@ -19,7 +19,7 @@ export default function UserInputs({ userData }) {
     const handleNameClick = async (event) => {
         const inputValue = event.target.parentNode.parentNode.childNodes[1].value
         console.log(inputValue)
-        const newName = await AlertService.inputText("Actulizar Nombre")
+        const newName = await AlertService.inputText("Actualizar Nombre")
         const validate = (/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/).test(newName)
         if (newName && validate) {
             console.log(newName)
@@ -37,7 +37,7 @@ export default function UserInputs({ userData }) {
     const handleSurnameClick = async (event) => {
         const inputValue = event.target.parentNode.parentNode.childNodes[1].value
         console.log(inputValue)
-        const newSurname = await AlertService.inputText("Actulizar Apellido")
+        const newSurname = await AlertService.inputText("Actualizar Apellido")
         const validate = (/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/).test(newSurname)
         if (newSurname && validate) {
             console.log(newSurname)
@@ -55,7 +55,7 @@ export default function UserInputs({ userData }) {
     const handleEmailClick = async (event) => {
         const inputValue = await event.target.parentNode.parentNode.childNodes[1].value
         console.log(inputValue)
-        const newEmail = await AlertService.inputText("Actulizar Email")
+        const newEmail = await AlertService.inputText("Actualizar Email")
         const validate = (/^[\w]+@{1}[\w]+\.[a-z]{2,3}$/).test(newEmail)
         if (newEmail && validate) {
             console.log(newEmail)

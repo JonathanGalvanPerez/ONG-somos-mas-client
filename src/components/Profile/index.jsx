@@ -21,11 +21,11 @@ export default function Profile() {
                     Mi perfil
                 </Heading>
             </Box>
-            <VStack p="20px" width={{ base: "95%", md: "80%"}} rounded="md" shadow="dark-lg">
-                <Text as="u" fontSize="xl" textAlign="center" >Editar cuenta</Text>
+            <VStack py="30px" width={{ base: "95%", md: "70%", xl: "35%"}} rounded="lg"  shadow="sm" bg="white">
+                <Text as="u" fontSize="xl" textAlign="center" >Información</Text>
                 <ProfileForm userData={userData} />
             </VStack>
-            <Stack direction={{base: "column", md: "row"}} shadow="dark-lg">
+            <Stack direction={{base: "column", sm: "row"}} rounded="lg" shadow="lg" bg="white">
                 <ChangePassword />
                 <DeleteAccount />
             </Stack>
