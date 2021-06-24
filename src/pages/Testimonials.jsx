@@ -19,7 +19,7 @@ export default function Testimonials() {
 
 
   return (
-    <Box mt="3" display="flex" justifyContent="center" w="100%">
+    <Box mt="8" display="flex" justifyContent="center" w="100%">
 
       <Box
         bg="blue.100" h="max-content"

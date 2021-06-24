@@ -57,6 +57,8 @@ export default function ListaCategorias() {
     return (
 
         <Box
+            mt={8}
+            mx="auto"
             w={{ base: "98%", lg: "80%" }}
         >
 
@@ -103,6 +105,7 @@ export default function ListaCategorias() {
                     overflow="auto" rounded="md"
                     mx="5"  pt="1"
                     shadow="2xl"
+                    mt={5}
                 >
 
 

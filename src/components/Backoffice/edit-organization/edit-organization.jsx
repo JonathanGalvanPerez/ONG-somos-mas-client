@@ -39,7 +39,7 @@ export default function EditOrganization() {
   });
 
   return (
-    <Center d="flex" flexDirection="column" mt='16'>
+    <Center d="flex" flexDirection="column" mt='12'>
       <Heading as="h1" size="xl" mb={5}>
         Organización
       </Heading>
