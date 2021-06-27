@@ -5,8 +5,7 @@ import { Text } from "@chakra-ui/layout"
 
 const InputText = (props) => {
 
-    //const userData = { ...props }
-    // console.log(userData)
+
     return (
         <>
             <Text>{props.name}</Text>
@@ -17,8 +16,6 @@ const InputText = (props) => {
                     </Button>
                 </InputRightElement>
                 <Input
-                    id="name"
-                    name="name"
                     textAlign="center"
                     fontSize="2xl"
                     bg="gray.100"

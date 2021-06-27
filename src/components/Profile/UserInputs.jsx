@@ -1,16 +1,15 @@
 import React from 'react';
-import { Text, Stack } from '@chakra-ui/layout';
-import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/layout';
 import InputText from './InputText'
 import AlertService from '../alertService/AlertService'
-
+import utils from './updateUserInfo'
 
 export default function UserInputs({ userData }) {
 
-    const ShowAlertResultMsg = (field) => {
-        const isOk = false
+    const ShowAlertResultMsg = (field, isOk) => {
         if (isOk) {
             AlertService.success("Resultado", `Campo ${field} actualizado`)
+
         } else {
             AlertService.error("Resultado", `No se ha podido actualizar el campo ${field}`)
         }
@@ -23,10 +22,13 @@ export default function UserInputs({ userData }) {
         const validate = (/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/).test(newName)
         if (newName && validate) {
             console.log(newName)
-            /* Send newName to API */
-
-            /* Alert example */
-            setTimeout(ShowAlertResultMsg("Nombre"), 1000);
+            const result = await utils.updateUserName(newName, userData)
+            if (result.status !== 200) {
+                setTimeout(ShowAlertResultMsg("Nombre", false), 1000);
+            }
+            else {
+                setTimeout(ShowAlertResultMsg("Nombre", true), 1000);
+            }
         } else {
             AlertService.error(`El nombre no es válido <br /> 
             Asegurese de escribir la primera letra en mayúscula`)
@@ -41,10 +43,13 @@ export default function UserInputs({ userData }) {
         const validate = (/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/).test(newSurname)
         if (newSurname && validate) {
             console.log(newSurname)
-            /* Send surname to API */
-
-            /* Alert example */
-            setTimeout(ShowAlertResultMsg("Apellido"), 1000);
+            const result = await utils.updateUserLastName(newSurname, userData)
+            if (result.status !== 200) {
+                setTimeout(ShowAlertResultMsg("Apellido", false), 1000);
+            }
+            else {
+                setTimeout(ShowAlertResultMsg("Apellido", true), 1000);
+            }
         }
         else {
             AlertService.error(`El apellido no es válido <br /> 
@@ -59,10 +64,13 @@ export default function UserInputs({ userData }) {
         const validate = (/^[\w]+@{1}[\w]+\.[a-z]{2,3}$/).test(newEmail)
         if (newEmail && validate) {
             console.log(newEmail)
-            /* Send email to API */
-
-            /* Alert example */
-            setTimeout(ShowAlertResultMsg("Email"), 1000);
+            const result = await utils.updateUserEmail(newEmail, userData)
+            if (result.status !== 200) {
+                setTimeout(ShowAlertResultMsg("Email", false), 1000);
+            }
+            else {
+                setTimeout(ShowAlertResultMsg("Email", true), 1000);
+            }
         } else {
             AlertService.error(`El email no es válido`)
         }
@@ -72,12 +80,12 @@ export default function UserInputs({ userData }) {
         <Stack spacing={3}>
             <InputText
                 name={"NOMBRE DEL USUARIO"}
-                userData={userData.name}
+                userData={userData.firstName}
                 handler={handleNameClick}
             />
             <InputText
                 name={"APELLIDO DEL USUARIO"}
-                userData={userData.surname}
+                userData={userData.lastName}
                 handler={handleSurnameClick}
             />
             <InputText

@@ -20,8 +20,7 @@ import { API_BASE_URL } from './../app/config';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../features/login/loginSlice'
 
-export default function RegisterPage() 
-{
+export default function RegisterPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -41,15 +40,15 @@ export default function RegisterPage()
       else {
         Alert.success('Hecho', 'Se ha registrado correctamente');
         // Registro exitoso
-        dispatch(logIn({token: result.data?.token, roleId: result.data?.roleId }))        
+        dispatch(logIn({ token: result.data?.token, roleId: result.data?.roleId, userId: result.data?.userId }))
         history.push("/"); // Redirecciona a home
       }
     }).catch((error) => {
       Alert.error('Error', 'Ha ocurrido un error');
 
-      actions.setSubmitting(false); 
+      actions.setSubmitting(false);
     });
-};
+  };
 
   // On logo click
   const handleLogoClick = () => {
@@ -85,7 +84,7 @@ export default function RegisterPage()
 
           <Text fontSize="smaller">Rellena con tus datos para crear una nueva cuenta</Text>
 
-          <div/>
+          <div />
 
           {/* Form */}
           <RegisterForm onRegisterSubmit={handleRegisterSubmit} />
