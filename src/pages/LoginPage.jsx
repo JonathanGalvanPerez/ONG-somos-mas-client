@@ -39,17 +39,17 @@ export default function LoginPage() {
 
       if (!result.data?.token) {
         Alert.error('Error', 'No ha logrado ingresar, verifique los datos', 'OK');
-        actions.setSubmitting(false); 
+        actions.setSubmitting(false);
         return;
       }
       else {
-        history.push("/"); 
+        history.push("/");
         Alert.success('Hecho', 'Ha  iniciado sesión correctamente');
-        dispatch(logIn({token: result.data?.token, roleId: result.data?.roleId }))
+        dispatch(logIn({ token: result.data?.token, roleId: result.data?.roleId, userId: result.data?.userId }))
       }
     }).catch((error) => {
       Alert.error('Incorrecto', 'El mail o la contraseña son incorrectos');
-      actions.setSubmitting(false); 
+      actions.setSubmitting(false);
     });
 
   };
