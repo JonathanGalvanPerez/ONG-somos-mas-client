@@ -2,23 +2,37 @@ import React from 'react';
 import { Button } from '@chakra-ui/button'
 import { Text, VStack } from '@chakra-ui/layout'
 import AlertService from '../alertService/AlertService'
+import utils from './updateUserInfo'
 
-function ChangePassword() {
+function ChangePassword({ userData }) {
+
+    const ShowAlertResultMsg = (field, isOk) => {
+        if (isOk) {
+            AlertService.success("Resultado", `Campo ${field} actualizado`)
+
+        } else {
+            AlertService.error("Resultado", `No se ha podido actualizar el campo ${field}`)
+        }
+    }
 
     const handleClick = async () => {
         const currentPassword = await AlertService.inputPassword("Ingrese su contraseña actual")
         if (currentPassword) {
-            console.log(currentPassword)
             const newPassword = await AlertService.inputPassword("Ingrese la nueva contraseña")
             /* Call API to validate the current Password & Update it with the new Password */
-            console.log(newPassword)
-
-            /* Alert example */
-            const isOk = false
-            if (isOk) {
-                AlertService.success("Resultado", "Contraseña actualizada")
-            } else {
-                AlertService.error("Resultado", "No se ha podido actualizar la contraseña")
+            const result = await utils.validatePassword(currentPassword, userData.email)
+            console.log(result)
+            if (!result) {
+                AlertService.error("Error", "La contraseña actual ingresada es errónea")
+            }
+            else {
+                const result = await utils.updateUserPassword(newPassword, userData)
+                if (result.status !== 200) {
+                    setTimeout(ShowAlertResultMsg("Contraseña", false), 2000);
+                }
+                else {
+                    setTimeout(ShowAlertResultMsg("Contraseña", true), 2000);
+                }
             }
         }
     }
@@ -39,5 +53,6 @@ function ChangePassword() {
         </VStack>
     )
 }
+
 
 export default ChangePassword
